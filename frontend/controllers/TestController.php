@@ -48,7 +48,7 @@ class TestController extends Controller
     public function actionMail()
     {
         $result = Yii::$app->mailer->compose()
-            ->setFrom('arsku77@gmail.com')
+            ->setFrom('arvidija77@gmail.com')
             ->setTo('arsku77@gmail.com')
             ->setSubject('Тема сообųųžžщения')
             ->setTextBody('Текст сообщėęęšėęšėš ųįųįūų čč ения')
