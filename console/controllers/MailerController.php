@@ -22,9 +22,10 @@ class MailerController extends \yii\console\Controller
 
         $subscribers = Subscriber::getList();
 //        print_r($subscribers); die;
-        $count = Sender::run($subscribers, $newsList);
+        //$count = Sender::run($subscribers, $newsList);
+        Sender::run($subscribers, $newsList);
 
-        Console::output("\nEmails sent: {$count}");
+      //  Console::output("\nEmails sent: {$count}");
     }
 
 }

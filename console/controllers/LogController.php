@@ -3,8 +3,8 @@
 namespace console\controllers;
 
 use yii\helpers\Console;
-use console\models\Time;
-use console\models\SaveToLogFile;
+use console\models\Timeget;
+use console\models\Saver;
 
 
 /**
@@ -18,13 +18,8 @@ class LogController extends \yii\console\Controller
  */
     public function actionSave()
     {
-        $timeFormatet = Time::getTime();
-        $saveOk = SaveToLogFile::save($timeFormatet);
-        if ($saveOk) {
-            Console::output("\nLog Write: {$timeFormatet}");
-        }else{
-            Console::output("\nLog no Write");
-        }
-   }
+        $timeFormatet = Timeget::getTimelog();
+       return Saver::save($timeFormatet);
+    }
 
 }
