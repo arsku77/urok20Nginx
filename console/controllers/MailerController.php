@@ -3,8 +3,8 @@
 namespace console\controllers;
 
 use yii\helpers\Console;
-use console\models\News;
-use console\models\Subscriber;
+use console\models\Newsemployee;
+use console\models\Employee;
 use console\models\Sender;
 
 /**
@@ -26,6 +26,21 @@ class MailerController extends \yii\console\Controller
         Sender::run($subscribers, $newsList);
 
       //  Console::output("\nEmails sent: {$count}");
+    }
+
+    /**
+     * sending message for employee
+     */
+    public function actionSendempl()
+    {
+        $newsListContent = Newsemployee::getListContent();
+//        print_r($newsListContent); die;
+        $employee = Employee::getList();
+//        print_r($employee); die;
+        //$count = Sender::run($subscribers, $newsList);
+        $count = Sender::runempl($employee, $newsListContent);
+
+        Console::output("\nEmails sent: {$count}");
     }
 
 }

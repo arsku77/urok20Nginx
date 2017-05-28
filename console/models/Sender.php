@@ -8,7 +8,9 @@
 
 namespace console\models;
 use Yii;
-
+use yii\helpers\ArrayHelper;
+use console\models\Saver;
+use console\models\Timeget;
 class Sender
 {
 
@@ -30,6 +32,36 @@ class Sender
                 ->setSubject('Тема сообщения')
                 ->send();
             if ($result) {
+                $count++;
+            }
+        }
+        return $count;
+    }
+
+
+    public static function runempl($employees, $newsListContent)
+    {
+
+//        $viewData = ['newsListContent' => $newsListContent];
+
+//        print_r($viewData); die;
+        $count = 0;
+
+        foreach ($employees as $employee) {
+            $viewData = ['newsListContent' => ArrayHelper::merge($newsListContent, $employee)];
+
+            $result = Yii::$app->mailer->compose('/mailer/newsempl', $viewData)
+                ->setFrom('arvidija77@gmail.com')
+                ->setTo($employee['email'])
+                ->setSubject('Message')
+                ->send();
+            if ($result) {//save to log file
+                Saver::save(Timeget::getTimelog().' висланно по ' .
+                    $employee['email'] . ' сообщение содерж.: Уважаемый ' .
+                    $employee['name_first']. ' ' .
+                    $employee['name_last'] . '! ' .
+                    $newsListContent['content'] . ', с названием: ' .
+                    $newsListContent['name']);
                 $count++;
             }
         }
