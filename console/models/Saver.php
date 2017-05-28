@@ -22,7 +22,8 @@ class Saver
     public static function save($string)
     {
        $fileName = 'log';
-       $file = '/var/www/project/frontend/web/'.$fileName.'.txt';
+       $file = dirname(dirname(__DIR__)) . '/frontend/web/'.$fileName.'.txt';
+//     $file = '/var/www/project/frontend/web/'.$fileName.'.txt';
        file_put_contents($file, $string."\n", FILE_APPEND);
     }
 
