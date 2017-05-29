@@ -2,7 +2,7 @@
 
 <?php foreach ($newsList as $item): ?>
 
-    <h1><?php echo $item['title']; ?></h1>
+    <h2><?php echo $item['title']; ?></h2>
     <p><?php echo $item['content']; ?></p>
     <hr>
 
