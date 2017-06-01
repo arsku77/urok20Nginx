@@ -16,7 +16,8 @@ class Employee
 
     public static function getList()
     {
-        $sql = 'SELECT * FROM employee WHERE need_send =' . self::NEED_SEND;
+//        $sql = 'SELECT * FROM employee WHERE need_send =' . self::NEED_SEND;
+        $sql = 'SELECT * FROM employee';
         return Yii::$app->db->createCommand($sql)->queryAll();
     }
 
