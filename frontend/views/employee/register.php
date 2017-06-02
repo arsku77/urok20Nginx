@@ -1,7 +1,5 @@
 <?php
 /* @var $model frontend\models\Employee */
-use yii\helpers\Html;
-use yii\bootstrap\ActiveForm;
 
 if ($model->hasErrors()) {
     echo '<pre>';
@@ -43,9 +41,9 @@ if ($model->hasErrors()) {
 
     <p>city:</p>
     <select name="city">
-    echo "<option value="Marijampolė">1 marijampolė</option>
-    echo "<option value="Kaunas">2 Kaunas</option>
-    echo "<option value="Vilnius">3 Vilnius</option>
+    <option value="Marijampolė">1 marijampolė</option>
+    <option value="Kaunas">2 Kaunas</option>
+    <option value="Vilnius">3 Vilnius</option>
     </select>
     <br><br>
 

@@ -71,4 +71,36 @@ class Sender
         return $count;
     }
 
+
+    public static function sendorder($order)
+    {
+
+//        $viewData = ['newsListContent' => $newsListContent];
+
+//        print_r($viewData); die;
+        $count = 0;
+
+            $viewData = ['order' => $order];
+            echo '<pre>';
+            print_r($viewData);
+            echo '</pre>';
+
+            $result = Yii::$app->mailer->compose('/mailer/order', $viewData)
+                ->setFrom('arvidija77@gmail.com')
+                ->setTo($order['email'])
+                ->setSubject('Message')
+                ->send();
+            if ($result) {//save to log file
+                Saver::save(Timeget::getTimelog().' висланно по ' .
+                    $order['email'] . ' сообщение содерж.: ' .
+                    $order['name']. ' ' .
+                    $order['withWindow'] . '! ' .
+                    $order['heightWindow'] . ', с названием: ' .
+                    $order['color']);
+                return true;
+            }
+
+        return false;
+    }
+
 }
