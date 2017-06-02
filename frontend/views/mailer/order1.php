@@ -10,14 +10,25 @@ use frontend\models\Timeget;
 <p>
 <!--<style>	table { border-collapse: collapse; } table, td, th { border: 1px solid black; } </style>-->
 <table style = "border-collapse: collapse;">
+
+<table>
+        <colgroup>
+                <col  style="border:1px solid black;text-align:center" />
+                <col  style="border:1px solid black;text-align:left" />
+                <col  style="border:1px solid black;text-align:center" />
+                <col  style="border:1px solid black;text-align:right" />
+                <col  style="border:1px solid black;text-align:right" />
+                <col  style="border:1px solid black;text-align:right" />
+                <col  style="border:1px solid black;text-align:right" />
+        </colgroup>
         <tr>
-                <th style="width:120px;border:1px solid black;text-align:center;">Ширина cm</th>
-                <th style="width:120px;border:1px solid black;text-align:center;">Высота cm</th>
-                <th style="width:120px;border:1px solid black;text-align:center;">Количество камер </th>
-                <th style="width:120px;border:1px solid black;text-align:center;">Общее количество створок</th>
-                <th style="width:120px;border:1px solid black;text-align:center;">Количество поворотных створок </th>
-                <th style="width:120px;border:1px solid black;text-align:center;">Цвет </th>
-                <th style="width:120px;border:1px solid black;text-align:center;">наличие подоконника  </th>
+                <th width="120" align="center">Ширина</th>
+                <th width="120" align="center">Высота</th>
+                <th width="120" align="center">Количество камер </th>
+                <th width="120" align="center">Общее количество створок</th>
+                <th width="120" align="center">Количество поворотных створок </th>
+                <th width="120" align="center">Цвет </th>
+                <th width="120" align="center">наличие подоконника  </th>
         </tr>
         <tr>
                 <td style="border:1px solid black;text-align:center"><?php echo $order['withWindow'];?></td>
