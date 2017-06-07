@@ -36,10 +36,7 @@ class MailerController extends \yii\console\Controller
     public function actionSendempl()
     {
         $newsListContent = Newsemployee::getListContent();
-//        print_r($newsListContent); die;
         $employee = Employee::getList();
-//        print_r($employee); die;
-        //$count = Sender::run($subscribers, $newsList);
         $count = Sender::runempl($employee, $newsListContent);
 
         Console::output("\nEmails sent: {$count}");

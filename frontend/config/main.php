@@ -10,7 +10,7 @@ return [
     'id' => 'app-frontend',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
-    'language' => 'lt',
+    'language' => 'ru',
     'controllerNamespace' => 'frontend\controllers',
     'components' => [
         'request' => [
@@ -50,6 +50,24 @@ return [
         'stringHelper' => [
             'class' => 'common\components\StringHelper',
         ],
+        'assetManager' => [
+            'bundles' => [
+                'yii\web\JqueryAsset' => [
+                    'js'=>[]
+                ],
+                'yii\web\YiiAsset' => [
+                    'js'=>[]
+                ],
+                'yii\bootstrap\BootstrapPluginAsset' => [
+                    'js'=>[]
+                ],
+            ],
+        ],
     ],
     'params' => $params,
+    'aliases' => [
+        '@files' => '/var/www/project/frontend/web/files',
+        '@photos' => '@files/photos',
+    ]
+
 ];
