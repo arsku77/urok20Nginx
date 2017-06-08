@@ -55,6 +55,9 @@ return [
     'aliases' => [
         '@files' => '/var/www/project/frontend/web/files',
         '@photos' => '@files/photos',
+        '@gallery' => '/files/photos/gallery',
+        '@gallerynivo' => '/files/photos/slidders/nivo',
+        '@sliddersnivoupload' => '@files/photos/slidders/nivo',
     ]
 
 ];

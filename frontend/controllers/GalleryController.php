@@ -15,4 +15,9 @@ class GalleryController extends Controller
         return $this->render('index');
     }
 
+    public function actionNivo()
+    {
+        return $this->render('nivo');
+    }
+
 }

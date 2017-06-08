@@ -2,11 +2,11 @@
 
 /* @var $this yii\web\View */
 use Yii;
-use frontend\assets\GalleryAsset;
+use frontend\assets\SlidderNivoAsset;
 //
-GalleryAsset::register($this);
-$this->registerJsFile('@web/js/gallery/isotope/scripts.js', ['depends' => [
-        GalleryAsset::className()
+SlidderNivoAsset::register($this);
+$this->registerJsFile('@web/js/gallery/slidders/nivo/scripts.js', ['depends' => [
+    SlidderNivoAsset::className()
 ]]);
 ?>
 
