@@ -53,6 +53,16 @@ class EmployeeController extends Controller
 
     }
 
+    public function actionView($id)
+    {
+        $item = Employee::getItem($id);
+
+        return $this->render('view', [
+            'item' => $item
+        ]);
+    }
+
+
     public function actionTest()
     {
         $human1 = new Human();

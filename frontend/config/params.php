@@ -6,4 +6,7 @@ return [
     'maxNewsOnHomepage' => 3,
     'shortTextLimit' => 20,
     'wordsLimit' => 6,
+    'maxEmployeeInList' => 5,
+    'maxEmployeeInListSalaryHom' => 3,
+    'maxEmployeeInListSalaryAbout' => 4,
 ];

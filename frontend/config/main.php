@@ -45,6 +45,8 @@ return [
                 'novosti' => 'test/index',
                 'novosti/<id:\d+>' => 'test/view',
                 'news-count' => 'news/list',
+                'robotnik/<id:\d+>' => 'employee/view',
+
             ],
         ],
         'stringHelper' => [
