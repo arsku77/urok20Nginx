@@ -39,3 +39,10 @@ phpunit.phar
 
 /arsku.com
 /console/log/
+/default
+/_.conf
+#web kataloge
+/frontend/web/index.php
+/frontend/web/index-test.php
+/frontend/web/robots.txt
+/frontend/web/log.txt
