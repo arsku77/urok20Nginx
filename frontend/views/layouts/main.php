@@ -10,25 +10,26 @@ use yii\widgets\Breadcrumbs;
 use frontend\assets\AppAsset;
 use common\widgets\Alert;
 
-AppAsset::register($this);
+AppAsset::register($this);//pajungiami resursai ir nustatomos kai kurių resursų priklausomybės
 ?>
-<?php $this->beginPage() ?>
+<?php $this->beginPage()//prasideda buferizacija ?>
 <!DOCTYPE html>
-<html lang="<?= Yii::$app->language ?>">
+<html lang="<?= Yii::$app->language //formuojama kalbos tag'as?>">
 <head>
     <meta charset="<?= Yii::$app->charset ?>">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <?= Html::csrfMetaTags() ?>
+    <?= Html::csrfMetaTags() //bus sugeneruoti tokinai?>
     <title><?= Html::encode($this->title) ?></title>
-    <?php $this->head() ?>
+    <?php $this->head()//atspausdinama head žymė ?>
 </head>
 <body>
-<?php $this->beginBody() ?>
+<?php $this->beginBody()//atspausdinama turinio pražios žymė ?>
 
-<div class="wrap">
+<div class="wrap"><?php /*--------------pagrindinis body div----------*/?>
+    <?php /*--------------viršutinė juosta----------*/?>
     <?php
-    NavBar::begin([
+    NavBar::begin([//atidarome navigacinį meniu
         'brandLabel' => 'My Company',
         'brandUrl' => Yii::$app->homeUrl,
         'options' => [
@@ -57,17 +58,17 @@ AppAsset::register($this);
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => $menuItems,
     ]);
-    NavBar::end();
-    ?>
-
+    NavBar::end();//uždarom meniu juostą
+     ?>
+<?php /*-------------viršutinės juostos pabaiga-------*/?>
     <div class="container">
         <?= Breadcrumbs::widget([
             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
-        ]) ?>
-        <?= Alert::widget() ?>
-        <?= $content ?>
+        ])//navigacinis duonos trupinių meniu ?>
+        <?= Alert::widget()//apdoroja sessijų pranešimus ir parodo juos ?>
+        <?= $content //pagrindinis turinys?>
     </div>
-</div>
+</div><?php /*----body be footer pabaiga----------*/?>
 
 <footer class="footer">
     <div class="container">
@@ -77,7 +78,7 @@ AppAsset::register($this);
     </div>
 </footer>
 
-<?php $this->endBody() ?>
+<?php $this->endBody()//turinio formavimo pabaiga - pajungiamas ajax(js...) ?>
 </body>
 </html>
-<?php $this->endPage() ?>
+<?php $this->endPage()//baigiasi buferizacija - pajungiami visi reikalingi failai ?>

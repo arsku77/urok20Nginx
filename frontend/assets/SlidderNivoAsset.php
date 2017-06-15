@@ -19,7 +19,7 @@ class SliddernivoAsset extends AssetBundle
     public $js = [
         'js/slidders/nivo/jquery.min.js',
         'js/slidders/nivo/jquery.nivo.slider.js',
-        'js/slidders/nivo/pagead_show_ads.js',
+        //'js/slidders/nivo/pagead_show_ads.js',
 
     ];
     

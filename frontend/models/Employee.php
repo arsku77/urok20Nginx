@@ -70,4 +70,10 @@ class Employee extends Model
 
         return $result;//grąžinam jau modifikuotą masyvą - jame pakeistas turinys content
     }
+
+    public static function find()
+    {
+        $sql = 'SELECT * FROM employee';
+        return Yii::$app->db->createCommand($sql)->queryAll();
+    }
 }

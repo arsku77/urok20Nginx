@@ -1,6 +1,8 @@
 # log files
 /backend/log/
 /frontend/log/
+/frontend/web/log.txt
+
 # yii console commands
 /yii
 /yii_test
@@ -36,7 +38,8 @@ phpunit.phar
 
 # vagrant runtime
 /.vagrant
-
+# varios files backupes
+/adminnginx.com
 /arsku.com
 /console/log/
 /default
@@ -45,4 +48,5 @@ phpunit.phar
 /frontend/web/index.php
 /frontend/web/index-test.php
 /frontend/web/robots.txt
-/frontend/web/log.txt
+
+

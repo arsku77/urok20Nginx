@@ -46,6 +46,7 @@ return [
                 'novosti/<id:\d+>' => 'test/view',
                 'news-count' => 'news/list',
                 'robotnik/<id:\d+>' => 'employee/view',
+                'apie-imone' => 'site/about',
 
             ],
         ],
