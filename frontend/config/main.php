@@ -57,10 +57,10 @@ return [
     'params' => $params,
     'aliases' => [
         '@files' => '/var/www/project/frontend/web/files',
-        '@photos' => '@files/photos',
-        '@gallery' => '/files/photos/gallery',
-        '@gallerynivo' => '/files/photos/slidders/nivo',
-        '@sliddersnivoupload' => '@files/photos/slidders/nivo',
+        '@photos' => '@files/advance/photos',
+        '@gallery' => '/files/advance/photos/gallery',
+        '@gallerynivo' => '/files/advance/photos/slidders/nivo',
+        '@sliddersnivoupload' => '@files/advance/photos/slidders/nivo',
     ]
 
 ];

@@ -2,11 +2,11 @@
 
 /* @var $this yii\web\View */
 use Yii;
-use frontend\assets\GalleryAsset;
+use frontend\assets\AdvanceGalleryAsset;
 //
-GalleryAsset::register($this);
-$this->registerJsFile('@web/js/gallery/isotope/scripts.js', ['depends' => [
-        GalleryAsset::className()
+AdvanceGalleryAsset::register($this);
+$this->registerJsFile('@web/js/'.Yii::$app->params['themeCurrent'].'/gallery/isotope/scripts.js', ['depends' => [
+    AdvanceGalleryAsset::className()
 ]]);
 ?>
 

@@ -2,11 +2,11 @@
 
 /* @var $this yii\web\View */
 //use Yii;
-use frontend\assets\SlidderNivoAsset;
+use frontend\assets\AdvanceSlidderNivoAsset;
 use Yii;
-SlidderNivoAsset::register($this);
-$this->registerJsFile('@web/js/gallery/slidders/nivo.js', ['depends' => [
-    SlidderNivoAsset::className()
+AdvanceSlidderNivoAsset::register($this);
+$this->registerJsFile('@web/js/'.Yii::$app->params['themeCurrent'].'/gallery/slidders/nivo.js', ['depends' => [
+    AdvanceSlidderNivoAsset::className()
 ]]);
 ?>
 

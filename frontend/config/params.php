@@ -9,4 +9,5 @@ return [
     'maxEmployeeInList' => 5,
     'maxEmployeeInListSalaryHom' => 3,
     'maxEmployeeInListSalaryAbout' => 4,
+    'themeCurrent' => 'advance',
 ];
