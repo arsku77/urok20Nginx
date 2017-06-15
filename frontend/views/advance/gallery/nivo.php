@@ -5,7 +5,7 @@
 use frontend\assets\AdvanceSlidderNivoAsset;
 use Yii;
 AdvanceSlidderNivoAsset::register($this);
-$this->registerJsFile('@web/js/'.Yii::$app->params['themeCurrent'].'/gallery/slidders/nivo.js', ['depends' => [
+$this->registerJsFile('@web/js/'.Yii::$app->params['themeCurrentAssets'].'/gallery/slidders/nivo.js', ['depends' => [
     AdvanceSlidderNivoAsset::className()
 ]]);
 ?>

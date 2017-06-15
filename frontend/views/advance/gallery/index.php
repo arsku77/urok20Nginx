@@ -5,7 +5,7 @@ use Yii;
 use frontend\assets\AdvanceGalleryAsset;
 //
 AdvanceGalleryAsset::register($this);
-$this->registerJsFile('@web/js/'.Yii::$app->params['themeCurrent'].'/gallery/isotope/scripts.js', ['depends' => [
+$this->registerJsFile('@web/js/'.Yii::$app->params['themeCurrentAssets'].'/gallery/isotope/scripts.js', ['depends' => [
     AdvanceGalleryAsset::className()
 ]]);
 ?>
