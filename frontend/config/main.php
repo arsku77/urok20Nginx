@@ -57,10 +57,13 @@ return [
     'params' => $params,
     'aliases' => [
         '@files' => '/var/www/project/frontend/web/files',
-        '@photos' => '@files/advance/photos',
-        '@gallery' => '/files/advance/photos/gallery',
-        '@gallerynivo' => '/files/advance/photos/slidders/nivo',
-        '@sliddersnivoupload' => '@files/advance/photos/slidders/nivo',
-    ]
+        '@gallery' => '/files/site/gallery',
+        '@goods' => '/files/site/goods',
+        '@sliders' => '/files/site/sliders',
+        '@advance' => '/files/themes/advance',
+        '@advance-gallery' => '@advance/photos/gallery',
+        '@advance-sliders' => '@advance/photos/sliders',
+        '@advance-sliders-nivo' => '@advance/photos/sliders/nivo',
+    ],
 
 ];

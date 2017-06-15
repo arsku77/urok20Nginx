@@ -25,35 +25,35 @@ $this->registerJsFile('@web/js/'.Yii::$app->params['themeCurrent'].'/gallery/iso
 
 <div class="portfolioContainer">
     <div class="objects">
-        <img src="<?php echo Yii::getAlias('@gallery').'/watch.jpg';?>" alt="image">
+        <img src="<?php echo Yii::getAlias('@advance-gallery').'/watch.jpg';?>" alt="image">
     </div>
 
     <div class="people places">
-        <img src="<?php echo Yii::getAlias('@gallery').'/surf.jpg';?>" alt="image">
+        <img src="<?php echo Yii::getAlias('@advance-gallery').'/surf.jpg';?>" alt="image">
     </div>	
 
     <div class="food">
-        <img src="<?php echo Yii::getAlias('@gallery').'/burger.jpg';?>" alt="image">
+        <img src="<?php echo Yii::getAlias('@advance-gallery').'/burger.jpg';?>" alt="image">
     </div>
 
     <div class="people places">
-        <img src="<?php echo Yii::getAlias('@gallery').'/subway.jpg';?>" alt="image">
+        <img src="<?php echo Yii::getAlias('@advance-gallery').'/subway.jpg';?>" alt="image">
     </div>
 
     <div class="places objects">
-        <img src="<?php echo Yii::getAlias('@gallery').'/trees.jpg';?>" alt="image">
+        <img src="<?php echo Yii::getAlias('@advance-gallery').'/trees.jpg';?>" alt="image">
     </div>
 
     <div class="people food objects">
-        <img src="<?php echo Yii::getAlias('@gallery').'/coffee.jpg';?>" alt="image">
+        <img src="<?php echo Yii::getAlias('@advance-gallery').'/coffee.jpg';?>" alt="image">
     </div>
 
     <div class="food objects">
-        <img src="<?php echo Yii::getAlias('@gallery').'/wine.jpg';?>" alt="image">
+        <img src="<?php echo Yii::getAlias('@advance-gallery').'/wine.jpg';?>" alt="image">
     </div>	
 
     <div class="food">
-        <img src="<?php echo Yii::getAlias('@gallery').'/salad.jpg';?>" alt="image">
+        <img src="<?php echo Yii::getAlias('@advance-gallery').'/salad.jpg';?>" alt="image">
     </div>	
 
 </div>
