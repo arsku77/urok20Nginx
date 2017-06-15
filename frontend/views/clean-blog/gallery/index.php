@@ -23,7 +23,7 @@ $this->registerJsFile('@web/js/'.Yii::$app->params['themeCurrentAssets'].'/galle
 
 </div>
 
-<div class="portfolioContainer">
+<div style="background-color: #ec971f" class="portfolioContainer">
     <div class="objects">
         <img src="<?php echo Yii::getAlias('@clean-blog-gallery').'/watch.jpg';?>" alt="image">
     </div>

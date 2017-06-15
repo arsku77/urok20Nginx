@@ -58,8 +58,8 @@ return [
 //                'basePath' => '@frontend/views/advance',
 //                'baseUrl' => '@frontend/views/advance',
                 'pathMap' => [
-                    '@frontend/views' => '@frontend/views/advance',
-//                    '@frontend/views' => '@frontend/views/clean-blog',
+                    //'@frontend/views' => '@frontend/views/advance',
+                    '@frontend/views' => '@frontend/views/clean-blog',
                 ],
             ],
         ],

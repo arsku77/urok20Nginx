@@ -33,8 +33,9 @@ AppAsset::register($this);//pajungiami resursai ir nustatomos kai kuriÅ³ resursÅ
         'brandLabel' => 'My Company',
         'brandUrl' => Yii::$app->homeUrl,
         'options' => [
+            'style' => 'background-color: #660000',
             'class' => 'navbar-inverse navbar-fixed-top',
-            'style' => '',
+
         ],
     ]);
     $menuItems = [

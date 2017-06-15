@@ -3,7 +3,7 @@ use yii\helpers\Url;
 use Yii;
 ?>
 
-<h3><?php echo 'имя: ' . $item['first_name'] . ' код: ' . $item['id_code']; ?></h3>
+<h3 style="background-color: #660000"><?php echo 'имя: ' . $item['first_name'] . ' код: ' . $item['id_code']; ?></h3>
 <p><?php echo 'отч: ' . $item['middle_name']; ?></p>
 <p><?php echo 'фам: ' . $item['last_name']; ?></p>
 <p><?php echo 'г. рож: ' . $item['birthdate']; ?></p>
