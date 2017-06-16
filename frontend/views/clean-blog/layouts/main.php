@@ -58,7 +58,7 @@ $menuItems = [
     ['label' => 'Home', 'url' => ['/site/index']],
     ['label' => 'About', 'url' => ['/site/about']],
     ['label' => 'Contact', 'url' => ['/site/contact']],
-    ['label' => 'Post', 'url' => ['/site/post']],
+    ['label' => 'Comment', 'url' => ['/site/comments']],
 ];
 
 if (Yii::$app->user->isGuest) {

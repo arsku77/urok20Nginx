@@ -7,9 +7,16 @@
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 use yii\captcha\Captcha;
+use frontend\assets\CleanBlogSitesAsset;
+//
+CleanBlogSitesAsset::register($this);//js/clean-blog/clean-blog.min.js
+$this->registerJsFile('@web/js/'.Yii::$app->params['themeCurrentAssets'].'/clean-blog.min.js', ['depends' => [
+    CleanBlogSitesAsset::className()
+]]);
 
 $this->title = 'Contact';
 $this->params['breadcrumbs'][] = $this->title;
+
 ?>
 <div class="site-contact">
     <h1><?= Html::encode($this->title) ?></h1>
@@ -34,7 +41,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     'template' => '<div class="row"><div class="col-lg-3">{image}</div><div class="col-lg-6">{input}</div></div>',
                 ]) ?>
 
-                <div class="form-group">
+                <div class="form-group col-xs-12 floating-label-form-group controls">
                     <?= Html::submitButton('Submit', ['class' => 'btn btn-primary', 'name' => 'contact-button']) ?>
                 </div>
 

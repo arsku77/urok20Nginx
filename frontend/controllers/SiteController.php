@@ -12,6 +12,7 @@ use frontend\models\PasswordResetRequestForm;
 use frontend\models\ResetPasswordForm;
 use frontend\models\SignupForm;
 use frontend\models\ContactForm;
+use frontend\models\Comment;
 use frontend\models\Test;
 /**
  * Site controller
@@ -126,6 +127,26 @@ class SiteController extends Controller
             return $this->refresh();
         } else {
             return $this->render('contact', [
+                'model' => $model,
+            ]);
+        }
+    }
+
+    public function actionComments()
+    {
+        $model = new Comment();
+        $model->scenario = Comment::SCENARIO_COMMENT_REGISTER;
+
+        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+            if ($model->save()) {
+                Yii::$app->session->setFlash('comment saved', 'Thank you for contacting us. We will respond to you as soon as possible.');
+            } else {
+                Yii::$app->session->setFlash('error', 'There was an error saving your comment.');
+            }
+
+            return $this->refresh();
+        } else {
+            return $this->render('comment', [
                 'model' => $model,
             ]);
         }

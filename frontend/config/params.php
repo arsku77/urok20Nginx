@@ -9,5 +9,7 @@ return [
     'maxEmployeeInList' => 5,
     'maxEmployeeInListSalaryHom' => 3,
     'maxEmployeeInListSalaryAbout' => 4,
+    'maxCommentsInList' => 5,
+    'maxCommentsInListInForm' => 7,
     'themeCurrentAssets' => 'clean-blog',
 ];
