@@ -47,35 +47,10 @@ AppAsset::register($this);//pajungiami resursai ir nustatomos kai kurių resurs�
     <!-- Navigation -->
 <?php
 NavBar::begin([//atidarome navigacinį meniu
-    'brandLabel' => 'My Company',
+    'brandLabel' => 'My Companyy',
     'brandUrl' => Yii::$app->homeUrl,
     'options' => [
       'class' => 'navbar navbar-collapse navbar-custom navbar-fixed-top',
-          'div' => [
-          'class' => 'collapse navbar-collapse',
-          'id' => 'bs-example-navbar-collapse-1',
-            'div' => [
-            'class' => 'container-fluid',
-                'div' => [
-                'class' => 'navbar-header page-scroll',
-                    'button' => [
-                    'type' => 'button',
-                    'class' => 'navbar-toggl',
-                    'data-toggle' => 'collapse',
-                    'data-targe' => '#bs-example-navbar-collapse-1',
-                            'span' => [
-                            'class' => 'sr-only',
-                            'Toggle navigation',
-                            ],
-                    'Menu',
-                        'i' => [
-                        'class' => 'fa fa-bars',
-                        ],
-                    ],
-
-                ],
-            ],
-        ],
     ],
 ]);
 
