@@ -12,75 +12,194 @@ use common\widgets\Alert;
 
 AppAsset::register($this);//pajungiami resursai ir nustatomos kai kurių resursų priklausomybės
 ?>
+
+
 <?php $this->beginPage()//prasideda buferizacija ?>
 <!DOCTYPE html>
 <html lang="<?= Yii::$app->language //formuojama kalbos tag'as?>">
+
 <head>
+
     <meta charset="<?= Yii::$app->charset ?>">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <?= Html::csrfMetaTags() //bus sugeneruoti tokinai?>
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head()//atspausdinama head žymė ?>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
 </head>
+
+
 <body>
 <?php $this->beginBody()//atspausdinama turinio pražios žymė ?>
 
-<div class="wrap"><?php /*--------------pagrindinis body div----------*/?>
-    <?php /*--------------viršutinė juosta----------*/?>
-    <?php
-    NavBar::begin([//atidarome navigacinį meniu
-        'brandLabel' => 'My Company',
-        'brandUrl' => Yii::$app->homeUrl,
-        'options' => [
-            'style' => 'background-color: #660000',
-            'class' => 'navbar-inverse navbar-fixed-top',
 
-        ],
-    ]);
-    $menuItems = [
-        ['label' => 'Home', 'url' => ['/site/index']],
-        ['label' => 'About', 'url' => ['/site/about']],
-        ['label' => 'Contact', 'url' => ['/site/contact']],
-    ];
-    if (Yii::$app->user->isGuest) {
-        $menuItems[] = ['label' => 'Signup', 'url' => ['/site/signup']];
-        $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
-    } else {
-        $menuItems[] = '<li>'
-            . Html::beginForm(['/site/logout'], 'post')
-            . Html::submitButton(
-                'Logout (' . Yii::$app->user->identity->username . ')',
-                ['class' => 'btn btn-link logout']
-            )
-            . Html::endForm()
-            . '</li>';
-    }
-    echo Nav::widget([
-        'options' => ['class' => 'navbar-nav navbar-right'],
-        'items' => $menuItems,
-    ]);
-    NavBar::end();//uždarom meniu juostą
-     ?>
-<?php /*-------------viršutinės juostos pabaiga-------*/?>
+
+
+
+    <!-- Navigation -->
+<?php
+NavBar::begin([//atidarome navigacinį meniu
+    'brandLabel' => 'My Company',
+    'brandUrl' => Yii::$app->homeUrl,
+    'options' => [
+        'style' => 'background-color: #660000',
+        'class' => 'navbar navbar-default navbar-custom navbar-fixed-top',
+    ],
+]);
+
+$menuItems = [
+    ['label' => 'Home', 'url' => ['/site/index']],
+    ['label' => 'About', 'url' => ['/site/about']],
+    ['label' => 'Contact', 'url' => ['/site/contact']],
+    ['label' => 'Post', 'url' => ['/site/post']],
+];
+
+if (Yii::$app->user->isGuest) {
+    $menuItems[] = ['label' => 'Signup', 'url' => ['/site/signup']];
+    $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
+} else {
+    $menuItems[] = '<li>'
+        . Html::beginForm(['/site/logout'], 'post')
+        . Html::submitButton(
+            'Logout (' . Yii::$app->user->identity->username . ')',
+            ['class' => 'btn btn-link logout']
+        )
+        . Html::endForm()
+        . '</li>';
+}
+echo Nav::widget([
+    'options' => ['class' => 'navbar-nav navbar-right'],
+    'items' => $menuItems,
+]);
+NavBar::end();//uždarom meniu juostą
+
+
+?>
+<!--    <nav class="navbar navbar-default navbar-custom navbar-fixed-top">-->
+<!--        <div class="container-fluid">-->
+<!--            <!-- Brand and toggle get grouped for better mobile display -->-->
+<!--            <div class="navbar-header page-scroll">-->
+<!--                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">-->
+<!--                    <span class="sr-only">Toggle navigation</span>-->
+<!--                    Menu <i class="fa fa-bars"></i>-->
+<!--                </button>-->
+<!--                <a class="navbar-brand" href="index.html">Start Bootstrap</a>-->
+<!--            </div>-->
+<!---->
+<!---->
+<!---->
+<!---->
+<!--            <!-- Collect the nav links, forms, and other content for toggling -->-->
+<!--            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">-->
+<!--                <ul class="nav navbar-nav navbar-right">-->
+<!--                    <li>-->
+<!--                        <a href="index.html">Home</a>-->
+<!--                    </li>-->
+<!--                    <li>-->
+<!--                        <a href="about.html">About</a>-->
+<!--                    </li>-->
+<!--                    <li>-->
+<!--                        <a href="post.html">Sample Post</a>-->
+<!--                    </li>-->
+<!--                    <li>-->
+<!--                        <a href="contact.html">Contact</a>-->
+<!--                    </li>-->
+<!--                </ul>-->
+<!--            </div>-->
+<!--            <!-- /.navbar-collapse -->-->
+<!--        </div>-->
+<!--        <!-- /.container -->-->
+<!--    </nav>-->
+<!---->
+<!---->
+
+
+    <!-- Page Header -->
+    <!-- Set your background image for this header on the line below. -->
+    <header class="intro-header" style="background-image: url('files/themes/clean-blog/photos/gallery/post-bg.jpg')">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <div class="site-heading">
+                        <h1>Clean Blog</h1>
+                        <hr class="small">
+                        <span class="subheading">A Clean Blog Theme by Start Bootstrap</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
     <div class="container">
-        <?= Breadcrumbs::widget([
-            'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
-        ])//navigacinis duonos trupinių meniu ?>
+
         <?= Alert::widget()//apdoroja sessijų pranešimus ir parodo juos ?>
         <?= $content //pagrindinis turinys?>
+
     </div>
-</div><?php /*----body be footer pabaiga----------*/?>
 
-<footer class="footer">
-    <div class="container">
-        <p class="pull-left">&copy; My Company <?= date('Y') ?></p>
+    <hr>
 
-        <p class="pull-right"><?= Yii::powered() ?></p>
-    </div>
-</footer>
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <ul class="list-inline text-center">
+                        <li>
+                            <a href="#">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    </ul>
+                    <p class="copyright text-muted">Copyright &copy; Your Website 2016</p>
+                </div>
+            </div>
+        </div>
+    </footer>
 
+    <!-- jQuery -->
+<!--    <script src="other/clean-blog/vendor/jquery/jquery.min.js"></script>-->
+
+    <!-- Bootstrap Core JavaScript -->
+<!--    <script src="other/clean-blog/vendor/bootstrap/js/bootstrap.min.js"></script>-->
+
+    <!-- Contact Form JavaScript -->
+<!--    <script src="js/clean-blog/jqBootstrapValidation.js"></script>-->
+<!--    <script src="js/clean-blog/contact_me.js"></script>-->
+
+    <!-- Theme JavaScript -->
+<!--    <script src="js/clean-blog/clean-blog.min.js"></script>-->
 <?php $this->endBody()//turinio formavimo pabaiga - pajungiamas ajax(js...) ?>
+
 </body>
+
 </html>
 <?php $this->endPage()//baigiasi buferizacija - pajungiami visi reikalingi failai ?>
