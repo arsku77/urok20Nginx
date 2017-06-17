@@ -40,10 +40,6 @@ AppAsset::register($this);//pajungiami resursai ir nustatomos kai kurių resurs�
 <body>
 <?php $this->beginBody()//atspausdinama turinio pražios žymė ?>
 
-
-
-
-
     <!-- Navigation -->
 <?php
 NavBar::begin([//atidarome navigacinį meniu
@@ -146,18 +142,6 @@ NavBar::end();//uždarom meniu juostą
         </div>
     </footer>
 
-    <!-- jQuery -->
-<!--    <script src="other/clean-blog/vendor/jquery/jquery.min.js"></script>-->
-
-    <!-- Bootstrap Core JavaScript -->
-<!--    <script src="other/clean-blog/vendor/bootstrap/js/bootstrap.min.js"></script>-->
-
-    <!-- Contact Form JavaScript -->
-<!--    <script src="js/clean-blog/jqBootstrapValidation.js"></script>-->
-<!--    <script src="js/clean-blog/contact_me.js"></script>-->
-
-    <!-- Theme JavaScript -->
-<!--    <script src="js/clean-blog/clean-blog.min.js"></script>-->
 <?php $this->endBody()//turinio formavimo pabaiga - pajungiamas ajax(js...) ?>
 
 </body>

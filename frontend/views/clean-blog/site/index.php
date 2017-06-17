@@ -10,8 +10,6 @@ $this->registerJsFile('@web/js/'.Yii::$app->params['themeCurrentAssets'].'/clean
     CleanBlogSitesAsset::className()
 ]]);
 
-
-
 $this->title = 'My Yii Clean -Blog';
 ?>
 

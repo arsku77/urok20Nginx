@@ -68,13 +68,6 @@ class Comment extends Model
         $sql = 'SELECT * FROM comment ORDER BY id DESC LIMIT ' . $max ;
         $result = Yii::$app->db->createCommand($sql)->queryAll();
 
-        // $helper = Yii::$app->stringHelper;
-
-//        if(!empty($result) && is_array($result)) {
-//            foreach ($result as &$item) {//žemiau yra mūs sukurtas komponentas
-//                $item['content'] = Yii::$app->stringHelper->getShort($item['content']);
-//            }
-//        }
         return $result;//grąžinam jau modifikuotą masyvą - jame pakeistas turinys content
     }
 

@@ -25,18 +25,12 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class="row">
         <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
 
-            <div class="post-preview">
+            <div class="comment">
 <!--                <h2 class="post-title">news list</h2>-->
                 <?php echo CommentsList::widget(['showLimit' => Yii::$app->params['maxCommentsInListInForm']]); ?>
 
             </div>
 
-            <!-- Pager -->
-            <ul class="pager">
-                <li class="next">
-                    <a href="#">Older Posts &rarr;</a>
-                </li>
-            </ul>
         </div>
     </div>
 
