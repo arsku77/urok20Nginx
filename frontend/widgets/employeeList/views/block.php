@@ -1,6 +1,10 @@
+<?php
+use yii\helpers\Url;
+?>
+
 <?php foreach ($list as $item): ?>
     <h3>
-        <a href="<?php echo Yii::$app->urlManager->createUrl(['employee/view', 'id' => $item['id']]); ?>">
+        <a href="<?php echo Url::to(['employee/view', 'id' => $item['id']]); ?>">
             <?php echo 'имя: ' . $item['first_name'] . ' код: ' . $item['id_code']; ?>
         </a>
     </h3>

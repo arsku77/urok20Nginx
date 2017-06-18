@@ -49,4 +49,6 @@ phpunit.phar
 /frontend/web/index-test.php
 /frontend/web/robots.txt
 
-
+# pictures and other files
+/frontend/web/files/
+frontend/web/files/site/

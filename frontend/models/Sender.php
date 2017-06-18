@@ -15,8 +15,8 @@ class Sender
 
             $viewData = ['order' => $order];
 
-            $result = Yii::$app->mailer->compose('/mailer/order', $viewData)
-                ->setFrom('arvidija77@gmail.com')
+            $result = Yii::$app->mailer->compose('/'.Yii::$app->params['themeCurrentAssets'].'/mailer/order', $viewData)
+                ->setFrom(Yii::$app->params['offerorEmail'])
                 ->setTo($order['email'])
                 ->setSubject('Потверждение')
                 ->send();

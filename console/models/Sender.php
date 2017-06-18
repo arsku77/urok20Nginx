@@ -27,7 +27,7 @@ class Sender
 
         foreach ($subscribers as $subscriber) {
             $result = Yii::$app->mailer->compose('/mailer/newslist', $viewData)
-                ->setFrom('arvidija77@gmail.com')
+                ->setFrom(Yii::$app->params['offerorEmail'])
                 ->setTo($subscriber['email'])
                 ->setSubject('Тема сообщения')
                 ->send();
@@ -54,7 +54,7 @@ class Sender
 //            echo '</pre>';die;
 
             $result = Yii::$app->mailer->compose('/mailer/newsempl', $viewData)
-                ->setFrom('arvidija77@gmail.com')
+                ->setFrom(Yii::$app->params['offerorEmail'])
                 ->setTo($employee['email'])
                 ->setSubject('Message')
                 ->send();
@@ -86,7 +86,7 @@ class Sender
             echo '</pre>';
 
             $result = Yii::$app->mailer->compose('/mailer/order', $viewData)
-                ->setFrom('arvidija77@gmail.com')
+                ->setFrom(Yii::$app->params['offerorEmail'])
                 ->setTo($order['email'])
                 ->setSubject('Message')
                 ->send();

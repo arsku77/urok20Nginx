@@ -39,6 +39,11 @@ AppAsset::register($this);//pajungiami resursai ir nustatomos kai kuriÅ³ resursÅ
     $menuItems = [
         ['label' => 'Home', 'url' => ['/site/index']],
         ['label' => 'About', 'url' => ['/site/about']],
+        ['label' => 'Products', 'url' => ['product/index'], 'items' => [
+            ['label' => 'New Arrivals', 'url' => ['product/index', 'tag' => 'new']],
+            ['label' => 'Most Popular', 'url' => ['product/index', 'tag' => 'popular']],
+        ]],
+
         ['label' => 'Contact', 'url' => ['/site/contact']],
     ];
     if (Yii::$app->user->isGuest) {
