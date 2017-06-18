@@ -12,6 +12,6 @@ return [
     'maxEmployeeInListSalaryAbout' => 4,
     'maxCommentsInList' => 5,
     'maxCommentsInListInForm' => 7,
-    'themeCurrentAssets' => 'clean-blog',
-//    'themeCurrentAssets' => 'advence',
+//    'themeCurrentAssets' => 'clean-blog',
+    'themeCurrentAssets' => 'advence',
 ];

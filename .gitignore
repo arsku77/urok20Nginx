@@ -51,4 +51,3 @@ phpunit.phar
 
 # pictures and other files
 /frontend/web/files/
-frontend/web/files/site/
