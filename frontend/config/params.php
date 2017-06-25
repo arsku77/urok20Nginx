@@ -13,5 +13,5 @@ return [
     'maxCommentsInList' => 5,
     'maxCommentsInListInForm' => 7,
 //    'themeCurrentAssets' => 'clean-blog',
-    'themeCurrentAssets' => 'advence',
+    'themeCurrentAssets' => 'advance',
 ];
