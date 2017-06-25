@@ -1,6 +1,9 @@
 <?php
 /* @var $model frontend\models\Employee */
 
+use yii\helpers\Html;
+use yii\widgets\ActiveForm;
+
 if ($model->hasErrors()) {
     echo '<pre>';
     print_r($model->getErrors());
@@ -8,57 +11,28 @@ if ($model->hasErrors()) {
 }
 ?>
 
-<h1>Welcome to our company!</h1>
+    <h1>Welcome to our company!</h1>
 
-<form method="post">
-    <p>First name:</p>
-    <input name="firstName" type="text" />
-    <br><br>
+<?php $form = ActiveForm::begin(); ?>
 
-    <p>Last name:</p>
-    <input name="lastName" type="text" />
-    <br><br>
+<?php echo $form->field($model, 'firstName'); ?>
 
-    <p>Middle name:</p>
-    <input name="middleName" type="text" />
-    <br><br>
+<?php echo $form->field($model, 'lastName'); ?>
 
-    <p>birthDate:</p>
-    <input name="birthDate" type="text" />
-    <br><br>
+<?php echo $form->field($model, 'middleName')->label('Tėvavardis'); ?>
 
-    <p>hiringDate:</p>
-    <input name="hiringDate" type="text" />
-    <br><br>
+<?php echo $form->field($model, 'email')->hint('Help me'); ?>
 
-    <p>salary:</p>
-    <input name="salary" type="text" />
-    <br><br>
+<?php echo $form->field($model, 'birthDate'); ?>
 
-    <p>department:</p>
-    <input name="department" type="text" />
-    <br><br>
+<?php echo $form->field($model, 'hiringDate'); ?>
 
-    <p>city:</p>
-    <select name="city">
-    <option value="Marijampolė">1 marijampolė</option>
-    <option value="Kaunas">2 Kaunas</option>
-    <option value="Vilnius">3 Vilnius</option>
-    </select>
-    <br><br>
+<?php echo $form->field($model, 'position'); ?>
 
-    <p>position:</p>
-    <input name="position" type="text" />
-    <br><br>
+<?php echo $form->field($model, 'idCode'); ?>
 
-    <p>idCode:</p>
-    <input name="idCode" type="text" />
-    <br><br>
+<?php echo $form->field($model, 'city')->dropDownList($model->getCitiesList()); ?>
 
-    <p>Email name:</p>
-    <input name="email" type="text" />
-    <br><br>
+<?php echo Html::submitButton('Siūsti', ['class' => 'btn btn-primary']); ?>
 
-    <input type="submit" />
-
-</form>
+<?php ActiveForm::end(); ?>

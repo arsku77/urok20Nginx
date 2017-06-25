@@ -2,8 +2,8 @@
 /* @var $this yii\web\View */
 /* @var $model frontend\models\Subscribe */
 
-use frontend\assets\GalleryAsset;
-GalleryAsset::register($this);
+use frontend\assets\AdvanceGalleryAsset;
+AdvanceGalleryAsset::register($this);
 
 
 /* example flash message

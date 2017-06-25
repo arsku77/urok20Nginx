@@ -23,9 +23,12 @@ class WindowController extends Controller
         $model = new Window();
         $model->scenario = Window::SCENARIO_WINDOW_ORDER;
 
-        $formData = Yii::$app->request->post();
         if (Yii::$app->request->isPost) {
-            $model->attributes = $formData;
+            $model->load(Yii::$app->request->post());
+//            echo '<pre>';
+//            print_r($model);
+//            echo '</pre>';die;
+
             if ($model->validate() && $model->save() && $model->send()) {
                 Yii::$app->session->setFlash('success', 'Order placed! you send confirmation');
             }

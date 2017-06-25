@@ -78,16 +78,18 @@ class EmployeeController extends Controller
         $model = new Employee();
         $model->scenario = Employee::SCENARIO_EMPLOYEE_REGISTER;
 
-        $formData = Yii::$app->request->post();
+//        $formData = Yii::$app->request->post();
         if (Yii::$app->request->isPost) {
 //            echo '<pre>';
 //            print_r($formData);
 //            echo '</pre>';die;
 
-            $model->attributes = $formData;
+//            $model->attributes = $formData;
+            $model->load(Yii::$app->request->post());
 //            $model->firstName = $formData['firstName'];
 //            echo '<pre>';
 //            print_r($model->attributes);
+//            print_r($model);
 //            echo '</pre>';die;
 
             if ($model->validate() && $model->save()) {

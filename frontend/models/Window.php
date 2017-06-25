@@ -15,7 +15,7 @@ class Window extends Model
     public $numberAllLeaf;
     public $numberRotatableLeaf;
     public $color;
-    public $windowSillIsNeed;
+    public $windowSillIsNeed;//
     public $name;
     public $email;
 
