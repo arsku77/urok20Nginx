@@ -22,7 +22,7 @@ class WindowController extends Controller
     {
         $model = new Window();
         $model->scenario = Window::SCENARIO_WINDOW_ORDER;
-
+        $model->windowSillIsNeed = true;
         if (Yii::$app->request->isPost) {
             $model->load(Yii::$app->request->post());
 //            echo '<pre>';

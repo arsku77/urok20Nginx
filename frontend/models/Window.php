@@ -32,8 +32,8 @@ class Window extends Model
         return [
             [['withWindow', 'heightWindow', 'numberCameras', 'numberAllLeaf', 'numberRotatableLeaf', 'color', 'windowSillIsNeed', 'name', 'email',], 'required'],
             [['Name'], 'string', 'min' => 2],
-            [['with'], 'integer', 'min' => 70, 'max' => 210],
-            [['height'], 'integer', 'min' => 100, 'max' => 200],
+            [['withWindow'], 'integer', 'min' => 70, 'max' => 210],
+            [['heightWindow'], 'integer', 'min' => 100, 'max' => 200],
             [['numberCameras'], 'in', 'range' => [1, 2, 3]],
             [['numberAllLeaf'], 'integer', 'min' => 1],
             [['numberRotatableLeaf'], 'compare', 'compareAttribute' => 'numberAllLeaf', 'operator' => '<'],
