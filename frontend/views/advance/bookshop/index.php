@@ -11,7 +11,7 @@
         <p><?php echo $book->getDatePublished(); ?></p>
         <p><?php echo $book->getPublisherName(); ?></p>
         <?php foreach ($book->getAuthors() as $author): ?>
-            <p><?php echo $author->first_name . ' ' . $author->last_name; ?></p>
+            <p><?php echo $author->getFullName(); ?></p>
         <?php endforeach; ?>
         <hr>
     </div>

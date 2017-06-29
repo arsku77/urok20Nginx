@@ -19,7 +19,7 @@ class Publisher extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return 'publisher';
+        return '{{publisher}}';
     }
 
     /**
