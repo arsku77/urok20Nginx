@@ -33,7 +33,7 @@ class Book extends ActiveRecord
      */
     public function getDatePublished()
     {
-        return ($this->date_published) ? Yii::$app->formatter->asDate($this->date_published) : "Not set";
+        return ($this->date_published) ? Yii::$app->formatter->asDatetime($this->date_published,'dd-MM-yyyy HH:mm:ss') : "Not set";
     }
 
     /**
