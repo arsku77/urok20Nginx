@@ -29,10 +29,18 @@ class Supplier extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-          //  [['foundation_date'], 'safe'],
+            [['foundation_date'], 'safe'],
             [['rating'], 'integer'],
             [['name', 'company_code'], 'string', 'max' => 255],
         ];
+    }
+    /**
+     * @return string
+     * full name from last and first names
+     */
+    public function getFullRequisites()
+    {
+        return $this->name . ' ' . $this->company_code;
     }
 
     /*---------------------Relate supplier to product---start-------------*/
@@ -49,18 +57,10 @@ class Supplier extends \yii\db\ActiveRecord
      */
     public function getProducts()
     {
-        return $this->hasMany(Product::className(), ['id' => 'product_id'])->via('SupplierToProductRelations')->all();
+        return $this->hasMany(Product::className(), ['id' => 'product_id'])->via('supplierToProductRelations')->all();
     }
 
     /*---------------------Relate supplier to product ---end -------------*/
-
-
-
-
-
-
-
-
 
 
     /**

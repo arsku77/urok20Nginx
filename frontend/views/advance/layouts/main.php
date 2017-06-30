@@ -39,9 +39,16 @@ AppAsset::register($this);//pajungiami resursai ir nustatomos kai kuriÅ³ resursÅ
     $menuItems = [
         ['label' => 'Home', 'url' => ['/site/index']],
         ['label' => 'About', 'url' => ['/site/about']],
-        ['label' => 'Products', 'url' => ['product/index'], 'items' => [
-            ['label' => 'New Arrivals', 'url' => ['product/index', 'tag' => 'new']],
-            ['label' => 'Most Popular', 'url' => ['product/index', 'tag' => 'popular']],
+        ['label' => 'Oerder Window', 'url' => ['/window/order']],
+        ['label' => 'Products', 'url' => ['productshop/index'], 'items' => [
+            ['label' => 'New Product', 'url' => ['productshop/product']],
+           // ['label' => 'Most Popular', 'url' => ['product/index', 'tag' => 'popular']],
+        ]],
+        ['label' => 'Categories', 'url' => ['productshop/index'], 'items' => [
+            ['label' => 'New Category', 'url' => ['productshop/category']],
+        ]],
+        ['label' => 'Suppliers', 'url' => ['productshop/index'], 'items' => [
+            ['label' => 'New Supplier', 'url' => ['productshop/supplier']],
         ]],
 
         ['label' => 'Contact', 'url' => ['/site/contact']],

@@ -3,7 +3,7 @@
 namespace frontend\models;
 
 use Yii;
-
+use yii\helpers\ArrayHelper;
 /**
  * This is the model class for table "product".
  *
@@ -31,11 +31,20 @@ class Product extends \yii\db\ActiveRecord
     {
         return [
             [['price'], 'number'],
-            //[['date_purchase'], 'safe'],
+            [['date_purchase'], 'safe'],
             [['category_id'], 'integer'],
             [['name', 'isbn'], 'string', 'max' => 255],
         ];
     }
+
+    public function getCategoriesList()
+    {
+//        $sql = 'SELECT * FROM category';
+//        $result = Yii::$app->db->createCommand($sql)->queryAll();
+        $categoriesList = \frontend\models\Category::find()->all();
+        return ArrayHelper::map($categoriesList, 'id', 'name');
+    }
+
 
     /**
      * @return string
@@ -79,7 +88,7 @@ class Product extends \yii\db\ActiveRecord
      */
     public function getSuppliers()
     {
-        return $this->hasMany(Supplier::className(), ['id' => 'supplier_id'])->via('ProductToSupplierRelations')->all();
+        return $this->hasMany(Supplier::className(), ['id' => 'supplier_id'])->via('productToSupplierRelations')->all();
     }
 
     /*---------------------Relate product to supplier ---end -------------*/
