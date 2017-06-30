@@ -9,11 +9,6 @@ use yii\bootstrap\ActiveForm;
 use yii\captcha\Captcha;
 use frontend\assets\CleanBlogSitesAsset;
 use frontend\widgets\commentsList\CommentsList;
-//
-CleanBlogSitesAsset::register($this);//js/clean-blog/clean-blog.min.js
-$this->registerJsFile('@web/js/'.Yii::$app->params['themeCurrentAssets'].'/clean-blog.min.js', ['depends' => [
-    CleanBlogSitesAsset::className()
-]]);
 
 $this->title = 'comments';
 $this->params['breadcrumbs'][] = $this->title;
