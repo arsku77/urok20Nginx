@@ -22,6 +22,17 @@ class Author extends \yii\db\ActiveRecord
         return '{{author}}';
     }
 
+    public function rules()
+    {
+        return [
+            [['first_name', 'last_name'],'required'],
+            [['first_name', 'last_name'],'string', 'max'=>25],
+            [['birthdate'],'date', 'format'=>'php:Y-m-d'],
+            [['rating'], 'integer'],
+        ];
+    }
+
+
     /**
      * @return string
      * full name from last and first names

@@ -38,6 +38,8 @@ AppAsset::register($this);//pajungiami resursai ir nustatomos kai kuriÅ³ resursÅ
     ]);
     $menuItems = [
         ['label' => 'Home', 'url' => ['/site/index']],
+        ['label' => 'Author', 'url' => ['/author/index']],
+        ['label' => 'Publisher', 'url' => ['/publisher/index']],
         ['label' => 'About', 'url' => ['/site/about']],
         ['label' => 'Oerder Window', 'url' => ['/window/order']],
         ['label' => 'Products', 'url' => ['productshop/index'], 'items' => [
@@ -47,12 +49,12 @@ AppAsset::register($this);//pajungiami resursai ir nustatomos kai kuriÅ³ resursÅ
         ['label' => 'Categories', 'url' => ['productshop/index'], 'items' => [
             ['label' => 'New Category', 'url' => ['productshop/category']],
         ]],
-        ['label' => 'Suppliers', 'url' => ['productshop/index'], 'items' => [
-            ['label' => 'New Supplier', 'url' => ['productshop/supplier']],
-        ]],
+//        ['label' => 'Suppliers', 'url' => ['productshop/index'], 'items' => [
+//            ['label' => 'New Supplier', 'url' => ['productshop/supplier']],
+//        ]],
 
         ['label' => 'Contact', 'url' => ['/site/contact']],
-        ['label' => 'Comment', 'url' => ['/site/comments']],
+       // ['label' => 'Comment', 'url' => ['/site/comments']],
     ];
     if (Yii::$app->user->isGuest) {
         $menuItems[] = ['label' => 'Signup', 'url' => ['/site/signup']];
