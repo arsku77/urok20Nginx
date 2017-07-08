@@ -2,7 +2,8 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
-
+use yii\widgets\ListView;
+use yii\widgets\ActiveForm;
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
@@ -28,6 +29,13 @@ $this->params['breadcrumbs'][] = $this->title;
             'identity_number',
 
            ['class' => 'yii\grid\ActionColumn'],
+           ['class' => 'yii\grid\DataColumn',
+            'attribute' => 'name',
+            'value' => function($dataProvider){
+                return Html::textInput('', $dataProvider->name);
+            },
+            'format' => 'raw'
+            ],
         ],
     ]); ?>
 </div>
