@@ -1,8 +1,16 @@
 <?php
 /* @var $this yii\web\View */
 /* @var $bookList[] frontend\models\Book */
+
+use yii\helpers\Url;
+
 ?>
-<h2>Books!</h2>
+
+    <h2>Books!</h2>
+
+<a href="<?php echo Url::to(['create']); ?>" class="btn btn-primary ">Create book</a>
+
+<br><br>
 
 <?php foreach ($bookList as $book): ?>
 

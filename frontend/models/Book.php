@@ -25,6 +25,8 @@ class Book extends ActiveRecord
     {
         return [
             [['name', 'publisher_id'], 'required'],
+            [['date_published'],'date', 'format'=>'php:Y-m-d'],
+
         ];
     }
 
