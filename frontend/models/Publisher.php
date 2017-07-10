@@ -1,7 +1,7 @@
 <?php
 
 namespace frontend\models;
-
+use yii\helpers\ArrayHelper;
 use Yii;
 
 /**
@@ -42,4 +42,13 @@ class Publisher extends \yii\db\ActiveRecord
             'identity_number' => 'Identity Number',
         ];
     }
+
+    public static function getList()
+    {
+        $list = self::find()->asArray()->all();
+        return ArrayHelper::map($list,'id','name');
+
+    }
+
+
 }

@@ -29,7 +29,7 @@ use kartik\widgets\DatePicker;
     ],
 ]); ?>
 
-    <?php echo $form->field($book, 'publisher_id'); ?>
+<?php echo $form->field($book, 'publisher_id')->dropDownList($publisher); ?>
 
     <?php echo Html::submitButton('Save', [
         'class' => 'btn btn-primary',
