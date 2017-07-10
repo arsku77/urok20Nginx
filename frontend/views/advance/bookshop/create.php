@@ -4,6 +4,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use kartik\widgets\DatePicker;
 
 ?>
 
@@ -13,7 +14,20 @@ use yii\widgets\ActiveForm;
 
     <?php echo $form->field($book, 'isbn'); ?>
 
-    <?php echo $form->field($book, 'date_published'); ?>
+<?php echo $form->field($book, 'date_published')->widget(
+    DatePicker::className(),[
+    'name' => 'date_published',
+    'type' => 2,
+    'options' => ['placeholder' => 'Date Published ...',
+        'inline' => true,
+    ],
+    'pluginOptions' => [
+        'autoclose' => true,
+        'format' => 'yyyy-mm-dd'
+        ,
+        'todayHighlight' => true,
+    ],
+]); ?>
 
     <?php echo $form->field($book, 'publisher_id'); ?>
 
