@@ -38,8 +38,12 @@ AppAsset::register($this);//pajungiami resursai ir nustatomos kai kurių resurs�
     ]);
     $menuItems = [
         ['label' => 'Home', 'url' => ['/site/index']],
-        ['label' => 'Author', 'url' => ['/author/index']],
-        ['label' => 'Publisher', 'url' => ['/publisher/index']],
+        ['label' => 'Домашки', 'url' => ['/publisher/index'], 'items' => [
+            ['label' => 'Publisher', 'url' => ['/publisher/index']],
+            ['label' => 'Bookshop', 'url' => ['/bookshop/index']],
+            ['label' => 'Author', 'url' => ['/author/index']],
+
+        ]],
         ['label' => 'About', 'url' => ['/site/about']],
         ['label' => 'Oerder Window', 'url' => ['/window/order']],
         ['label' => 'Products', 'url' => ['productshop/index'], 'items' => [

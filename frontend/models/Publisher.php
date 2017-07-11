@@ -1,9 +1,8 @@
 <?php
 
 namespace frontend\models;
-
-use Yii;
 use yii\helpers\ArrayHelper;
+use Yii;
 
 /**
  * This is the model class for table "publisher".
@@ -50,4 +49,6 @@ class Publisher extends \yii\db\ActiveRecord
         return ArrayHelper::map($list,'id','name');
 
     }
+
+
 }

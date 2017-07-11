@@ -2,7 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
-
+use kartik\widgets\DatePicker;
 /* @var $this yii\web\View */
 /* @var $model frontend\models\Publisher */
 /* @var $form yii\widgets\ActiveForm */
@@ -16,7 +16,21 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'date_registered')->textInput() ?>
+    <?php echo $form->field($model, 'date_registered')->widget(
+        DatePicker::className(),[
+        'name' => 'date_registered',
+        'type' => 2,
+        'options' => ['placeholder' => 'Date date_registered ...',
+            'inline' => true,
+        ],
+        'pluginOptions' => [
+            'autoclose' => true,
+            'format' => 'yyyy-mm-dd'
+            ,
+            'todayHighlight' => true,
+        ],
+    ]); ?>
+
 
     <?= $form->field($model, 'identity_number')->textInput() ?>
 
