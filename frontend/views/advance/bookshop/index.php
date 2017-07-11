@@ -1,19 +1,34 @@
 <?php
+
+use yii\helpers\Html;
+use yii\grid\GridView;
+
 /* @var $this yii\web\View */
-/* @var $bookList[] frontend\models\Book */
+/* @var $dataProvider yii\data\ActiveDataProvider */
+
+$this->title = 'Books';
+$this->params['breadcrumbs'][] = $this->title;
 ?>
-<h2>Books!</h2>
+<div class="book-index">
 
-<?php foreach ($bookList as $book): ?>
+    <h1><?= Html::encode($this->title) ?></h1>
 
-    <div class="col-md-10">
-        <h3><?php echo $book->name; ?></h3>
-        <p><?php echo $book->getDatePublished(); ?></p>
-        <p><?php echo $book->getPublisherName(); ?></p>
-        <?php foreach ($book->getAuthors() as $author): ?>
-            <p><?php echo $author->getFullName(); ?></p>
-        <?php endforeach; ?>
-        <hr>
-    </div>
+    <p>
+        <?= Html::a('Create Book', ['create'], ['class' => 'btn btn-success']) ?>
+    </p>
 
-<?php endforeach;
+    <?= GridView::widget([
+        'dataProvider' => $dataProvider,
+        'columns' => [
+            ['class' => 'yii\grid\SerialColumn'],
+
+            'id',
+            'name',
+            'isbn',
+            'date_published',
+            'publisher_id',
+
+            ['class' => 'yii\grid\ActionColumn'],
+        ],
+    ]); ?>
+</div>
