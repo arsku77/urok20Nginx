@@ -10,10 +10,12 @@ return [
     'id' => 'app-frontend',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
+    'language' => 'ru',
     'controllerNamespace' => 'frontend\controllers',
     'components' => [
         'request' => [
             'csrfParam' => '_csrf-frontend',
+            'enableCsrfValidation' => false,
         ],
         'user' => [
             'identityClass' => 'common\models\User',
@@ -36,12 +38,20 @@ return [
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
-
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+                'novosti' => 'test/index',
+                'novosti/<id:\d+>' => 'test/view',
+                'news-count' => 'news/list',
+                'robotnik/<id:\d+>' => 'employee/view',
+                'apie-imone' => 'site/about',
+
             ],
+        ],
+        'stringHelper' => [
+            'class' => 'common\components\StringHelper',
         ],
         'view' => [
             'theme' => [
@@ -55,7 +65,23 @@ return [
                 ],
             ],
         ],
-
     ],
     'params' => $params,
+    'aliases' => [
+        '@files' => '/var/www/project/frontend/web/files',
+        '@gallery' => '/files/site/gallery',
+        '@goods' => '/files/site/goods',
+        '@sliders' => '/files/site/sliders',
+//asset advance theme
+        '@advance' => '/files/themes/advance',
+        '@advance-gallery' => '@advance/photos/gallery',
+        '@advance-sliders' => '@advance/photos/sliders',
+        '@advance-sliders-nivo' => '@advance/photos/sliders/nivo',
+//asset clean-blog theme
+        '@clean-blog' => '/files/themes/clean-blog',
+        '@clean-blog-gallery' => '@clean-blog/photos/gallery',
+        '@clean-blog-sliders' => '@clean-blog/photos/sliders',
+        '@clean-blog-sliders-nivo' => '@clean-blog/photos/sliders/nivo',
+    ],
+
 ];
