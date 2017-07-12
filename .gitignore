@@ -7,6 +7,7 @@
 /yii
 /yii_test
 /yii_test.bat
+/yii.bat
 
 # phpstorm project files
 .idea
@@ -73,17 +74,18 @@ nxv_s0fhowwt5o9s.conf
 archyvai/
 /atsarga/
 /.github/
-/composer.json
-/composer.lock
 
-/LICENSE.md
 /.bowerrc
 /.gitattributes
 /.travis.yml
 /codeception.yml
+/composer.json
+/composer.lock
 /init
 /init.bat
+/LICENSE.md
 /README.md
 /requirements.php
 /Vagrantfile
-/yii.bat
+/.gitignore_buvo
+
