@@ -50,7 +50,7 @@ class BranchOfCompany extends \yii\db\ActiveRecord
         return ($this->date_foundation) ? Yii::$app->formatter->asDatetime($this->date_foundation,'yyyy-MM-dd') : "Not set";
     }
 
-/*---------join branches companies to parent company start-------*/
+/*---------join branches companies to parent company: start-------*/
 
     /**
      * @return ParentCompany|null
@@ -58,9 +58,9 @@ class BranchOfCompany extends \yii\db\ActiveRecord
      */
     public function getParentCompany()
     {
-        return $this->hasOne(ParentCompany::className(), ['id' => 'parent_company_id'])->one();
+        return $this->hasOne(ParentCompany::className(), ['id' => 'parent_company_id']);
     }
-/*---------join branches companies to parent company end -------*/
+/*---------join branches companies to parent company: end -------*/
 
 
     /**
@@ -69,7 +69,7 @@ class BranchOfCompany extends \yii\db\ActiveRecord
      */
     public function getParentCompanyName()
     {
-        if ($parentCompany = $this->getParentCompany()) {
+        if ($parentCompany = $this->getParentCompany()->one()) {
             return $parentCompany->name;
         }
         return "Name Not set";

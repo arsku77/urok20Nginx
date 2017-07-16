@@ -12,6 +12,7 @@ use frontend\models\BranchOfCompany;
  */
 class BranchOfCompanySearch extends BranchOfCompany
 {
+    public $parent_company_name;//papildomas laukas ne uš DB: paieškai iš susijusios parent_company lentelės pagal vardą
     /**
      * @inheritdoc
      */
@@ -19,7 +20,8 @@ class BranchOfCompanySearch extends BranchOfCompany
     {
         return [
             [['id', 'parent_company_id', 'sort'], 'integer'],
-            [['name', 'email', 'isbn', 'date_foundation', 'alias'], 'safe'],
+            [['parent_company_name'], 'string'],
+            [['name', 'email', 'isbn', 'date_foundation', 'alias', 'parent_company_name'], 'safe'],
         ];
     }
 
@@ -41,7 +43,11 @@ class BranchOfCompanySearch extends BranchOfCompany
      */
     public function search($params)
     {
-        $query = BranchOfCompany::find();
+        //paieškai susijusioje lentelėje parent_company, nustatome papildomą ryšį, remiantis jau esamu ryšiu
+        // modelio BranchOfCompany.php imam ryšį getParentCompany(), tai bus parentCompany
+
+        //buvo queris tik su filialais $query = BranchOfCompany::find();
+        $query = BranchOfCompany::find()->joinWith('parentCompany');
 
         // add conditions that should always apply here
 
@@ -68,8 +74,9 @@ class BranchOfCompanySearch extends BranchOfCompany
         $query->andFilterWhere(['like', 'name', $this->name])
             ->andFilterWhere(['like', 'email', $this->email])
             ->andFilterWhere(['like', 'isbn', $this->isbn])
-            ->andFilterWhere(['like', 'alias', $this->alias]);
-
+            ->andFilterWhere(['like', 'alias', $this->alias])
+            ->andFilterWhere(['like', 'parent_company.name', $this->parent_company_name]);
+            //paskutinė eilutė paieška iš susijusios lentelės lauko, šiuo atveju iš pavadinimo
         return $dataProvider;
     }
 }

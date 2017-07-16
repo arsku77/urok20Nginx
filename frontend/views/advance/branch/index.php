@@ -26,8 +26,11 @@ $this->params['breadcrumbs'][] = $this->title;
 
             'id',
             ['attribute' => 'parent_company_id',
+                'value' => 'parentCompanyName',//gauta susiejimo metodo iš modelio getParentCompanyName
+                'filter' => $company,//gauta iš kontrolerio visos motininės kompanijos sąrašas listams
+                ],//padarysim papildomą lauką paieškai pagal susijusios lentelės pavadinimą
+            ['attribute' => 'parent_company_name',
                 'value' => 'parentCompanyName',
-                'filter' => $company,
                 ],
             'name',
             'email:email',
