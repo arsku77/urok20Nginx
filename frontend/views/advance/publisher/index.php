@@ -32,7 +32,7 @@ $this->params['breadcrumbs'][] = $this->title;
            ['class' => 'yii\grid\DataColumn',
             'attribute' => 'name',
             'value' => function($dataProvider){
-                return Html::textInput('', $dataProvider->name);
+                return Html::textInput("[{$dataProvider->id}]$dataProvider->name", $dataProvider->name);
             },
             'format' => 'raw'
             ],

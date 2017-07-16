@@ -46,8 +46,9 @@ AppAsset::register($this);//pajungiami resursai ir nustatomos kai kuriÅ³ resursÅ
         ]],
         ['label' => 'About', 'url' => ['/site/about']],
         ['label' => 'Oerder Window', 'url' => ['/window/order']],
-        ['label' => 'Products', 'url' => ['productshop/index'], 'items' => [
-            ['label' => 'New Product', 'url' => ['productshop/product']],
+        ['label' => 'experiments', 'url' => ['productshop/index'], 'items' => [
+            ['label' => 'Branch of company', 'url' => ['branch/index']],
+            ['label' => 'Parent Company', 'url' => ['company/index']],
            // ['label' => 'Most Popular', 'url' => ['product/index', 'tag' => 'popular']],
         ]],
         ['label' => 'Categories', 'url' => ['productshop/index'], 'items' => [

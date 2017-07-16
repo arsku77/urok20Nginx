@@ -56,7 +56,7 @@ class Author extends \yii\db\ActiveRecord
      */
     public function getBooks()
     {//get all books with where one author id from table book_to_author
-        return $this->hasMany(Book::className(), ['id' => 'book_id'])->via('AuthorToBookRelations')->all();
+        return $this->hasMany(Book::className(), ['id' => 'book_id'])->via('authorToBookRelations')->all();
     }
 
     /**
