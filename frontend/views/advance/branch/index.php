@@ -38,7 +38,7 @@ $this->params['breadcrumbs'][] = $this->title;
 //            'parent_company_id',
             // 'date_foundation',
             // 'alias',
-            // 'sort',
+             'sort',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

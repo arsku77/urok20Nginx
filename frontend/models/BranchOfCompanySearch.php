@@ -53,6 +53,32 @@ class BranchOfCompanySearch extends BranchOfCompany
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+            'pagination' => [
+                'pageSize' => 5,
+            ],
+            'sort' => [
+                'defaultOrder' => [
+                    'sort' => SORT_ASC,
+                ],
+            ],
+
+        ]);
+
+        //papildomas rūšiavimas pagal naują lauką ne iš DB, o rūšiuoja pvd susijusios lentelės jau iš DB
+        $dataProvider->setSort([
+            'attributes' => array_merge($dataProvider->getSort()->attributes, [
+                'parent_company_name' => [
+                    'asc' => ['parent_company.name' => SORT_ASC],
+                    'desc' => ['parent_company.name' => SORT_DESC],
+//                    'default' => SORT_ASC,
+                    'label' => 'Parent company Name',
+                ],
+            ]),
+            'defaultOrder' => [
+                'sort' => SORT_ASC,//defaultinis rūšiavimas
+            ],
+
+
         ]);
 
         $this->load($params);
