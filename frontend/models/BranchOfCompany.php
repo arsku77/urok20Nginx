@@ -69,11 +69,9 @@ class BranchOfCompany extends \yii\db\ActiveRecord
      */
     public function getParentCompanyName()
     {
-        if ($parentCompany = $this->getParentCompany()->one()) {
-            return $parentCompany->name;
-        }
-        return "Name Not set";
+         return (isset($this->parentCompany))?$this->parentCompany->name:' Parent Company name not set';
     }
+
 
 /*----get array addresses of branch company with one ids branches start------------*/
 
