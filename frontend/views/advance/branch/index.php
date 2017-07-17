@@ -3,7 +3,9 @@
 use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\widgets\Pjax;
-/* @var $this yii\web\View */
+//use kartik\widgets\DatePicker;
+use kartik\field\FieldRange;
+    /* @var $this yii\web\View */
 /* @var $searchModel frontend\models\BranchOfCompanySearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
@@ -36,7 +38,27 @@ $this->params['breadcrumbs'][] = $this->title;
             'email:email',
             'isbn',
 //            'parent_company_id',
-            // 'date_foundation',
+            ['attribute' => 'date_foundation',
+                'format' => 'date',
+                'value' => 'date_foundation',
+                'filter' => FieldRange::widget([
+                    'type' => FieldRange::INPUT_WIDGET,
+                    'model' => $searchModel,
+                    'attribute1' => 'from_date',
+                    'attribute2' => 'to_date',
+                    'widgetClass' => \kartik\datecontrol\DateControl::className(),
+                    'widgetOptions1' => [
+                        'saveFormat' => 'php:yyy-MM-dd',
+                    ],
+                    'widgetOptions2' => [
+                        'saveFormat' => 'php:yyy-MM-dd',
+                    ],
+
+                ]),
+            ],
+
+
+//             'date_foundation',
             // 'alias',
              'sort',
 

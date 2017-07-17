@@ -13,6 +13,8 @@ use frontend\models\BranchOfCompany;
 class BranchOfCompanySearch extends BranchOfCompany
 {
     public $parent_company_name;//papildomas laukas ne uš DB: paieškai iš susijusios parent_company lentelės pagal vardą
+    public $from_date;//papildomas laukas ne uš DB: datos periodui
+    public $to_date;//papildomas laukas ne uš DB: datos periodui
     /**
      * @inheritdoc
      */
@@ -21,7 +23,7 @@ class BranchOfCompanySearch extends BranchOfCompany
         return [
             [['id', 'parent_company_id', 'sort'], 'integer'],
             [['parent_company_name'], 'string'],
-            [['name', 'email', 'isbn', 'date_foundation', 'alias', 'parent_company_name'], 'safe'],
+            [['from_date', 'to_date', 'name', 'email', 'isbn', 'date_foundation', 'alias', 'parent_company_name'], 'safe'],
         ];
     }
 
@@ -103,6 +105,14 @@ class BranchOfCompanySearch extends BranchOfCompany
             ->andFilterWhere(['like', 'alias', $this->alias])
             ->andFilterWhere(['like', 'parent_company.name', $this->parent_company_name]);
             //paskutinė eilutė paieška iš susijusios lentelės lauko, šiuo atveju iš pavadinimo
+            //kad galima būt uždėt datos laukui filtrą vienos dienos
+        /*----------kai lentelės laukas date_foundation formato date---------*/
+//            if(!empty($this->date_foundation))
+//                $query->andFilterWhere(['like','date_foundation',$this->date_foundation]);
+        /*----------kai lentelės laukas date_foundation formato integer - tai TIMESTAMP---------*/
+            if(!empty($this->from_date) and !empty($this->to_date))
+                $query->andFilterWhere(['and', ['>', 'date_foundation', $this->from_date], ['<', 'date_foundation', $this->to_date]]);
+
         return $dataProvider;
     }
 }

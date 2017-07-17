@@ -40,7 +40,7 @@ class m170714_215350_company_with_address extends Migration
             'id_code' => $this->string(30),
             'vat_code' => $this->string(30),
             'isbn' => $this->string(30),
-            'date_foundation' => $this->date(),
+            'date_foundation' => 'DATETIME NULL',
         ]);
 
         $this->insert('parent_company', [
@@ -51,6 +51,34 @@ class m170714_215350_company_with_address extends Migration
             'isbn' => '1234567891011',
             'date_foundation' => '1994-05-10',
         ]);
+
+        $this->insert('parent_company', [
+            'id' => 2,
+            'name' => 'Company 1 ARVI',
+            'id_code' => '165740559',
+            'vat_code' => 'LT65740559',
+            'isbn' => '1234567891012',
+            'date_foundation' => '1996-05-10',
+        ]);
+
+        $this->insert('parent_company', [
+            'id' => 3,
+            'name' => 'Company 2 UAB',
+            'id_code' => '165740568',
+            'vat_code' => 'LT65740568',
+            'isbn' => '1234567891013',
+            'date_foundation' => '2014-05-15',
+        ]);
+
+        $this->insert('parent_company', [
+            'id' => 4,
+            'name' => 'Company 3',
+            'id_code' => '165740578',
+            'vat_code' => 'LT65740578',
+            'isbn' => '1234567891014',
+            'date_foundation' => '1994-05-15',
+        ]);
+
     }
 
     private function createBranch()
@@ -61,7 +89,7 @@ class m170714_215350_company_with_address extends Migration
             'name' => $this->string(),
             'email' => $this->string(),
             'isbn' => $this->string(30),
-            'date_foundation' => $this->date(),
+            'date_foundation' => 'DATETIME NULL',
             'alias' => $this->string(55),
             'sort' => $this->integer(),
         ]);
@@ -71,19 +99,19 @@ class m170714_215350_company_with_address extends Migration
             'parent_company_id' => 1,
             'name' => 'parent office',
             'email' => 'arunas@arvidija.lt',
-            'isbn' => '12345678911',
+            'isbn' => '12345678919',
             'date_foundation' => '1994-05-12',
             'alias' => 'office',
-            'sort' => 1,
+            'sort' => 6,
         ]);
 
         $this->insert('branch_of_company', [
             'id' => 2,
-            'parent_company_id' => 1,
+            'parent_company_id' => 2,
             'name' => 'market place 1',
             'email' => 'arunas@arvidija1.lt',
-            'isbn' => '12345678911',
-            'date_foundation' => '2004-10-12',
+            'isbn' => '12345678920',
+            'date_foundation' => '1994-05-13',
             'alias' => 'market1',
             'sort' => 2,
         ]);
@@ -93,21 +121,98 @@ class m170714_215350_company_with_address extends Migration
             'parent_company_id' => 1,
             'name' => 'market place nr 2',
             'email' => 'arunas@arvidija2.lt',
-            'isbn' => '12335678911',
-            'date_foundation' => '2005-08-12',
+            'isbn' => '12335678921',
+            'date_foundation' => '1994-05-21',
             'alias' => 'market2',
-            'sort' => 3,
+            'sort' => 6,
         ]);
 
         $this->insert('branch_of_company', [
             'id' => 4,
-            'parent_company_id' => 1,
+            'parent_company_id' => 3,
             'name' => 'factory nr 1',
             'email' => 'arunas@arvidija3.lt',
-            'isbn' => '1245678911',
-            'date_foundation' => '2010-05-12',
+            'isbn' => '1245678922',
+            'date_foundation' => '1994-05-01',
             'alias' => 'factory1',
             'sort' => 4,
+        ]);
+
+        $this->insert('branch_of_company', [
+            'id' => 5,
+            'parent_company_id' => 4,
+            'name' => 'factory nr 5',
+            'email' => 'arunas@arvidija4.lt',
+            'isbn' => '1245678923',
+            'date_foundation' => '1994-05-31',
+            'alias' => 'factory2',
+            'sort' => 5,
+        ]);
+
+        $this->insert('branch_of_company', [
+            'id' => 6,
+            'parent_company_id' => 2,
+            'name' => 'factory nr 6',
+            'email' => 'arunas@arvidija5.lt',
+            'isbn' => '1245678924',
+            'date_foundation' => '1994-05-31',
+            'alias' => 'factory2',
+            'sort' => 6,
+        ]);
+
+        $this->insert('branch_of_company', [
+            'id' => 7,
+            'parent_company_id' => 3,
+            'name' => 'factory nr 7',
+            'email' => 'arunas@arvidija25.lt',
+            'isbn' => '1245678925',
+            'date_foundation' => '1994-05-31',
+            'alias' => 'factory2',
+            'sort' => 7,
+        ]);
+
+        $this->insert('branch_of_company', [
+            'id' => 8,
+            'parent_company_id' => 1,
+            'name' => 'factory nr 8',
+            'email' => 'arunas@arvidija7.lt',
+            'isbn' => '1245678926',
+            'date_foundation' => '1994-06-20',
+            'alias' => 'factory2',
+            'sort' => 1,
+        ]);
+
+        $this->insert('branch_of_company', [
+            'id' => 9,
+            'parent_company_id' => 2,
+            'name' => 'factory nr 9',
+            'email' => 'arunas@arvidija8.lt',
+            'isbn' => '1245678927',
+            'date_foundation' => '1999-06-11',
+            'alias' => 'factory9',
+            'sort' => 9,
+        ]);
+
+        $this->insert('branch_of_company', [
+            'id' => 10,
+            'parent_company_id' => 1,
+            'name' => 'factory nr 15',
+            'email' => 'arunas@arvidija10.lt',
+            'isbn' => '1245678928',
+            'date_foundation' => '1994-05-11',
+            'alias' => 'factory10',
+            'sort' => 10,
+        ]);
+
+        $this->insert('branch_of_company', [
+            'id' => 11,
+            'parent_company_id' => 4,
+            'name' => 'factory nr 11',
+            'email' => 'arunas@arvidija11.lt',
+            'isbn' => '1245678929',
+            'date_foundation' => '1994-05-21',
+            'alias' => 'factory11',
+            'sort' => 11,
         ]);
 
     }
@@ -122,11 +227,11 @@ class m170714_215350_company_with_address extends Migration
             'city_or_area' => $this->string(),
             'region' => $this->string(),
             'country' => $this->string(),
-            'created_at' => 'TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP',
-            'updated_at' => 'TIMESTAMP NULL',
+            'created_at' => 'DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP',
+            'updated_at' => 'DATETIME NULL',
             'active' => $this->boolean()->defaultValue(true),
             'archive' => $this->boolean()->defaultValue(false),
-            'date_of_archiving' => 'TIMESTAMP NULL',
+            'date_of_archiving' => 'DATETIME NULL',
         ]);
 
         $this->insert('address_of_company', [
@@ -285,11 +390,13 @@ class m170714_215350_company_with_address extends Migration
             'branch_of_company_id' => $this->integer()->defaultValue(1),
             'address_of_company_id' => $this->integer()->defaultValue(1),
             'sort' => $this->integer(),
-            'created_at' => 'TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP',
-            'updated_at' => 'TIMESTAMP NULL',
+            'created_at' => 'DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP',
+            'updated_at' => 'DATETIME NULL',
+//            'created_at' => 'TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP',
+//            'updated_at' => 'TIMESTAMP NULL',
             'active' => $this->boolean()->defaultValue(true),
             'archive' => $this->boolean()->defaultValue(false),
-            'date_of_archiving' => 'TIMESTAMP NULL',
+            'date_of_archiving' => 'DATETIME NULL',
         ]);
 
         $this->insert('company_to_address', [
