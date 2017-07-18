@@ -22,8 +22,9 @@ class BranchOfCompanySearch extends BranchOfCompany
     {
         return [
             [['id', 'parent_company_id', 'sort'], 'integer'],
+            [['from_date', 'to_date'], 'datetime'],
             [['parent_company_name'], 'string'],
-            [['from_date', 'to_date', 'name', 'email', 'isbn', 'date_foundation', 'alias', 'parent_company_name'], 'safe'],
+            [['name', 'email', 'isbn', 'date_foundation', 'alias', 'parent_company_name'], 'safe'],
         ];
     }
 
@@ -93,17 +94,20 @@ class BranchOfCompanySearch extends BranchOfCompany
 
         // grid filtering conditions
         $query->andFilterWhere([
-            'id' => $this->id,
-            'parent_company_id' => $this->parent_company_id,
-            'date_foundation' => $this->date_foundation,
-            'sort' => $this->sort,
+            'branch_of_company.id' => $this->id,
+            'branch_of_company.parent_company_id' => $this->parent_company_id,
+            'branch_of_company.sort' => $this->sort,
         ]);
-
-        $query->andFilterWhere(['like', 'name', $this->name])
-            ->andFilterWhere(['like', 'email', $this->email])
-            ->andFilterWhere(['like', 'isbn', $this->isbn])
-            ->andFilterWhere(['like', 'alias', $this->alias])
-            ->andFilterWhere(['like', 'parent_company.name', $this->parent_company_name]);
+        $query->andFilterWhere(['like', 'branch_of_company.name', $this->parent_company_name])
+            ->orFilterWhere(['like', 'branch_of_company.email', $this->parent_company_name]);
+//            ->andFilterWhere(['like', 'branch_of_company.isbn', $this->isbn])
+//            ->andFilterWhere(['like', 'branch_of_company.alias', $this->alias])
+//            ->andFilterWhere(['like', 'parent_company.name', $this->parent_company_name]);
+//veikia        $query->andFilterWhere(['like', 'branch_of_company.name', $this->name])
+//            ->andFilterWhere(['like', 'branch_of_company.email', $this->email])
+//            ->andFilterWhere(['like', 'branch_of_company.isbn', $this->isbn])
+//            ->andFilterWhere(['like', 'branch_of_company.alias', $this->alias])
+//            ->andFilterWhere(['like', 'parent_company.name', $this->parent_company_name]);
             //paskutinė eilutė paieška iš susijusios lentelės lauko, šiuo atveju iš pavadinimo
             //kad galima būt uždėt datos laukui filtrą vienos dienos
         /*----------kai lentelės laukas date_foundation formato date---------*/
@@ -111,7 +115,7 @@ class BranchOfCompanySearch extends BranchOfCompany
 //                $query->andFilterWhere(['like','date_foundation',$this->date_foundation]);
         /*----------kai lentelės laukas date_foundation formato integer - tai TIMESTAMP---------*/
             if(!empty($this->from_date) and !empty($this->to_date))
-                $query->andFilterWhere(['and', ['>', 'date_foundation', $this->from_date], ['<', 'date_foundation', $this->to_date]]);
+                $query->andFilterWhere(['and', ['>', 'branch_of_company.date_foundation', $this->from_date], ['<', 'branch_of_company.date_foundation', $this->to_date]]);
 
         return $dataProvider;
     }

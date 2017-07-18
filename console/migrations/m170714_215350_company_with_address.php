@@ -100,7 +100,7 @@ class m170714_215350_company_with_address extends Migration
             'name' => 'parent office',
             'email' => 'arunas@arvidija.lt',
             'isbn' => '12345678919',
-            'date_foundation' => '1994-05-12',
+            'date_foundation' => '2017-05-12',
             'alias' => 'office',
             'sort' => 6,
         ]);
@@ -111,7 +111,7 @@ class m170714_215350_company_with_address extends Migration
             'name' => 'market place 1',
             'email' => 'arunas@arvidija1.lt',
             'isbn' => '12345678920',
-            'date_foundation' => '1994-05-13',
+            'date_foundation' => '2017-05-13',
             'alias' => 'market1',
             'sort' => 2,
         ]);
@@ -122,7 +122,7 @@ class m170714_215350_company_with_address extends Migration
             'name' => 'market place nr 2',
             'email' => 'arunas@arvidija2.lt',
             'isbn' => '12335678921',
-            'date_foundation' => '1994-05-21',
+            'date_foundation' => '2017-05-21',
             'alias' => 'market2',
             'sort' => 6,
         ]);
@@ -133,7 +133,7 @@ class m170714_215350_company_with_address extends Migration
             'name' => 'factory nr 1',
             'email' => 'arunas@arvidija3.lt',
             'isbn' => '1245678922',
-            'date_foundation' => '1994-05-01',
+            'date_foundation' => '2017-05-01',
             'alias' => 'factory1',
             'sort' => 4,
         ]);
@@ -144,7 +144,7 @@ class m170714_215350_company_with_address extends Migration
             'name' => 'factory nr 5',
             'email' => 'arunas@arvidija4.lt',
             'isbn' => '1245678923',
-            'date_foundation' => '1994-05-31',
+            'date_foundation' => '2017-05-31',
             'alias' => 'factory2',
             'sort' => 5,
         ]);
@@ -155,7 +155,7 @@ class m170714_215350_company_with_address extends Migration
             'name' => 'factory nr 6',
             'email' => 'arunas@arvidija5.lt',
             'isbn' => '1245678924',
-            'date_foundation' => '1994-05-31',
+            'date_foundation' => '2017-05-31',
             'alias' => 'factory2',
             'sort' => 6,
         ]);
@@ -166,7 +166,7 @@ class m170714_215350_company_with_address extends Migration
             'name' => 'factory nr 7',
             'email' => 'arunas@arvidija25.lt',
             'isbn' => '1245678925',
-            'date_foundation' => '1994-05-31',
+            'date_foundation' => '2017-05-31',
             'alias' => 'factory2',
             'sort' => 7,
         ]);
@@ -177,7 +177,7 @@ class m170714_215350_company_with_address extends Migration
             'name' => 'factory nr 8',
             'email' => 'arunas@arvidija7.lt',
             'isbn' => '1245678926',
-            'date_foundation' => '1994-06-20',
+            'date_foundation' => '2017-06-20',
             'alias' => 'factory2',
             'sort' => 1,
         ]);
@@ -188,7 +188,7 @@ class m170714_215350_company_with_address extends Migration
             'name' => 'factory nr 9',
             'email' => 'arunas@arvidija8.lt',
             'isbn' => '1245678927',
-            'date_foundation' => '1999-06-11',
+            'date_foundation' => '2017-06-11',
             'alias' => 'factory9',
             'sort' => 9,
         ]);
@@ -199,7 +199,7 @@ class m170714_215350_company_with_address extends Migration
             'name' => 'factory nr 15',
             'email' => 'arunas@arvidija10.lt',
             'isbn' => '1245678928',
-            'date_foundation' => '1994-05-11',
+            'date_foundation' => '2017-05-11',
             'alias' => 'factory10',
             'sort' => 10,
         ]);
@@ -210,7 +210,7 @@ class m170714_215350_company_with_address extends Migration
             'name' => 'factory nr 11',
             'email' => 'arunas@arvidija11.lt',
             'isbn' => '1245678929',
-            'date_foundation' => '1994-05-21',
+            'date_foundation' => '2017-05-21',
             'alias' => 'factory11',
             'sort' => 11,
         ]);

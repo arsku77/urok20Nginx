@@ -3,10 +3,21 @@ use kartik\datecontrol\Module;
 return [
     'vendorPath' => dirname(dirname(__DIR__)) . '/vendor',
     'timeZone' => 'Europe/Vilnius',
+    'language' => 'ru',
     'components' => [
         'cache' => [
             'class' => 'yii\caching\FileCache',
         ],
+        'formatter' => [
+            'class' => 'yii\i18n\Formatter',
+            'decimalSeparator' => ',',
+            'thousandSeparator' => ' ',
+            'currencyCode' => 'EUR',
+            'dateFormat' => 'php:Y-m-d',
+            'timeFormat' => 'php: H:i:s',
+            'datetimeFormat' => 'php:Y-m-d H:i:s',
+        ],
+
     ],
     'modules' => [
         'datecontrol' =>  [
@@ -14,16 +25,16 @@ return [
 
             // format settings for displaying each date attribute (ICU format example)
             'displaySettings' => [
-                Module::FORMAT_DATE => 'dd-MM-yyyy',
-                Module::FORMAT_TIME => 'HH:mm:ss a',
-                Module::FORMAT_DATETIME => 'dd-MM-yyyy HH:mm:ss a',
+                Module::FORMAT_DATE => 'php:Y-m-d',
+                Module::FORMAT_TIME => 'php:H:i:s',
+                Module::FORMAT_DATETIME => 'php:Y-m-d H:i:s',
             ],
 
             // format settings for saving each date attribute (PHP format example)
             'saveSettings' => [
-                Module::FORMAT_DATE => 'php:U', // saves as unix timestamp
-                Module::FORMAT_TIME => 'php:H:i:s',
-                Module::FORMAT_DATETIME => 'php:yyyy-MM-dd H:i:s',
+                Module::FORMAT_DATE => 'yyyy-MM-dd', // saves as unix timestamp
+                Module::FORMAT_TIME => 'HH:mm:ss a',
+                Module::FORMAT_DATETIME => 'yyyy-MM-dd HH:mm:ss a',
             ],
 
             // set your display timezone
@@ -59,4 +70,5 @@ return [
             // other settings
         ],
     ]
+
 ];
