@@ -25,7 +25,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'isbn') ?>
 
-    <?php // echo $form->field($model, 'date_foundation') ?>
+    <?php //echo $form->field($model, 'date_foundation') ?>
 
     <?php // echo $form->field($model, 'alias') ?>
 

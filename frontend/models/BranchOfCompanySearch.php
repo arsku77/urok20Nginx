@@ -99,7 +99,10 @@ class BranchOfCompanySearch extends BranchOfCompany
             'branch_of_company.sort' => $this->sort,
         ]);
         $query->andFilterWhere(['like', 'branch_of_company.name', $this->parent_company_name])
-            ->orFilterWhere(['like', 'branch_of_company.email', $this->parent_company_name]);
+            ->orFilterWhere(['like', 'parent_company.name', $this->parent_company_name])
+            ->orFilterWhere(['like', 'branch_of_company.email', $this->parent_company_name])
+            ->orFilterWhere(['like', 'branch_of_company.alias', $this->parent_company_name])
+            ->andFilterWhere(['like', 'branch_of_company.alias', $this->alias]);
 //            ->andFilterWhere(['like', 'branch_of_company.isbn', $this->isbn])
 //            ->andFilterWhere(['like', 'branch_of_company.alias', $this->alias])
 //            ->andFilterWhere(['like', 'parent_company.name', $this->parent_company_name]);

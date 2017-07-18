@@ -1,7 +1,8 @@
 <?php
 
 use yii\helpers\Html;
-use yii\grid\GridView;
+//use yii\grid\GridView;
+use kartik\grid\GridView;
 use yii\widgets\Pjax;
 //use kartik\widgets\DatePicker;
 use kartik\field\FieldRange;
@@ -25,6 +26,10 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
+        'bordered'=>true,
+        'striped'=>true,
+        'hover'=>true,
+        'condensed'=>true,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
@@ -58,7 +63,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
 
 //             'date_foundation',
-            // 'alias',
+             'alias',
              'sort',
 
             ['class' => 'yii\grid\ActionColumn'],

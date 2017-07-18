@@ -10,7 +10,11 @@ use yii\helpers\Url;
 <br>
 <br>
 
-<table class="table table-condensed"
+<!--<table class="table table-condensed"-->
+<!--<table class="table table-responsive"-->
+<!--<table class="table table-bordered"-->
+<!--<table class="table table-hover"-->
+<table class="table table-striped"
     <tr>
         <th>ID</th>
         <th>First name</th>
