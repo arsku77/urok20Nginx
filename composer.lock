@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "0ec1b177713243646618f90af56a26f7",
+    "content-hash": "f1e9912634908c9d04f54e05d39b9e9f",
     "packages": [
         {
             "name": "bower-asset/bootstrap",
@@ -869,6 +869,58 @@
                 "yii2"
             ],
             "time": "2017-05-04 12:34:30"
+        },
+        {
+            "name": "kartik-v/yii2-mpdf",
+            "version": "v1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/kartik-v/yii2-mpdf.git",
+                "reference": "17fda1cb084c58fee6014026d35af5faf73316ef"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/kartik-v/yii2-mpdf/zipball/17fda1cb084c58fee6014026d35af5faf73316ef",
+                "reference": "17fda1cb084c58fee6014026d35af5faf73316ef",
+                "shasum": ""
+            },
+            "require": {
+                "mpdf/mpdf": "<7.0"
+            },
+            "type": "yii2-extension",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "kartik\\mpdf\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD 3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Kartik Visweswaran",
+                    "email": "kartikv2@gmail.com",
+                    "homepage": "http://www.krajee.com/"
+                }
+            ],
+            "description": "A Yii2 wrapper component for the mPDF library which generates PDF files from UTF-8 encoded HTML.",
+            "homepage": "https://github.com/kartik-v/yii2-mpdf",
+            "keywords": [
+                "component",
+                "extension",
+                "html",
+                "mpdf",
+                "pdf",
+                "utf8",
+                "yii2"
+            ],
+            "time": "2017-01-14T11:51:12+00:00"
         },
         {
             "name": "kartik-v/yii2-widget-activeform",
@@ -1856,6 +1908,106 @@
             "time": "2015-12-05 10:37:16"
         },
         {
+            "name": "mpdf/mpdf",
+            "version": "6.1.x-dev",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mpdf/mpdf.git",
+                "reference": "e7310ce53b5c11db1f0b781fe0a69066608ac6e2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mpdf/mpdf/zipball/e7310ce53b5c11db1f0b781fe0a69066608ac6e2",
+                "reference": "e7310ce53b5c11db1f0b781fe0a69066608ac6e2",
+                "shasum": ""
+            },
+            "require": {
+                "ext-mbstring": "*",
+                "php": "^5.4.0 || 7.0.*",
+                "setasign/fpdi": "1.6.*"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^4.7"
+            },
+            "suggest": {
+                "ext-zlib": "Needed for compression of embedded resources, such as fonts"
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "mpdf.php",
+                    "classes"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "Ian Back",
+                    "role": "Developer"
+                }
+            ],
+            "description": "A PHP class to generate PDF files from HTML with Unicode/UTF-8 and CJK support",
+            "homepage": "http://mpdf.github.io",
+            "keywords": [
+                "pdf",
+                "php",
+                "utf-8"
+            ],
+            "time": "2017-07-09 16:46:12"
+        },
+        {
+            "name": "setasign/fpdi",
+            "version": "1.6.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Setasign/FPDI.git",
+                "reference": "a6ad58897a6d97cc2d2cd2adaeda343b25a368ea"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Setasign/FPDI/zipball/a6ad58897a6d97cc2d2cd2adaeda343b25a368ea",
+                "reference": "a6ad58897a6d97cc2d2cd2adaeda343b25a368ea",
+                "shasum": ""
+            },
+            "suggest": {
+                "setasign/fpdf": "FPDI will extend this class but as it is also possible to use \"tecnickcom/tcpdf\" as an alternative there's no fixed dependency configured.",
+                "setasign/fpdi-fpdf": "Use this package to automatically evaluate dependencies to FPDF.",
+                "setasign/fpdi-tcpdf": "Use this package to automatically evaluate dependencies to TCPDF."
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "filters/",
+                    "fpdi.php",
+                    "fpdf_tpl.php",
+                    "fpdi_pdf_parser.php",
+                    "pdf_context.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jan Slabon",
+                    "email": "jan.slabon@setasign.com",
+                    "homepage": "https://www.setasign.com"
+                }
+            ],
+            "description": "FPDI is a collection of PHP classes facilitating developers to read pages from existing PDF documents and use them as templates in FPDF. Because it is also possible to use FPDI with TCPDF, there are no fixed dependencies defined. Please see suggestions for packages which evaluates the dependencies automatically.",
+            "homepage": "https://www.setasign.com/fpdi",
+            "keywords": [
+                "fpdf",
+                "fpdi",
+                "pdf"
+            ],
+            "time": "2017-05-11T14:25:49+00:00"
+        },
+        {
             "name": "swiftmailer/swiftmailer",
             "version": "5.x-dev",
             "source": {
@@ -1915,12 +2067,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-framework.git",
-                "reference": "d27d71d8abaecbba6c1d8180fb5f0a87ff987100"
+                "reference": "6da830d6ab74ea0ee26366421b0eacbf05a7aef5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/d27d71d8abaecbba6c1d8180fb5f0a87ff987100",
-                "reference": "d27d71d8abaecbba6c1d8180fb5f0a87ff987100",
+                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/6da830d6ab74ea0ee26366421b0eacbf05a7aef5",
+                "reference": "6da830d6ab74ea0ee26366421b0eacbf05a7aef5",
                 "shasum": ""
             },
             "require": {
@@ -2007,7 +2159,7 @@
                 "framework",
                 "yii2"
             ],
-            "time": "2017-07-17 13:21:49"
+            "time": "2017-07-19 08:53:33"
         },
         {
             "name": "yiisoft/yii2-bootstrap",
@@ -2436,12 +2588,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/fzaninotto/Faker.git",
-                "reference": "83ade5f05d0a7dcfc7c38c7b5fbcaca8863436b5"
+                "reference": "ea4244d0354634e020042278478c9842524b0459"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fzaninotto/Faker/zipball/83ade5f05d0a7dcfc7c38c7b5fbcaca8863436b5",
-                "reference": "83ade5f05d0a7dcfc7c38c7b5fbcaca8863436b5",
+                "url": "https://api.github.com/repos/fzaninotto/Faker/zipball/ea4244d0354634e020042278478c9842524b0459",
+                "reference": "ea4244d0354634e020042278478c9842524b0459",
                 "shasum": ""
             },
             "require": {
@@ -2478,7 +2630,7 @@
                 "faker",
                 "fixtures"
             ],
-            "time": "2017-07-07 15:11:58"
+            "time": "2017-07-19T13:05:01+00:00"
         },
         {
             "name": "guzzlehttp/psr7",
@@ -2543,7 +2695,7 @@
                 "uri",
                 "url"
             ],
-            "time": "2017-07-17T09:11:21+00:00"
+            "time": "2017-07-17 09:11:21"
         },
         {
             "name": "myclabs/deep-copy",
@@ -2879,12 +3031,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpspec/prophecy.git",
-                "reference": "79db5dd907ee977039f77ac8471a739497463429"
+                "reference": "420d44c5534bbf269e85e6213446e8284d53c6c7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpspec/prophecy/zipball/79db5dd907ee977039f77ac8471a739497463429",
-                "reference": "79db5dd907ee977039f77ac8471a739497463429",
+                "url": "https://api.github.com/repos/phpspec/prophecy/zipball/420d44c5534bbf269e85e6213446e8284d53c6c7",
+                "reference": "420d44c5534bbf269e85e6213446e8284d53c6c7",
                 "shasum": ""
             },
             "require": {
@@ -2934,7 +3086,7 @@
                 "spy",
                 "stub"
             ],
-            "time": "2017-05-31 16:22:32"
+            "time": "2017-07-19T07:44:25+00:00"
         },
         {
             "name": "phpunit/php-code-coverage",
@@ -4093,12 +4245,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/console.git",
-                "reference": "4820f8e1b3c03aab46a655518d078a7ffc8df4ef"
+                "reference": "23ae25d68ac02125ec17ace52c01a245095ee650"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/console/zipball/4820f8e1b3c03aab46a655518d078a7ffc8df4ef",
-                "reference": "4820f8e1b3c03aab46a655518d078a7ffc8df4ef",
+                "url": "https://api.github.com/repos/symfony/console/zipball/23ae25d68ac02125ec17ace52c01a245095ee650",
+                "reference": "23ae25d68ac02125ec17ace52c01a245095ee650",
                 "shasum": ""
             },
             "require": {
@@ -4155,7 +4307,7 @@
             ],
             "description": "Symfony Console Component",
             "homepage": "https://symfony.com",
-            "time": "2017-07-17T12:21:21+00:00"
+            "time": "2017-07-19T10:10:53+00:00"
         },
         {
             "name": "symfony/css-selector",

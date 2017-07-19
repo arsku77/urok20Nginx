@@ -67,13 +67,24 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
 
             'id',
-            ['attribute' => 'parent_company_id',
-                'value' => 'parentCompanyName',//gauta susiejimo metodo iš modelio getParentCompanyName
-                'filter' => $company,//gauta iš kontrolerio visos motininės kompanijos sąrašas listams
-                ],//padarysim papildomą lauką paieškai pagal susijusios lentelės pavadinimą
+//            ['attribute' => 'parent_company_id',
+//                'value' => 'parentCompanyName',//gauta susiejimo metodo iš modelio getParentCompanyName
+//                'filter' => $company,//gauta iš kontrolerio visos motininės kompanijos sąrašas listams
+//                ],//padarysim papildomą lauką paieškai pagal susijusios lentelės pavadinimą
 //            ['attribute' => 'parent_company_name',
 //                'value' => 'parentCompanyName',
 //                ],
+            [
+                'attribute'=>'parent_company_id',
+                'width'=>'250px',
+                'value' => 'parentCompanyName',
+                'filterType'=>GridView::FILTER_SELECT2,
+                'filter'=>$company,
+                'filterWidgetOptions'=>[
+                    'pluginOptions'=>['allowClear'=>true],
+                ],
+                'filterInputOptions'=>['placeholder'=>'Any company']
+            ],
             'name',
             'email:email',
             'isbn',
