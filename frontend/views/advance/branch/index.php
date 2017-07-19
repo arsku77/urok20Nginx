@@ -48,7 +48,10 @@ $this->params['breadcrumbs'][] = $this->title;
                 ]) .
                 Html::activeInput('text', $searchModel, 'parent_company_name', ['style' => [
                     'width' => '10%'],
-                    'class' => 'active form-control']) .
+                    'class' => 'active form-control',
+                    'placeholder'=>'input many',
+                    'title' => 'find of many fields: name, alias, types',
+                ]) .
                 ' ' .
                 Html::submitButton('Search', ['class' => 'btn btn-search']) .
                 ' ' .
