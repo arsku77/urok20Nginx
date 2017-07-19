@@ -17,18 +17,20 @@ $this->title = 'Branch Of Companies';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="branch-of-company-index">
+<!--<div class="form-inline">-->
 <!--<div class="form-control">-->
-<!--<div class="active form-control">-->
+<!--<div class="form-horizontal form-inline form-inline-block kv-form-horizontal">-->
+<!--<div class="form-horizontal">-->
 <!--    --><?php //Pjax::begin(); ?>
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <h3><?= Html::encode($this->title) ?></h3>
 
 
 <!--    --><?php //echo $this->render('_search', ['model' => $searchModel]); ?>
 
-    <p>
-        <?= Html::a('Create Branch Of Company', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
+<!--    <p>-->
+<!-- <?php //<?= Html::a('Create Branch Of Company', ['create'], ['class' => 'btn btn-success'])?> -->
+<!--    </p>-->
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
@@ -38,24 +40,22 @@ $this->params['breadcrumbs'][] = $this->title;
         'striped'=>true,
         'hover'=>true,
         'condensed'=>true,
-//        'panel'=>['type'=>'primary', 'heading'=>'Branch of Company'],
-//        'panel' => [
-//            'type'=>'primary',
-//            'heading' => '<h3 class="panel-title">' . $this->title,
-//            'before' => Html::a('<i class="glyphicon glyphicon-plus"></i>', ['create'],
-//                    ['class' => 'btn btn-success']) . ' ' .
-//                Html::a('<i class="glyphicon glyphicon-repeat"></i>', ['index'], ['class' => 'btn btn-info']),
-//        ],
         'panel' => [
             'type'=>'primary',
             'heading' => '<h3 class="panel-title">' . $this->title,
             'before' =>
-                Html::beginForm(['branch/index'], 'get') .
+                Html::beginForm(['branch/index'], 'get', ['class' => 'form-inline',
+                ]) .
                 Html::activeInput('text', $searchModel, 'parent_company_name', ['style' => [
                     'width' => '10%'],
                     'class' => 'active form-control']) .
                 ' ' .
                 Html::submitButton('Search', ['class' => 'btn btn-search']) .
+                ' ' .
+                Html::a('<i class="glyphicon glyphicon-repeat"></i>', ['index'], ['class' => 'btn btn-info']) .
+                ' ' .
+                Html::a('<i class="glyphicon glyphicon-plus"></i>', ['create'],
+                    ['class' => 'btn btn-success']) .
                 Html::endForm()
 
         ],
@@ -75,24 +75,6 @@ $this->params['breadcrumbs'][] = $this->title;
             'email:email',
             'isbn',
 //            'parent_company_id',
-//            ['attribute' => 'date_foundation',
-//                'format' => 'date',
-//                'value' => 'date_foundation',
-//                'filter' => FieldRange::widget([
-//                    'type' => FieldRange::INPUT_WIDGET,
-//                    'model' => $searchModel,
-//                    'label' => 'Enter date range',
-//                    'attribute1' => 'from_date',
-//                    'attribute2' => 'to_date',
-//                    'widgetClass' => DateControl::classname(),
-//                    'widgetOptions1' => [
-//                    'saveFormat' => 'php:Y-m-d'
-//                ],
-//                'widgetOptions2' => [
-//                    'saveFormat' => 'php:Y-m-d'
-//                ],
-//            ])],
-
 
             ['attribute' => 'date_foundation',
                 'format' => 'date',
