@@ -2,7 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
-
+use yii\widgets\Pjax;
 /* @var $this yii\web\View */
 /* @var $model frontend\models\BranchOfCompanySearch */
 /* @var $form yii\widgets\ActiveForm */
@@ -24,6 +24,8 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'email') ?>
 
     <?= $form->field($model, 'isbn') ?>
+
+    <?= $form->field($model, 'parent_company_name') ?>
 
     <?php //echo $form->field($model, 'date_foundation') ?>
 

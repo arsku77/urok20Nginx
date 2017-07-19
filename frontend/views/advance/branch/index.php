@@ -6,7 +6,9 @@ use kartik\grid\GridView;
 use yii\widgets\Pjax;
 //use kartik\widgets\DatePicker;
 use kartik\field\FieldRange;
+use kartik\date\DatePicker;
 use kartik\datecontrol\DateControl;
+use yii\widgets\ActiveForm;
     /* @var $this yii\web\View */
 /* @var $searchModel frontend\models\BranchOfCompanySearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -15,21 +17,49 @@ $this->title = 'Branch Of Companies';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="branch-of-company-index">
+<!--<div class="form-control">-->
+<!--<div class="active form-control">-->
+<!--    --><?php //Pjax::begin(); ?>
 
     <h1><?= Html::encode($this->title) ?></h1>
-    <?php  echo $this->render('_search', ['model' => $searchModel]); ?>
+
+
+<!--    --><?php //echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
         <?= Html::a('Create Branch Of Company', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
-<?php Pjax::begin(); ?>
+
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
+        'pjax'=>true,
         'bordered'=>true,
         'striped'=>true,
         'hover'=>true,
         'condensed'=>true,
+//        'panel'=>['type'=>'primary', 'heading'=>'Branch of Company'],
+//        'panel' => [
+//            'type'=>'primary',
+//            'heading' => '<h3 class="panel-title">' . $this->title,
+//            'before' => Html::a('<i class="glyphicon glyphicon-plus"></i>', ['create'],
+//                    ['class' => 'btn btn-success']) . ' ' .
+//                Html::a('<i class="glyphicon glyphicon-repeat"></i>', ['index'], ['class' => 'btn btn-info']),
+//        ],
+        'panel' => [
+            'type'=>'primary',
+            'heading' => '<h3 class="panel-title">' . $this->title,
+            'before' =>
+                Html::beginForm(['branch/index'], 'get') .
+                Html::activeInput('text', $searchModel, 'parent_company_name', ['style' => [
+                    'width' => '10%'],
+                    'class' => 'active form-control']) .
+                ' ' .
+                Html::submitButton('Search', ['class' => 'btn btn-search']) .
+                Html::endForm()
+
+        ],
+
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
@@ -38,36 +68,54 @@ $this->params['breadcrumbs'][] = $this->title;
                 'value' => 'parentCompanyName',//gauta susiejimo metodo iš modelio getParentCompanyName
                 'filter' => $company,//gauta iš kontrolerio visos motininės kompanijos sąrašas listams
                 ],//padarysim papildomą lauką paieškai pagal susijusios lentelės pavadinimą
-            ['attribute' => 'parent_company_name',
-                'value' => 'parentCompanyName',
-                ],
+//            ['attribute' => 'parent_company_name',
+//                'value' => 'parentCompanyName',
+//                ],
             'name',
             'email:email',
             'isbn',
 //            'parent_company_id',
-            ['attribute' => 'date_foundation', 'format' => 'date', 'value' => 'date_foundation', 'filter' => FieldRange::widget([
-                'type' => FieldRange::INPUT_WIDGET,
-                'model' => $searchModel,
-                'label' => 'Enter date range',
-                'attribute1' => 'from_date',
-                'attribute2' => 'to_date',
+//            ['attribute' => 'date_foundation',
+//                'format' => 'date',
+//                'value' => 'date_foundation',
+//                'filter' => FieldRange::widget([
+//                    'type' => FieldRange::INPUT_WIDGET,
+//                    'model' => $searchModel,
+//                    'label' => 'Enter date range',
+//                    'attribute1' => 'from_date',
+//                    'attribute2' => 'to_date',
+//                    'widgetClass' => DateControl::classname(),
+//                    'widgetOptions1' => [
+//                    'saveFormat' => 'php:Y-m-d'
+//                ],
+//                'widgetOptions2' => [
+//                    'saveFormat' => 'php:Y-m-d'
+//                ],
+//            ])],
 
-                'widgetClass' => DateControl::classname(),
-                'widgetOptions1' => [
-                    'saveFormat' => 'php:Y-m-d'
+
+            ['attribute' => 'date_foundation',
+                'format' => 'date',
+                'value' => 'date_foundation',
+                'filterType' => GridView::FILTER_DATE,
+                'filterWidgetOptions' => [
+                    'pluginOptions' => [
+                        'format' => 'yyyy-mm-dd',
+                        'autoclose' => true,
+                        'todayHighlight' => true,
+                    ]
                 ],
-                'widgetOptions2' => [
-                    'saveFormat' => 'php:Y-m-d'
+                'width' => '200px',
+                'hAlign' => 'center',
                 ],
-            ])],
 
 
-//             'date_foundation',
+//             'date_foundation:date',
              'alias',
              'sort',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
-<?php Pjax::end(); ?>
+<?php //Pjax::end(); ?>
 </div>

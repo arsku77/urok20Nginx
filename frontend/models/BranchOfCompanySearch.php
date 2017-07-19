@@ -23,7 +23,6 @@ class BranchOfCompanySearch extends BranchOfCompany
         return [
             [['id', 'parent_company_id', 'sort'], 'integer'],
             [['from_date', 'to_date'], 'datetime'],
-            [['parent_company_name'], 'string'],
             [['name', 'email', 'isbn', 'date_foundation', 'alias', 'parent_company_name'], 'safe'],
         ];
     }
@@ -100,9 +99,12 @@ class BranchOfCompanySearch extends BranchOfCompany
         ]);
         $query->andFilterWhere(['like', 'branch_of_company.name', $this->parent_company_name])
             ->orFilterWhere(['like', 'parent_company.name', $this->parent_company_name])
-            ->orFilterWhere(['like', 'branch_of_company.email', $this->parent_company_name])
             ->orFilterWhere(['like', 'branch_of_company.alias', $this->parent_company_name])
-            ->andFilterWhere(['like', 'branch_of_company.alias', $this->alias]);
+            ->andFilterWhere(['like', 'branch_of_company.alias', $this->alias])
+            ->andFilterWhere(['like', 'branch_of_company.isbn', $this->isbn])
+            ->andFilterWhere(['like', 'branch_of_company.name', $this->name])
+            ->andFilterWhere(['like', 'branch_of_company.email', $this->email])
+            ->andFilterWhere(['like', 'branch_of_company.date_foundation', $this->date_foundation]);
 //            ->andFilterWhere(['like', 'branch_of_company.isbn', $this->isbn])
 //            ->andFilterWhere(['like', 'branch_of_company.alias', $this->alias])
 //            ->andFilterWhere(['like', 'parent_company.name', $this->parent_company_name]);
