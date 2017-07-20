@@ -47,7 +47,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 Html::beginForm(['branch/index'], 'get', ['class' => 'form-inline',
                 ]) .
                 Html::activeInput('text', $searchModel, 'parent_company_name', ['style' => [
-                    'width' => '10%'],
+                    'width' => '160px'],
                     'class' => 'active form-control',
                     'placeholder'=>'input many',
                     'title' => 'find of many fields: name, alias, types',
