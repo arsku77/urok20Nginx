@@ -57,7 +57,7 @@ AppAsset::register($this);//pajungiami resursai ir nustatomos kai kuriÅ³ resursÅ
 //
 //        ]],
         ['label' => 'Contact', 'url' => ['/site/contact']],
-       // ['label' => 'Comment', 'url' => ['/site/comments']],
+        ['label' => 'Registration', 'url' => ['/user/signup']],
     ];
 //    if (Yii::$app->user->isGuest) {
 //        $menuItems[] = ['label' => 'Signup', 'url' => ['/site/signup']];

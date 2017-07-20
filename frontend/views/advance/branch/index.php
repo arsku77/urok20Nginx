@@ -48,6 +48,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 ]) .
                 Html::activeInput('text', $searchModel, 'parent_company_name', ['style' => [
                     'width' => '160px'],
+                    'autofocus' => true,
                     'class' => 'active form-control',
                     'placeholder'=>'input many',
                     'title' => 'find of many fields: name, alias, types',
