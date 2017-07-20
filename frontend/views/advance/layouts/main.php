@@ -42,38 +42,36 @@ AppAsset::register($this);//pajungiami resursai ir nustatomos kai kuriÅ³ resursÅ
             ['label' => 'Publisher', 'url' => ['/publisher/index']],
             ['label' => 'Bookshop', 'url' => ['/bookshop/index']],
             ['label' => 'Author', 'url' => ['/author/index']],
+            ['label' => 'Order Window', 'url' => ['/window/order']],
 
         ]],
         ['label' => 'About', 'url' => ['/site/about']],
-        ['label' => 'Oerder Window', 'url' => ['/window/order']],
         ['label' => 'experiments', 'url' => ['productshop/index'], 'items' => [
             ['label' => 'Branch of company', 'url' => ['branch/index']],
             ['label' => 'Parent Company', 'url' => ['company/index']],
            // ['label' => 'Most Popular', 'url' => ['product/index', 'tag' => 'popular']],
         ]],
-        ['label' => 'Categories', 'url' => ['productshop/index'], 'items' => [
-            ['label' => 'New Category', 'url' => ['productshop/category']],
-        ]],
-//        ['label' => 'Suppliers', 'url' => ['productshop/index'], 'items' => [
+//        ['label' => 'Categories', 'url' => ['productshop/index'], 'items' => [
+//            ['label' => 'New Category', 'url' => ['productshop/category']],
 //            ['label' => 'New Supplier', 'url' => ['productshop/supplier']],
+//
 //        ]],
-
         ['label' => 'Contact', 'url' => ['/site/contact']],
        // ['label' => 'Comment', 'url' => ['/site/comments']],
     ];
-    if (Yii::$app->user->isGuest) {
-        $menuItems[] = ['label' => 'Signup', 'url' => ['/site/signup']];
-        $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
-    } else {
-        $menuItems[] = '<li>'
-            . Html::beginForm(['/site/logout'], 'post')
-            . Html::submitButton(
-                'Logout (' . Yii::$app->user->identity->username . ')',
-                ['class' => 'btn btn-link logout']
-            )
-            . Html::endForm()
-            . '</li>';
-    }
+//    if (Yii::$app->user->isGuest) {
+//        $menuItems[] = ['label' => 'Signup', 'url' => ['/site/signup']];
+//        $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
+//    } else {
+//        $menuItems[] = '<li>'
+//            . Html::beginForm(['/site/logout'], 'post')
+//            . Html::submitButton(
+//                'Logout (' . Yii::$app->user->identity->username . ')',
+//                ['class' => 'btn btn-link logout']
+//            )
+//            . Html::endForm()
+//            . '</li>';
+//    }
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => $menuItems,
