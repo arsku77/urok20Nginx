@@ -20,7 +20,6 @@ return [
         'emailService' => [
             'class' => 'common\components\EmailService',
         ],
-
     ],
     'modules' => [
         'gridview' =>  [
