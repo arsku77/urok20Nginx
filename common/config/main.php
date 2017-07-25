@@ -17,6 +17,9 @@ return [
             'timeFormat' => 'php: H:i:s',
             'datetimeFormat' => 'php:Y-m-d H:i:s',
         ],
+        'emailService' => [
+            'class' => 'common\components\EmailService',
+        ],
 
     ],
     'modules' => [
