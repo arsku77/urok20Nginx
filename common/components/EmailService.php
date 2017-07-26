@@ -11,34 +11,39 @@ namespace common\components;
 use Yii;
 use yii\base\Component;
 use common\components\UserNotificationInterface;
+use frontend\models\events\UserRegisterEvent;
 
 class EmailService extends Component
 {
 
     /**
-     * @param UserNotificationInterface $user
+     * @param UserNotificationInterface $event
      * @param string $subject
      * @return bool
      */
-    public function notifyUser(UserNotificationInterface $user, $subject)
+    public function notifyUser(UserNotificationInterface $event)
     {
         return Yii::$app->mailer->compose()
             ->setFrom('arsku77@gmail.com')
-            ->setTo($user->getEmail())
-            ->setSubject($subject)
+            ->setTo($event->getEmail())
+            ->setSubject($event->getSubject())
             ->send();
     }
 
     /**
-     * @param $subject
+     * @param UserNotificationInterface $event
      * @return bool
      */
-    public function notifyAdmins($subject)
+    public function notifyAdmins(UserNotificationInterface $event)
     {
+//        echo '<pre>';
+//        print_r($event);
+//        echo '<pre>';
+//        die;
         return Yii::$app->mailer->compose()
             ->setFrom('arsku77@gmail.com')
             ->setTo('arsku77@gmail.com')
-            ->setSubject($subject)
+            ->setSubject($event->getSubject())
             ->send();
     }
 

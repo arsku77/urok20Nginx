@@ -4,6 +4,7 @@ namespace frontend\models\forms;
 use yii\base\Model;
 use frontend\models\User;
 use Yii;
+use frontend\models\events\UserRegisterEvent;
 /**
  * Created by PhpStorm.
  * User: arsku
@@ -59,18 +60,10 @@ class SignupForm extends Model
 
             if ($user->save()) {
 
-                Yii::$app->emailService->notifyUser($user, 'Thanks for register');
-                Yii::$app->emailService->notifyAdmins('User registered');
-//                Yii::$app->smsService->notifyUser($user);
-//                Yii::$app->smslService->notifyAdmins('User registered');
-//                Yii::$app->postService->sendGift($user);
-                //Other actions
-                //Other actions
-                //Other actions
-                //Other actions
-                //Other actions
-                //Other actions
-                //Other actions
+                $event = new UserRegisterEvent();
+                $event->user = $user;
+                $event->subject = 'New Useerr registered';
+                $user->trigger(User::USER_REGISTERED, $event);
 
                 return $user;
             }
