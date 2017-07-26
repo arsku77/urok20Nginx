@@ -4,9 +4,17 @@ namespace frontend\controllers;
 
 use frontend\models\Author;
 use Yii;
+use frontend\controllers\behaviors\AccessBehavior;
 
 class AuthorController extends \yii\web\Controller
 {
+    public function behaviors()
+    {
+        return [
+            AccessBehavior::className(),
+        ];
+    }
+
     public function actionCreate()
     {
         $model = new Author();
