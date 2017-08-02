@@ -13,17 +13,12 @@ if ($model->hasErrors()) {
 <form method="post">
     <p><input name="options[]" type="checkbox" value="1" /> Wifi:</p>
     <br>
-
+    
     <p><input name="options[]" type="checkbox" value="2" /> Big window:</p>
     <br>
-
+    
     <p><input name="options[]" type="checkbox" value="3" /> Ice cream:</p>
     <br><br>
-
-<!--    <p>Url</p>-->
-<!--    <p><input name="siteAdress" type="text"</p>-->
-<!--    <br><br>-->
-
 
     <input type="submit" />    
 
