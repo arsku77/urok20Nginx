@@ -19,7 +19,7 @@ class Author extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return '{{author}}';
+        return '{{%author}}';
     }
 
     public function rules()
