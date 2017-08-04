@@ -27,13 +27,13 @@ class SearchForm extends Model
         ];
     }
     
-//    public function searchSimple()
-//    {
-//        if ($this->validate()) {
-//            $model = new NewsSearch();
-//            return $model->simpleSearch($this->keyword);
-//        }
-//    }
+    public function searchSimple()
+    {
+        if ($this->validate()) {
+            $model = new NewsSearch();
+            return $model->simpleSearch($this->keyword);
+        }
+    }
     
     public function search()
     {
@@ -43,12 +43,12 @@ class SearchForm extends Model
         }
     }
 
-//    public function searchAdvanced()
-//    {
-//        if ($this->validate()) {
-//            $model = new NewsSearch();
-//            return $model->advancedSearch($this->keyword);
-//        }
-//    }
-//
+    public function searchAdvanced()
+    {
+        if ($this->validate()) {
+            $model = new NewsSearch();
+            return $model->advancedSearch($this->keyword);
+        }
+    }
+
 }

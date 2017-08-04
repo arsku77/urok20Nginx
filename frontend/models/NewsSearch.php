@@ -30,12 +30,12 @@ class NewsSearch
         $sql = "SELECT * FROM news WHERE MATCH (content) AGAINST ('$keyword') LIMIT 20";
         return Yii::$app->db->createCommand($sql)->queryAll();
     }
-    
+
     public function advancedSearch($keyword)
     {
         $sql = "SELECT * FROM idx_news_content WHERE MATCH('$keyword') OPTION ranker=WORDCOUNT";
         $data = Yii::$app->sphinx->createCommand($sql)->queryAll();
-        
+
         $ids = ArrayHelper::map($data, 'id', 'id');
         $data = News::find()->where(['id' => $ids])->asArray()->all();
         $data = ArrayHelper::index($data, 'id');
@@ -48,7 +48,7 @@ class NewsSearch
                 'content' => $data[$element]['content'],
             ];
         }
-        
+
         return $result;
     }
 }
