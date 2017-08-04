@@ -43,6 +43,8 @@ AppAsset::register($this);//pajungiami resursai ir nustatomos kai kuriÅ³ resursÅ
             ['label' => 'Bookshop', 'url' => ['/bookshop/index']],
             ['label' => 'Author', 'url' => ['/author/index']],
             ['label' => 'Order Window', 'url' => ['/window/order']],
+            ['label' => 'Search Fulltext MySQL', 'url' => ['/search/index']],
+            ['label' => 'Search Fulltext Sphinx', 'url' => ['/search/advanced']],
 
         ]],
         ['label' => 'About', 'url' => ['/site/about']],
