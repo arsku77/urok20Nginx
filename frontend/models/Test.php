@@ -14,7 +14,7 @@ class Test
      */
     public static function getAllNewsList()
     {
-        $sql = 'SELECT * FROM news' ;
+        $sql = 'SELECT * FROM news LIMIT 200' ;
         $result = Yii::$app->db->createCommand($sql)->queryAll();
 
 
@@ -44,6 +44,13 @@ class Test
             }
         }
         return $result;//grąžinam jau modifikuotą masyvą - jame pakeistas turinys content
+    }
+
+    public static function getCountAllNews()
+    {
+        $sql = 'SELECT * FROM news order by id DESC LIMIT 1';
+        $result = Yii::$app->db->createCommand($sql)->queryOne();
+        return $result;
     }
 
 

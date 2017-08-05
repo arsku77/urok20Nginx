@@ -22,8 +22,8 @@ $this->title = 'My Yii Application';
 
         <div class="row">
             <div class="col-lg-4">
-                <h2>Heading</h2>
-
+<!--                <h2>Heading</h2>-->
+                <a href="<?php echo Url::to(['news/index']); ?>" class="h2">Heading</a>
                 <?php echo NewsList::widget(['showLimit' => Yii::$app->params['maxNewsOnHomepage']]); ?>
 
 

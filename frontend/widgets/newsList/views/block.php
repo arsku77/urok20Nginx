@@ -3,7 +3,7 @@ use yii\helpers\Url;
 ?>
 <?php foreach ($list as $item): ?>
     <h3>
-        <a href="<?php echo Url::to(['test/view', 'id' => $item['id']]); ?>">
+        <a href="<?php echo Url::to(['news/view', 'id' => $item['id']]); ?>">
             <?php echo $item['title']; ?>
         </a>
     </h3>

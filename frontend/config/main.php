@@ -42,8 +42,8 @@ return [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
-                'novosti' => 'test/index',
-                'novosti/<id:\d+>' => 'test/view',
+                'novosti' => 'news/index',
+                'novosti/<id:\d+>' => 'news/view',
                 'news-count' => 'news/list',
                 'robotnik/<id:\d+>' => 'employee/view',
                 'apie-imone' => 'site/about',
