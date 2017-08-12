@@ -2,6 +2,7 @@
 
 namespace frontend\models;
 
+use yii\db\ActiveRecord;
 use Yii;
 use yii\web\IdentityInterface;
 
@@ -18,7 +19,7 @@ use yii\web\IdentityInterface;
  * @property int $created_at
  * @property int $updated_at
  */
-class User extends \yii\db\ActiveRecord implements IdentityInterface
+class User extends ActiveRecord implements IdentityInterface
 {
     const USER_REGISTERED = 'user_registered';//set event name
 

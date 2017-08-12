@@ -10,8 +10,6 @@ namespace common\components;
 
 use Yii;
 use yii\base\Component;
-use common\components\UserNotificationInterface;
-use frontend\models\events\UserRegisterEvent;
 
 class EmailService extends Component
 {

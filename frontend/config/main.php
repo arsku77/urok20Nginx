@@ -15,7 +15,7 @@ return [
     'components' => [
         'request' => [
             'csrfParam' => '_csrf-frontend',
-            'enableCsrfValidation' => false,
+            'enableCsrfValidation' => true,
         ],
         'user' => [
             'identityClass' => 'frontend\models\User',
@@ -43,6 +43,7 @@ return [
             'showScriptName' => false,
             'rules' => [
                 'novosti' => 'news/index',
+                'contact' => 'site/contact',
                 'novosti/<id:\d+>' => 'news/view',
                 'news-count' => 'news/list',
                 'robotnik/<id:\d+>' => 'employee/view',

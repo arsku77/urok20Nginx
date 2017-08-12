@@ -25,10 +25,11 @@ class NewsSearch
     
     public function fulltextSearch($keyword)
     {
-        // TODO: fix security issue (hometask)
-        $keyword = strip_tags($keyword);
-        $sql = "SELECT * FROM news WHERE MATCH (content) AGAINST ('$keyword') LIMIT 20";
-        return Yii::$app->db->createCommand($sql)->queryAll();
+//        $params = [
+//            ':keyword' => $keyword,
+//        ];
+        $sql = "SELECT * FROM news WHERE MATCH (content) AGAINST (:keyword) LIMIT 20";
+        return Yii::$app->db->createCommand($sql)->bindValue('keyword', $keyword)->queryAll();
     }
 
     public function advancedSearch($keyword)
