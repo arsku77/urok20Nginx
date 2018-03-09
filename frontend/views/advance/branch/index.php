@@ -40,6 +40,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'striped'=>true,
         'hover'=>true,
         'condensed'=>true,
+        'showFooter'=>TRUE,
         'panel' => [
             'type'=>'primary',
             'heading' => '<h3 class="panel-title">' . $this->title,
@@ -60,7 +61,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 ' ' .
                 Html::a('<i class="glyphicon glyphicon-plus"></i>', ['create'],
                     ['class' => 'btn btn-success']) .
-                Html::endForm()
+                Html::endForm(),
 
         ],
 
@@ -84,9 +85,26 @@ $this->params['breadcrumbs'][] = $this->title;
                 'filterWidgetOptions'=>[
                     'pluginOptions'=>['allowClear'=>true],
                 ],
-                'filterInputOptions'=>['placeholder'=>'Any company']
+                'filterInputOptions'=>['placeholder'=>'Any company'],
+                'footer' => Html::beginForm(['branch/index'], 'get', ['class' => 'form-inline',
+                    ]) .
+                    Html::activeInput('text', $searchModel, 'parent_company_name',
+                        ['style' => [
+                        'width' => '160px',
+                        'tabindex' => '1px',
+
+                        ],
+//                        'autofocus' => true,
+                        'class' => 'active form-control ',
+                        'placeholder'=>'input many',
+                        'title' => 'add new company',
+                    ]) . Html::endForm(),
             ],
             'name',
+            [
+                'attribute' =>  'name',
+                'footer' => 'dfhhdfhdfh',
+            ],
             'email:email',
             'isbn',
 //            'parent_company_id',
@@ -112,7 +130,9 @@ $this->params['breadcrumbs'][] = $this->title;
              'sort',
 
             ['class' => 'yii\grid\ActionColumn'],
+
         ],
+
     ]); ?>
 <?php //Pjax::end(); ?>
 </div>
