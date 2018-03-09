@@ -66,17 +66,77 @@ $this->params['breadcrumbs'][] = $this->title;
             'after' =>
                 Html::beginForm(['branch/create'], 'post', ['class' => 'form-inline',
                 ]) .
+                Html::activeDropDownList($model, 'parent_company_id', $company,
+                    ['style' => [
+                        'width' => '160px',
+                    ],
+//                        'autofocus' => true,
+                        'class' => 'active form-control',
+                        'placeholder'=>'select company',
+                        'title' => 'select company for new brand',
+                    ]) .
+                ' ' .
                 Html::activeInput('text', $model, 'name',
                     ['style' => [
                         'width' => '160px',
                     ],
-                        'autofocus' => true,
+//                        'autofocus' => true,
                         'class' => 'active form-control',
-                        'placeholder'=>'input many',
-                        'title' => 'find of many fields: name, alias, types',
+                        'placeholder'=>'input new brand name',
+                        'title' => 'input new brand name',
                     ]) .
                 ' ' .
-                Html::submitButton('Search', ['class' => 'btn btn-search']) .
+                Html::activeInput('text', $model, 'email',
+                    ['style' => [
+                        'width' => '160px',
+                    ],
+//                        'autofocus' => true,
+                        'class' => 'active form-control',
+                        'placeholder'=>'input email of new brand',
+                        'title' => 'input email of new brand',
+                    ]) .
+                ' ' .
+                Html::activeInput('text', $model, 'isbn',
+                    ['style' => [
+                        'width' => '160px',
+                    ],
+//                        'autofocus' => true,
+                        'class' => 'active form-control',
+                        'placeholder'=>'input isbn of new brand',
+                        'title' => 'input isbn of new brand',
+                    ]) .
+                ' ' .
+                Html::activeInput('text', $model, 'date_foundation',
+                    ['style' => [
+                        'width' => '160px',
+                    ],
+//                        'autofocus' => true,
+                        'class' => 'active form-control',
+                        'placeholder'=>'input date foundation of new brand',
+                        'title' => 'input date foundation of new brand',
+                    ]) .
+                ' ' .
+                Html::activeInput('text', $model, 'alias',
+                    ['style' => [
+                        'width' => '160px',
+                    ],
+//                        'autofocus' => true,
+                        'class' => 'active form-control',
+                        'placeholder'=>'input alias of new brand',
+                        'title' => 'input alias of new brand',
+                    ]) .
+                ' ' .
+                Html::activeInput('text', $model, 'sort',
+                    ['style' => [
+                        'width' => '160px',
+                    ],
+//                        'autofocus' => true,
+                        'class' => 'active form-control',
+                        'placeholder'=>'input sort of new brand',
+                        'title' => 'input sort of new brand',
+                    ]) .
+                ' ' .
+                Html::submitButton('Create', ['class' => 'btn btn-search']) .
                 ' ' .
                 Html::a('<i class="glyphicon glyphicon-repeat"></i>', ['index'], ['class' => 'btn btn-info']) .
                 ' ' .
