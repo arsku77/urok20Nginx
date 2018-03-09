@@ -9,7 +9,7 @@ use kartik\field\FieldRange;
 use kartik\date\DatePicker;
 use kartik\datecontrol\DateControl;
 use yii\widgets\ActiveForm;
-    /* @var $this yii\web\View */
+/* @var $this yii\web\View */
 /* @var $searchModel frontend\models\BranchOfCompanySearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
@@ -17,20 +17,20 @@ $this->title = 'Branch Of Companies';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="branch-of-company-index">
-<!--<div class="form-inline">-->
-<!--<div class="form-control">-->
-<!--<div class="form-horizontal form-inline form-inline-block kv-form-horizontal">-->
-<!--<div class="form-horizontal">-->
-<!--    --><?php //Pjax::begin(); ?>
+    <!--<div class="form-inline">-->
+    <!--<div class="form-control">-->
+    <!--<div class="form-horizontal form-inline form-inline-block kv-form-horizontal">-->
+    <!--<div class="form-horizontal">-->
+    <!--    --><?php //Pjax::begin(); ?>
 
     <h3><?= Html::encode($this->title) ?></h3>
 
 
-<!--    --><?php //echo $this->render('_search', ['model' => $searchModel]); ?>
+    <!--    --><?php //echo $this->render('_search', ['model' => $searchModel]); ?>
 
-<!--    <p>-->
-<!-- <?php //<?= Html::a('Create Branch Of Company', ['create'], ['class' => 'btn btn-success'])?> -->
-<!--    </p>-->
+    <!--    <p>-->
+    <!-- <?php //<?= Html::a('Create Branch Of Company', ['create'], ['class' => 'btn btn-success'])?> -->
+    <!--    </p>-->
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
@@ -63,19 +63,33 @@ $this->params['breadcrumbs'][] = $this->title;
                     ['class' => 'btn btn-success']) .
                 Html::endForm(),
 
+            'after' =>
+                Html::beginForm(['branch/create'], 'post', ['class' => 'form-inline',
+                ]) .
+                Html::activeInput('text', $model, 'name',
+                    ['style' => [
+                        'width' => '160px',
+                    ],
+                        'autofocus' => true,
+                        'class' => 'active form-control',
+                        'placeholder'=>'input many',
+                        'title' => 'find of many fields: name, alias, types',
+                    ]) .
+                ' ' .
+                Html::submitButton('Search', ['class' => 'btn btn-search']) .
+                ' ' .
+                Html::a('<i class="glyphicon glyphicon-repeat"></i>', ['index'], ['class' => 'btn btn-info']) .
+                ' ' .
+                Html::a('<i class="glyphicon glyphicon-plus"></i>', ['create'],
+                    ['class' => 'btn btn-success']) .
+                Html::endForm(),
+
         ],
 
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
             'id',
-//            ['attribute' => 'parent_company_id',
-//                'value' => 'parentCompanyName',//gauta susiejimo metodo iš modelio getParentCompanyName
-//                'filter' => $company,//gauta iš kontrolerio visos motininės kompanijos sąrašas listams
-//                ],//padarysim papildomą lauką paieškai pagal susijusios lentelės pavadinimą
-//            ['attribute' => 'parent_company_name',
-//                'value' => 'parentCompanyName',
-//                ],
             [
                 'attribute'=>'parent_company_id',
                 'width'=>'250px',
@@ -90,24 +104,22 @@ $this->params['breadcrumbs'][] = $this->title;
                     ]) .
                     Html::activeInput('text', $searchModel, 'parent_company_name',
                         ['style' => [
-                        'width' => '160px',
-                        'tabindex' => '1px',
+                            'width' => '160px',
+                            'tabindex' => '1px',
 
                         ],
 //                        'autofocus' => true,
-                        'class' => 'active form-control ',
-                        'placeholder'=>'input many',
-                        'title' => 'add new company',
-                    ]) . Html::endForm(),
+                            'class' => 'active form-control ',
+                            'placeholder'=>'new company',
+                            'title' => 'add new company',
+                        ]) . Html::endForm(),
             ],
-            'name',
             [
                 'attribute' =>  'name',
                 'footer' => 'dfhhdfhdfh',
             ],
             'email:email',
             'isbn',
-//            'parent_company_id',
 
             ['attribute' => 'date_foundation',
                 'format' => 'date',
@@ -122,17 +134,17 @@ $this->params['breadcrumbs'][] = $this->title;
                 ],
                 'width' => '200px',
                 'hAlign' => 'center',
-                ],
+            ],
 
 
 //             'date_foundation:date',
-             'alias',
-             'sort',
+            'alias',
+            'sort',
 
             ['class' => 'yii\grid\ActionColumn'],
 
         ],
 
     ]); ?>
-<?php //Pjax::end(); ?>
+    <?php //Pjax::end(); ?>
 </div>

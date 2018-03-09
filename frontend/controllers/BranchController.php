@@ -35,6 +35,7 @@ class BranchController extends Controller
      */
     public function actionIndex()
     {
+        $model = new BranchOfCompany();
         $searchModel = new BranchOfCompanySearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
         $company = ParentCompany::getList();
@@ -42,6 +43,7 @@ class BranchController extends Controller
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
             'company' => $company,
+            'model' => $model,
         ]);
     }
 
