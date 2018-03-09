@@ -63,12 +63,14 @@ $this->params['breadcrumbs'][] = $this->title;
                     ['class' => 'btn btn-success']) .
                 Html::endForm(),
 
+
+
             'after' =>
                 Html::beginForm(['branch/create'], 'post', ['class' => 'form-inline',
                 ]) .
                 Html::activeDropDownList($model, 'parent_company_id', $company,
                     ['style' => [
-                        'width' => '160px',
+                        'width' => '20%',
                     ],
 //                        'autofocus' => true,
                         'class' => 'active form-control',
@@ -78,7 +80,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 ' ' .
                 Html::activeInput('text', $model, 'name',
                     ['style' => [
-                        'width' => '160px',
+                        'width' => '15%',
                     ],
 //                        'autofocus' => true,
                         'class' => 'active form-control',
@@ -88,7 +90,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 ' ' .
                 Html::activeInput('text', $model, 'email',
                     ['style' => [
-                        'width' => '160px',
+                        'width' => '15%',
                     ],
 //                        'autofocus' => true,
                         'class' => 'active form-control',
@@ -98,7 +100,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 ' ' .
                 Html::activeInput('text', $model, 'isbn',
                     ['style' => [
-                        'width' => '160px',
+                        'width' => '10%',
                     ],
 //                        'autofocus' => true,
                         'class' => 'active form-control',
@@ -108,7 +110,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 ' ' .
                 Html::activeInput('text', $model, 'date_foundation',
                     ['style' => [
-                        'width' => '160px',
+                        'width' => '10%',
                     ],
 //                        'autofocus' => true,
                         'class' => 'active form-control',
@@ -118,7 +120,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 ' ' .
                 Html::activeInput('text', $model, 'alias',
                     ['style' => [
-                        'width' => '160px',
+                        'width' => '10%',
                     ],
 //                        'autofocus' => true,
                         'class' => 'active form-control',
@@ -128,7 +130,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 ' ' .
                 Html::activeInput('text', $model, 'sort',
                     ['style' => [
-                        'width' => '160px',
+                        'width' => '10%',
                     ],
 //                        'autofocus' => true,
                         'class' => 'active form-control',
@@ -136,15 +138,16 @@ $this->params['breadcrumbs'][] = $this->title;
                         'title' => 'input sort of new brand',
                     ]) .
                 ' ' .
-                Html::submitButton('Create', ['class' => 'btn btn-search']) .
-                ' ' .
-                Html::a('<i class="glyphicon glyphicon-repeat"></i>', ['index'], ['class' => 'btn btn-info']) .
-                ' ' .
-                Html::a('<i class="glyphicon glyphicon-plus"></i>', ['create'],
-                    ['class' => 'btn btn-success']) .
+                Html::submitButton('<i class="glyphicon glyphicon-floppy-disk"></i>',
+                    ['style' => [
+                        'width' => '5%',
+                    ],
+                        'class'=>'btn btn-primary'
+                    ])
+ .
                 Html::endForm(),
+            ],
 
-        ],
 
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
