@@ -1,5 +1,6 @@
 <?php
 
+use kartik\widgets\DateTimePicker;
 use yii\helpers\Html;
 //use yii\grid\GridView;
 use kartik\grid\GridView;
@@ -66,7 +67,9 @@ $this->params['breadcrumbs'][] = $this->title;
 
 
             'after' =>
-                Html::beginForm(['branch/create'], 'post', ['class' => 'form-inline',
+                Html::beginForm(['branch/create'], 'post', [
+                        'class' => 'form-inline',
+                        'enctype' => 'multipart/form-data',
                 ]) .
                 Html::activeDropDownList($model, 'parent_company_id', $company,
                     ['style' => [
@@ -108,7 +111,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         'title' => 'input isbn of new brand',
                     ]) .
                 ' ' .
-                Html::activeInput('text', $model, 'date_foundation',
+                Html::activeInput('date', $model, 'date_foundation',
                     ['style' => [
                         'width' => '10%',
                     ],
@@ -143,8 +146,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         'width' => '5%',
                     ],
                         'class'=>'btn btn-primary'
-                    ])
- .
+                    ]) .
                 Html::endForm(),
             ],
 
@@ -163,24 +165,8 @@ $this->params['breadcrumbs'][] = $this->title;
                     'pluginOptions'=>['allowClear'=>true],
                 ],
                 'filterInputOptions'=>['placeholder'=>'Any company'],
-                'footer' => Html::beginForm(['branch/index'], 'get', ['class' => 'form-inline',
-                    ]) .
-                    Html::activeInput('text', $searchModel, 'parent_company_name',
-                        ['style' => [
-                            'width' => '160px',
-                            'tabindex' => '1px',
-
-                        ],
-//                        'autofocus' => true,
-                            'class' => 'active form-control ',
-                            'placeholder'=>'new company',
-                            'title' => 'add new company',
-                        ]) . Html::endForm(),
             ],
-            [
-                'attribute' =>  'name',
-                'footer' => 'dfhhdfhdfh',
-            ],
+            'name',
             'email:email',
             'isbn',
 
@@ -200,7 +186,6 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
 
 
-//             'date_foundation:date',
             'alias',
             'sort',
 
@@ -211,3 +196,5 @@ $this->params['breadcrumbs'][] = $this->title;
     ]); ?>
     <?php //Pjax::end(); ?>
 </div>
+
+

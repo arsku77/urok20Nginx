@@ -35,6 +35,7 @@ class BranchOfCompany extends \yii\db\ActiveRecord
             [['name', 'parent_company_id', 'date_foundation', 'alias'], 'required'],
             [['parent_company_id', 'sort'], 'integer'],
             [['date_foundation'],'date', 'format'=>'php:Y-m-d'],
+            [['email'], 'email'],
             [['name', 'email'], 'string', 'max' => 255],
             [['isbn'], 'string', 'max' => 30],
             [['alias'], 'string', 'max' => 55],

@@ -2,7 +2,8 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
-
+//use kartik\form\ActiveForm;
+//use kartik\widgets\ActiveForm;
 /* @var $this yii\web\View */
 /* @var $model frontend\models\BranchOfCompany */
 /* @var $form yii\widgets\ActiveForm */

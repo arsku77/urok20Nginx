@@ -78,3 +78,15 @@
                 Html::a('<i class="glyphicon glyphicon-plus"></i>', ['create'],
                     ['class' => 'btn btn-success']) .
                 Html::endForm(),
+========================================================================
+
+            'after' => function ($model, $company){
+                return '<tr><td colspan="14" class="no_pad">' .
+                    Yii::$app->controller->renderPartial('_form',
+                        [
+                            'model' => $model,
+                            'company' => $company,
+                        ]
+                    ) . '</td></tr>';
+            },
+===========================================================================

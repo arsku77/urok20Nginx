@@ -69,7 +69,9 @@ class BranchController extends Controller
         $model = new BranchOfCompany();
         $company = ParentCompany::getList();
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['index']);
+//            print_r($model);die;
+            $this->redirect(Yii::$app->request->referrer);
+            //            return $this->redirect(['index']);
 //            return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('create', [
