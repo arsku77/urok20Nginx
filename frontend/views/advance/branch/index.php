@@ -229,7 +229,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
 
 
-    <?php Pjax::begin(); ?>
+    <?php// Pjax::begin(); ?>
     <?php $form = ActiveForm::begin(); ?>
     <?= TabularForm::widget([
         'form' => $form,
@@ -300,6 +300,7 @@ $this->params['breadcrumbs'][] = $this->title;
         ],
 
         'gridSettings' => [
+            'pjax'=>true,
             'floatHeader' => true,
             'panel' => [
                 'heading' => '<h3 class="panel-title"><i class="glyphicon glyphicon-book"></i> Manage Books</h3>',
@@ -347,7 +348,7 @@ $this->params['breadcrumbs'][] = $this->title;
         ]
     ]);
     ActiveForm::end();?>
-    <?php Pjax::end(); ?>
+    <?php //Pjax::end(); ?>
 </div>
 
 
