@@ -226,6 +226,9 @@ $this->params['breadcrumbs'][] = $this->title;
         ],
 
     ]);?>
+
+
+
     <?php Pjax::begin(); ?>
     <?php $form = ActiveForm::begin(); ?>
     <?= TabularForm::widget([
@@ -240,9 +243,26 @@ $this->params['breadcrumbs'][] = $this->title;
 //            'widgetClass' => \kartik\widgets\ColorInput::classname()
 //        ],
             'parent_company_id' => [
-                'type' => TabularForm::INPUT_DROPDOWN_LIST,
-                'items'=>$company
+                'label' => 'Company',
+                'type' => TabularForm::INPUT_WIDGET,
+                'widgetClass' => \kartik\widgets\Select2::class,
+                'options' => [
+                    'data' => $company,
+                    'options' => ['placeholder' => 'Choose Company'],
+                ],
+                'columnOptions' => ['width' => '15%'],
             ],
+
+
+
+
+
+
+
+//            'parent_company_id' => [
+//                'type' => TabularForm::INPUT_DROPDOWN_LIST,
+//                'items'=>$company
+//            ],
             'email' => [
                 'type' => TabularForm::INPUT_TEXT,
                 'options'=>['class'=>'form-control text-right'],
