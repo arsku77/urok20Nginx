@@ -251,20 +251,16 @@ $this->params['breadcrumbs'][] = $this->title;
 
 
             'date_foundation' => [
-                'type' => function($model, $key) {
-                    return ($key % 2 === 0) ? TabularForm::INPUT_HIDDEN : TabularForm::INPUT_WIDGET;
-                },
-                'widgetClass'=>\kartik\widgets\DatePicker::classname(),
-                'options'=> function($model, $key) {
-                    return ($key % 2 === 0) ? [] :
-                        [
-                            'pluginOptions'=>[
-                                'format'=>'yyyy-mm-dd',
-                                'todayHighlight'=>true,
-                                'autoclose'=>true
-                            ]
-                        ];
-                },
+                'type' => TabularForm::INPUT_WIDGET,
+                'widgetClass'=>\kartik\widgets\DatePicker::class,
+                'options'=>
+                    [
+                        'pluginOptions'=>[
+                            'format'=>'yyyy-mm-dd',
+                            'todayHighlight'=>true,
+                            'autoclose'=>true
+                        ]
+                    ],
                 'columnOptions'=>['width'=>'20%']
             ],
 
@@ -275,13 +271,13 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
 
 
-        'sort' => [
-            'type' => TabularForm::INPUT_TEXT,
-            'options'=>['class'=>'form-control text-right'],
-            'columnOptions'=>['hAlign'=>GridView::ALIGN_RIGHT, 'width'=>'10%']
-        ],
+            'sort' => [
+                'type' => TabularForm::INPUT_TEXT,
+                'options'=>['class'=>'form-control text-right'],
+                'columnOptions'=>['hAlign'=>GridView::ALIGN_RIGHT, 'width'=>'10%']
+            ],
 
-    ],
+        ],
 
         'gridSettings' => [
             'floatHeader' => true,
