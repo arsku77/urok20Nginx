@@ -71,6 +71,8 @@ $this->params['breadcrumbs'][] = $this->title;
                     ' ' .
                     Html::a('<i class="glyphicon glyphicon-repeat"></i>', ['index'], ['class' => 'btn btn-info']) .
                     ' ' .
+                    Html::a('<i class="glyphicon glyphicon-th"></i>&nbsp;View result', ['index'], ['class' => 'btn btn-info']) .
+                    ' ' .
                     Html::a('<i class="glyphicon glyphicon-plus"></i>', ['create'],
                         ['class' => 'btn btn-success']) .
                     Html::endForm(),
@@ -162,6 +164,8 @@ $this->params['breadcrumbs'][] = $this->title;
     ActiveForm::end();?>
     <?php //Pjax::end(); ?>
 
+</div>
+<div class="branch-of-company-index">
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
@@ -188,6 +192,8 @@ $this->params['breadcrumbs'][] = $this->title;
                 Html::submitButton('Search', ['class' => 'btn btn-search']) .
                 ' ' .
                 Html::a('<i class="glyphicon glyphicon-repeat"></i>', ['index'], ['class' => 'btn btn-info']) .
+                ' ' .
+                Html::a('<i class="glyphicon glyphicon-edit"></i>&nbsp;Edit', ['index'], ['class' => 'btn btn-info']) .
                 ' ' .
                 Html::a('<i class="glyphicon glyphicon-plus"></i>', ['create'],
                     ['class' => 'btn btn-success']) .
