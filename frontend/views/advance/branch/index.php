@@ -229,12 +229,62 @@ $this->params['breadcrumbs'][] = $this->title;
 
 
 
-    <?php// Pjax::begin(); ?>
+    <?php //Pjax::begin(); ?>
     <?php $form = ActiveForm::begin(); ?>
     <?= TabularForm::widget([
         'form' => $form,
         'dataProvider' => $dataProvider,
 //    'searchModel' => $searchModel,
+        'gridSettings' => [
+            'pjax'=>true,
+            'floatHeader' => true,
+            'panel' => [
+                'type' => GridView::TYPE_PRIMARY,
+                'heading' => '<h3 class="panel-title">' . $this->title,
+                'before'=>
+                    Html::beginForm(['branch/index'], 'get', ['class' => 'form-inline',
+                    ]) .
+                    Html::activeInput('text', $searchModel, 'name1', ['style' => [
+                        'width' => '80px'],
+                        'autofocus' => true,
+                        'class' => 'active form-control',
+                        'placeholder'=>'input many',
+                        'title' => 'find of many fields: name, alias, types',
+                    ]) .
+                    ' ' .
+                    Html::submitButton('Search', ['class' => 'btn btn-search']) .
+                    ' ' .
+                    Html::endForm(),
+
+                'after'=>
+                    Html::a(
+                        '<i class="glyphicon glyphicon-plus"></i> Add New',
+                        ['create'],
+                        ['class'=>'btn btn-success']
+                    ) . '&nbsp;' .
+                    Html::a(
+                        '<i class="glyphicon glyphicon-remove"></i> Delete',
+                        ['delete'],
+                        ['class'=>'btn btn-danger']
+                    ) . '&nbsp;' .
+                    Html::a(
+                        '<i class="glyphicon glyphicon-repeat"></i>',
+                        ['index'],
+                        ['class'=>'btn btn-info']
+                    ) . '&nbsp;' .
+                    Html::submitButton(
+                        '<i class="glyphicon glyphicon-floppy-disk"></i> Save',
+                        ['class'=>'btn btn-primary']
+                    ),
+
+
+
+            ]
+        ],
+
+
+
+
 
         'attributes' => [
             'name' => ['type' => TabularForm::INPUT_TEXT],
@@ -253,16 +303,6 @@ $this->params['breadcrumbs'][] = $this->title;
                 'columnOptions' => ['width' => '15%'],
             ],
 
-
-
-
-
-
-
-//            'parent_company_id' => [
-//                'type' => TabularForm::INPUT_DROPDOWN_LIST,
-//                'items'=>$company
-//            ],
             'email' => [
                 'type' => TabularForm::INPUT_TEXT,
                 'options'=>['class'=>'form-control text-right'],
@@ -299,58 +339,6 @@ $this->params['breadcrumbs'][] = $this->title;
 
         ],
 
-        'gridSettings' => [
-            'pjax'=>true,
-            'floatHeader' => true,
-            'panel' => [
-                'type' => GridView::TYPE_PRIMARY,
-                'heading' => '<h3 class="panel-title">' . $this->title,
-                'before'=>
-                    Html::a(
-                        '<i class="glyphicon glyphicon-plus"></i> Add New',
-                        ['create'],
-                        ['class'=>'btn btn-success']
-                    ) . '&nbsp;' .
-                    Html::a(
-                        '<i class="glyphicon glyphicon-remove"></i> Delete',
-                        ['delete'],
-                        ['class'=>'btn btn-danger']
-                    ) . '&nbsp;' .
-                    Html::a(
-                        '<i class="glyphicon glyphicon-repeat"></i>',
-                        ['index'],
-                        ['class'=>'btn btn-info']
-                    ) . '&nbsp;' .
-                    Html::submitButton(
-                        '<i class="glyphicon glyphicon-floppy-disk"></i> Save',
-                        ['class'=>'btn btn-primary']
-                    ),
-
-                'after'=>
-                    Html::a(
-                        '<i class="glyphicon glyphicon-plus"></i> Add New',
-                        ['create'],
-                        ['class'=>'btn btn-success']
-                    ) . '&nbsp;' .
-                    Html::a(
-                        '<i class="glyphicon glyphicon-remove"></i> Delete',
-                        ['delete'],
-                        ['class'=>'btn btn-danger']
-                    ) . '&nbsp;' .
-                    Html::a(
-                        '<i class="glyphicon glyphicon-repeat"></i>',
-                        ['index'],
-                        ['class'=>'btn btn-info']
-                    ) . '&nbsp;' .
-                    Html::submitButton(
-                        '<i class="glyphicon glyphicon-floppy-disk"></i> Save',
-                        ['class'=>'btn btn-primary']
-                    ),
-
-
-
-            ]
-        ]
     ]);
     ActiveForm::end();?>
     <?php //Pjax::end(); ?>

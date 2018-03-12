@@ -15,6 +15,7 @@ class BranchOfCompanySearch extends BranchOfCompany
     public $parent_company_name;//papildomas laukas ne uš DB: paieškai iš susijusios parent_company lentelės pagal vardą
     public $from_date;//papildomas laukas ne uš DB: datos periodui
     public $to_date;//papildomas laukas ne uš DB: datos periodui
+    public $name1;//papildomas laukas ne uš DB: datos periodui
     /**
      * @inheritdoc
      */
@@ -23,7 +24,7 @@ class BranchOfCompanySearch extends BranchOfCompany
         return [
             [['id', 'parent_company_id', 'sort'], 'integer'],
             [['from_date', 'to_date'], 'datetime'],
-            [['name', 'email', 'isbn', 'date_foundation', 'alias', 'parent_company_name'], 'safe'],
+            [['name', 'name1', 'email', 'isbn', 'date_foundation', 'alias', 'parent_company_name'], 'safe'],
         ];
     }
 
@@ -102,8 +103,9 @@ class BranchOfCompanySearch extends BranchOfCompany
             ->orFilterWhere(['like', 'branch_of_company.alias', $this->parent_company_name])
             ->andFilterWhere(['like', 'branch_of_company.alias', $this->alias])
             ->andFilterWhere(['like', 'branch_of_company.isbn', $this->isbn])
-            ->andFilterWhere(['like', 'branch_of_company.name', $this->name])
-            ->andFilterWhere(['like', 'branch_of_company.email', $this->email])
+            ->andFilterWhere(['like', 'branch_of_company.name', $this->name1])
+            ->andFilterWhere(['like', 'branch_of_company.name', 'factor'])
+//            ->andFilterWhere(['like', 'branch_of_company.email', $this->email])
             ->andFilterWhere(['like', 'branch_of_company.date_foundation', $this->date_foundation]);
 //            ->andFilterWhere(['like', 'branch_of_company.isbn', $this->isbn])
 //            ->andFilterWhere(['like', 'branch_of_company.alias', $this->alias])
