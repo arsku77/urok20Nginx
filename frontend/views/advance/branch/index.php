@@ -303,8 +303,8 @@ $this->params['breadcrumbs'][] = $this->title;
             'pjax'=>true,
             'floatHeader' => true,
             'panel' => [
-                'heading' => '<h3 class="panel-title"><i class="glyphicon glyphicon-book"></i> Manage Books</h3>',
                 'type' => GridView::TYPE_PRIMARY,
+                'heading' => '<h3 class="panel-title">' . $this->title,
                 'before'=>
                     Html::a(
                         '<i class="glyphicon glyphicon-plus"></i> Add New',
@@ -336,6 +336,11 @@ $this->params['breadcrumbs'][] = $this->title;
                         '<i class="glyphicon glyphicon-remove"></i> Delete',
                         ['delete'],
                         ['class'=>'btn btn-danger']
+                    ) . '&nbsp;' .
+                    Html::a(
+                        '<i class="glyphicon glyphicon-repeat"></i>',
+                        ['index'],
+                        ['class'=>'btn btn-info']
                     ) . '&nbsp;' .
                     Html::submitButton(
                         '<i class="glyphicon glyphicon-floppy-disk"></i> Save',
