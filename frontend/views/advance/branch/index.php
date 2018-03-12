@@ -39,6 +39,129 @@ $this->params['breadcrumbs'][] = $this->title;
     <!-- <?php //<?= Html::a('Create Branch Of Company', ['create'], ['class' => 'btn btn-success'])?> -->
     <!--    </p>-->
 
+
+
+    <?php //Pjax::begin(); ?>
+    <?php $form = ActiveForm::begin(); ?>
+    <?= TabularForm::widget([
+        'form' => $form,
+        'dataProvider' => $dataProvider,
+//    'searchModel' => $searchModel,
+        'gridSettings' => [
+            'pjax'=>true,
+            'floatHeader' => true,
+            'panel' => [
+                'type' => GridView::TYPE_PRIMARY,
+                'heading' => '<h3 class="panel-title">' . $this->title,
+                'before' =>
+                    Html::beginForm(['branch/index'], 'get', ['class' => 'form-inline',
+                    ]) .
+                    Html::activeInput('text', $searchModel, 'name1',
+                        [
+                            'style' => [
+                                'width' => '80px'
+                            ],
+                            'autofocus' => true,
+                            'class' => 'active form-control',
+                            'placeholder'=>'input many',
+                            'title' => 'find of many fields: name, alias, types',
+                        ]) .
+                    ' ' .
+                    Html::submitButton('Search', ['class' => 'btn btn-search']) .
+                    ' ' .
+                    Html::a('<i class="glyphicon glyphicon-repeat"></i>', ['index'], ['class' => 'btn btn-info']) .
+                    ' ' .
+                    Html::a('<i class="glyphicon glyphicon-plus"></i>', ['create'],
+                        ['class' => 'btn btn-success']) .
+                    Html::endForm(),
+
+                'after'=>
+                    Html::a(
+                        '<i class="glyphicon glyphicon-plus"></i> Add New',
+                        ['create'],
+                        ['class'=>'btn btn-success']
+                    ) . '&nbsp;' .
+                    Html::a(
+                        '<i class="glyphicon glyphicon-remove"></i> Delete',
+                        ['delete'],
+                        ['class'=>'btn btn-danger']
+                    ) . '&nbsp;' .
+                    Html::a(
+                        '<i class="glyphicon glyphicon-repeat"></i>',
+                        ['index'],
+                        ['class'=>'btn btn-info']
+                    ) . '&nbsp;' .
+                    Html::submitButton(
+                        '<i class="glyphicon glyphicon-floppy-disk"></i> Save',
+                        ['class'=>'btn btn-primary']
+                    ),
+
+
+
+            ]
+        ],
+
+
+
+
+
+        'attributes' => [
+            'name' => ['type' => TabularForm::INPUT_TEXT],
+//        'color' => [
+//            'type' => TabularForm::INPUT_WIDGET,
+//            'widgetClass' => \kartik\widgets\ColorInput::classname()
+//        ],
+            'parent_company_id' => [
+                'label' => 'Company',
+                'type' => TabularForm::INPUT_WIDGET,
+                'widgetClass' => \kartik\widgets\Select2::class,
+                'options' => [
+                    'data' => $company,
+                    'options' => ['placeholder' => 'Choose Company'],
+                ],
+                'columnOptions' => ['width' => '15%'],
+            ],
+
+            'email' => [
+                'type' => TabularForm::INPUT_TEXT,
+                'options'=>['class'=>'form-control text-right'],
+                'columnOptions'=>['hAlign'=>GridView::ALIGN_RIGHT]
+            ],
+
+
+            'date_foundation' => [
+                'type' => TabularForm::INPUT_WIDGET,
+                'widgetClass'=>\kartik\widgets\DatePicker::class,
+                'options'=>
+                    [
+                        'pluginOptions'=>[
+                            'format'=>'yyyy-mm-dd',
+                            'todayHighlight'=>true,
+                            'autoclose'=>true
+                        ]
+                    ],
+                'columnOptions'=>['width'=>'20%']
+            ],
+
+
+            'isbn' => [
+                'type' => TabularForm::INPUT_STATIC,
+                'columnOptions'=>['hAlign'=>GridView::ALIGN_RIGHT]
+            ],
+
+
+            'sort' => [
+                'type' => TabularForm::INPUT_TEXT,
+                'options'=>['class'=>'form-control text-right'],
+                'columnOptions'=>['hAlign'=>GridView::ALIGN_RIGHT, 'width'=>'10%']
+            ],
+
+        ],
+
+    ]);
+    ActiveForm::end();?>
+    <?php //Pjax::end(); ?>
+
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
@@ -229,119 +352,6 @@ $this->params['breadcrumbs'][] = $this->title;
 
 
 
-    <?php //Pjax::begin(); ?>
-    <?php $form = ActiveForm::begin(); ?>
-    <?= TabularForm::widget([
-        'form' => $form,
-        'dataProvider' => $dataProvider,
-//    'searchModel' => $searchModel,
-        'gridSettings' => [
-            'pjax'=>true,
-            'floatHeader' => true,
-            'panel' => [
-                'type' => GridView::TYPE_PRIMARY,
-                'heading' => '<h3 class="panel-title">' . $this->title,
-                'before'=>
-                    Html::beginForm(['branch/index'], 'get', ['class' => 'form-inline',
-                    ]) .
-                    Html::activeInput('text', $searchModel, 'name1', ['style' => [
-                        'width' => '80px'],
-                        'autofocus' => true,
-                        'class' => 'active form-control',
-                        'placeholder'=>'input many',
-                        'title' => 'find of many fields: name, alias, types',
-                    ]) .
-                    ' ' .
-                    Html::submitButton('Search', ['class' => 'btn btn-search']) .
-                    ' ' .
-                    Html::endForm(),
-
-                'after'=>
-                    Html::a(
-                        '<i class="glyphicon glyphicon-plus"></i> Add New',
-                        ['create'],
-                        ['class'=>'btn btn-success']
-                    ) . '&nbsp;' .
-                    Html::a(
-                        '<i class="glyphicon glyphicon-remove"></i> Delete',
-                        ['delete'],
-                        ['class'=>'btn btn-danger']
-                    ) . '&nbsp;' .
-                    Html::a(
-                        '<i class="glyphicon glyphicon-repeat"></i>',
-                        ['index'],
-                        ['class'=>'btn btn-info']
-                    ) . '&nbsp;' .
-                    Html::submitButton(
-                        '<i class="glyphicon glyphicon-floppy-disk"></i> Save',
-                        ['class'=>'btn btn-primary']
-                    ),
-
-
-
-            ]
-        ],
-
-
-
-
-
-        'attributes' => [
-            'name' => ['type' => TabularForm::INPUT_TEXT],
-//        'color' => [
-//            'type' => TabularForm::INPUT_WIDGET,
-//            'widgetClass' => \kartik\widgets\ColorInput::classname()
-//        ],
-            'parent_company_id' => [
-                'label' => 'Company',
-                'type' => TabularForm::INPUT_WIDGET,
-                'widgetClass' => \kartik\widgets\Select2::class,
-                'options' => [
-                    'data' => $company,
-                    'options' => ['placeholder' => 'Choose Company'],
-                ],
-                'columnOptions' => ['width' => '15%'],
-            ],
-
-            'email' => [
-                'type' => TabularForm::INPUT_TEXT,
-                'options'=>['class'=>'form-control text-right'],
-                'columnOptions'=>['hAlign'=>GridView::ALIGN_RIGHT]
-            ],
-
-
-            'date_foundation' => [
-                'type' => TabularForm::INPUT_WIDGET,
-                'widgetClass'=>\kartik\widgets\DatePicker::class,
-                'options'=>
-                    [
-                        'pluginOptions'=>[
-                            'format'=>'yyyy-mm-dd',
-                            'todayHighlight'=>true,
-                            'autoclose'=>true
-                        ]
-                    ],
-                'columnOptions'=>['width'=>'20%']
-            ],
-
-
-            'isbn' => [
-                'type' => TabularForm::INPUT_STATIC,
-                'columnOptions'=>['hAlign'=>GridView::ALIGN_RIGHT]
-            ],
-
-
-            'sort' => [
-                'type' => TabularForm::INPUT_TEXT,
-                'options'=>['class'=>'form-control text-right'],
-                'columnOptions'=>['hAlign'=>GridView::ALIGN_RIGHT, 'width'=>'10%']
-            ],
-
-        ],
-
-    ]);
-    ActiveForm::end();?>
-    <?php //Pjax::end(); ?>
 </div>
 
 

@@ -104,7 +104,7 @@ class BranchOfCompanySearch extends BranchOfCompany
             ->andFilterWhere(['like', 'branch_of_company.alias', $this->alias])
             ->andFilterWhere(['like', 'branch_of_company.isbn', $this->isbn])
             ->andFilterWhere(['like', 'branch_of_company.name', $this->name1])
-            ->andFilterWhere(['like', 'branch_of_company.name', 'factor'])
+//            ->andFilterWhere(['like', 'branch_of_company.name', 'factor'])
 //            ->andFilterWhere(['like', 'branch_of_company.email', $this->email])
             ->andFilterWhere(['like', 'branch_of_company.date_foundation', $this->date_foundation]);
 //            ->andFilterWhere(['like', 'branch_of_company.isbn', $this->isbn])
