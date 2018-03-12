@@ -3,6 +3,7 @@
 namespace frontend\controllers;
 
 use frontend\models\ParentCompany;
+use yii\helpers\Url;
 use Yii;
 use frontend\models\BranchOfCompany;
 use frontend\models\BranchOfCompanySearch;
@@ -35,6 +36,16 @@ class BranchController extends Controller
      */
     public function actionIndex()
     {
+        if(Yii::$app->session->has('rememberWentToCartView')){
+//            $urlTesting = Yii::$app->session->get('rememberWentToCartView');
+            $urlTesting = Url::previous('rememberWentToCartView');//
+            //print_r($urlTesting);die;
+            Yii::$app->session->remove('rememberWentToCartView');
+//            print_r(Yii::$app->session->get('rememberWentToCartView'));
+//            Yii::$app->session->remove('rememberWentToCartView');
+            return $this->redirect($urlTesting);
+
+        }
         $model = new BranchOfCompany();
         $searchModel = new BranchOfCompanySearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);

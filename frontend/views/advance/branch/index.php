@@ -7,6 +7,7 @@ use frontend\models\BranchOfCompany;
 use kartik\widgets\DateTimePicker;
 //use yii\grid\ActionColumn;
 use yii\helpers\Html;
+use yii\helpers\Url;
 //use yii\grid\GridView;
 use kartik\grid\GridView;
 use yii\widgets\Pjax;
@@ -22,24 +23,11 @@ use kartik\widgets\ActiveForm;
 
 $this->title = 'Branch Of Companies';
 $this->params['breadcrumbs'][] = $this->title;
+Url::remember(Url::current(), 'rememberWentToCartView');
+//Url::remember(Url::current(), 'rememberBranchIndexView');
 ?>
-<div class="branch-of-company-index">
-    <!--<div class="form-inline">-->
-    <!--<div class="form-control">-->
-    <!--<div class="form-horizontal form-inline form-inline-block kv-form-horizontal">-->
-    <!--<div class="form-horizontal">-->
-    <!--    --><?php //Pjax::begin(); ?>
 
-    <h3><?= Html::encode($this->title) ?></h3>
-
-
-    <!--    --><?php //echo $this->render('_search', ['model' => $searchModel]); ?>
-
-    <!--    <p>-->
-    <!-- <?php //<?= Html::a('Create Branch Of Company', ['create'], ['class' => 'btn btn-success'])?> -->
-    <!--    </p>-->
-
-
+    <div class="branch-of-company-index">
 
     <?php //Pjax::begin(); ?>
     <?php $form = ActiveForm::begin(); ?>
@@ -165,6 +153,8 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php //Pjax::end(); ?>
 
 </div>
+
+
 <div class="branch-of-company-index">
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
@@ -193,7 +183,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 ' ' .
                 Html::a('<i class="glyphicon glyphicon-repeat"></i>', ['index'], ['class' => 'btn btn-info']) .
                 ' ' .
-                Html::a('<i class="glyphicon glyphicon-edit"></i>&nbsp;Edit', ['index'], ['class' => 'btn btn-info']) .
+                Html::a('<i class="glyphicon glyphicon-edit"></i>&nbsp;View editable', ['index'], ['class' => 'btn btn-info']) .
                 ' ' .
                 Html::a('<i class="glyphicon glyphicon-plus"></i>', ['create'],
                     ['class' => 'btn btn-success']) .
