@@ -16,6 +16,7 @@ class BranchOfCompanySearch extends BranchOfCompany
     public $from_date;//papildomas laukas ne uš DB: datos periodui
     public $to_date;//papildomas laukas ne uš DB: datos periodui
     public $name1;//papildomas laukas ne uš DB: datos periodui
+    public $flagShowUpdateForm;//papildomas laukas ne uš DB: datos periodui
     /**
      * @inheritdoc
      */
@@ -24,11 +25,17 @@ class BranchOfCompanySearch extends BranchOfCompany
         return [
             [['id', 'parent_company_id', 'sort'], 'integer'],
             [['from_date', 'to_date'], 'datetime'],
-            [['name', 'name1', 'email', 'isbn', 'date_foundation', 'alias', 'parent_company_name'], 'safe'],
+            [['name', 'name1', 'email', 'isbn', 'date_foundation', 'alias', 'parent_company_name', 'flagShowUpdateForm'], 'safe'],
         ];
     }
 
-    /**
+    public function __construct($flagShowUpdateForm = false)
+    {
+
+        $this->flagShowUpdateForm = $flagShowUpdateForm;
+    }
+
+        /**
      * @inheritdoc
      */
     public function scenarios()

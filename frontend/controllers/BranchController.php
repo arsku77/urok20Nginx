@@ -32,9 +32,10 @@ class BranchController extends Controller
 
     /**
      * Lists all BranchOfCompany models.
+     * @param bool $flagShowUpdateForm
      * @return mixed
      */
-    public function actionIndex()
+    public function actionIndex($flagShowUpdateForm = false)
     {
         if(Yii::$app->session->has('rememberWentToCartView')){
 //            $urlTesting = Yii::$app->session->get('rememberWentToCartView');
@@ -47,7 +48,7 @@ class BranchController extends Controller
 
         }
         $model = new BranchOfCompany();
-        $searchModel = new BranchOfCompanySearch();
+        $searchModel = new BranchOfCompanySearch($flagShowUpdateForm);
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
         $company = ParentCompany::getList();
         return $this->render('index', [
