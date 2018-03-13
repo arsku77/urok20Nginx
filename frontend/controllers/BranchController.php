@@ -37,19 +37,25 @@ class BranchController extends Controller
      */
     public function actionIndex($flagShowUpdateForm = false)
     {
-        if(Yii::$app->session->has('rememberWentToCartView')){
+//        $urlTesting =null;
+//        if((Yii::$app->session->has('rememberWentToCartView')) && ($flagShowUpdateForm = true)) {
 //            $urlTesting = Yii::$app->session->get('rememberWentToCartView');
-            $urlTesting = Url::previous('rememberWentToCartView');//
+//            $urlTesting = Url::previous('rememberWentToCartView');
             //print_r($urlTesting);die;
-            Yii::$app->session->remove('rememberWentToCartView');
+//            Yii::$app->session->remove('rememberWentToCartView');
 //            print_r(Yii::$app->session->get('rememberWentToCartView'));
 //            Yii::$app->session->remove('rememberWentToCartView');
-            return $this->redirect($urlTesting);
+//            print_r($flagShowUpdateForm . $urlTesting );die;
+//            return $this->redirect($urlTesting);
+          //  return $this->redirect('http://arvidija.com/branch/index?flagShowUpdateForm=1&BranchOfCompanySearch%5Bid%5D=&BranchOfCompanySearch%5Bparent_company_id%5D=2&BranchOfCompanySearch%5Bname%5D=&BranchOfCompanySearch%5Bemail%5D=&BranchOfCompanySearch%5Bisbn%5D=&BranchOfCompanySearch%5Bdate_foundation%5D=&BranchOfCompanySearch%5Balias%5D=&BranchOfCompanySearch%5Bsort%5D=&flagShowUpdateForm=0
+//');
 
-        }
+//        }
+
         $model = new BranchOfCompany();
         $searchModel = new BranchOfCompanySearch($flagShowUpdateForm);
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+//        print_r(Yii::$app->request->queryParams);die;
         $company = ParentCompany::getList();
         return $this->render('index', [
             'searchModel' => $searchModel,

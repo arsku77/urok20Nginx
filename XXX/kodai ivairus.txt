@@ -280,3 +280,7 @@ gridview'sas
 
     ]);?>
 ===================================================================
+http://arvidija.com/branch/index?BranchOfCompanySearch%5Bid%5D=&BranchOfCompanySearch%5Bparent_company_id%5D=2&BranchOfCompanySearch%5Bname%5D=&BranchOfCompanySearch%5Bemail%5D=&BranchOfCompanySearch%5Bisbn%5D=&BranchOfCompanySearch%5Bdate_foundation%5D=&BranchOfCompanySearch%5Balias%5D=&BranchOfCompanySearch%5Bsort%5D=&flagShowUpdateForm=0
+http://arvidija.com/branch/index?flagShowUpdateForm=1&BranchOfCompanySearch%5Bid%5D=&BranchOfCompanySearch%5Bparent_company_id%5D=2&BranchOfCompanySearch%5Bname%5D=&BranchOfCompanySearch%5Bemail%5D=&BranchOfCompanySearch%5Bisbn%5D=&BranchOfCompanySearch%5Bdate_foundation%5D=&BranchOfCompanySearch%5Balias%5D=&BranchOfCompanySearch%5Bsort%5D=&flagShowUpdateForm=0
+
+http://arvidija.com/branch/index?flagShowUpdateForm=1&BranchOfCompanySearch%5Bid%5D=&BranchOfCompanySearch%5Bparent_company_id%5D=&BranchOfCompanySearch%5Bname%5D=nr+8&BranchOfCompanySearch%5Bemail%5D=&BranchOfCompanySearch%5Bisbn%5D=&BranchOfCompanySearch%5Bdate_foundation%5D=&BranchOfCompanySearch%5Balias%5D=&BranchOfCompanySearch%5Bsort%5D=

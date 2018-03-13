@@ -26,10 +26,11 @@ $this->params['breadcrumbs'][] = $this->title;
 //veikia uzsiciklina Url::remember(Url::current(), 'rememberWentToCartView');
 //Url::remember(Url::current(), 'rememberBranchIndexView');
 ?>
-<?php if ($searchModel->flagShowUpdateForm): ?>
+<?php //Pjax::begin(); ?>
+<?php //if ($searchModel->flagShowUpdateForm): ?>
     <div class="branch-of-company-index">
 
-        <?php //Pjax::begin(); ?>
+
         <?php $form = ActiveForm::begin(); ?>
         <?= TabularForm::widget([
             'form' => $form,
@@ -44,22 +45,9 @@ $this->params['breadcrumbs'][] = $this->title;
                     'before' =>
                         Html::beginForm(['branch/index'], 'get', ['class' => 'form-inline',
                         ]) .
-                        Html::activeInput('text', $searchModel, 'name1',
-                            [
-                                'style' => [
-                                    'width' => '80px'
-                                ],
-                                'autofocus' => true,
-                                'class' => 'active form-control',
-                                'placeholder'=>'input many',
-                                'title' => 'find of many fields: name, alias, types',
-                            ]) .
-                        ' ' .
-                        Html::submitButton('Search', ['class' => 'btn btn-search']) .
-                        ' ' .
                         Html::a('<i class="glyphicon glyphicon-repeat"></i>',
                             ['index',
-                                'flagShowUpdateForm' => true,
+//                                'flagShowUpdateForm' => true,
 
                             ], ['class' => 'btn btn-info']) .
                         ' ' .
@@ -71,7 +59,8 @@ $this->params['breadcrumbs'][] = $this->title;
                             ['index',
                                 'flagShowUpdateForm' => false,
                             ],
-                            ['class' => 'btn btn-default',
+                            [
+                                'class' => 'btn btn-default',
                                 'id' => 'btnShowUpdate',
                                 'data' => [
                                     'method' => 'post',
@@ -87,7 +76,12 @@ $this->params['breadcrumbs'][] = $this->title;
                         Html::a(
                             '<i class="glyphicon glyphicon-remove"></i> Delete',
                             ['delete'],
-                            ['class'=>'btn btn-danger']
+                            [
+                                'class'=>'btn btn-danger',
+                                'data' => [
+                                    'method' => 'post',
+                                ]
+                            ]
                         ) . '&nbsp;' .
                         Html::a(
                             '<i class="glyphicon glyphicon-repeat"></i>',
@@ -167,8 +161,8 @@ $this->params['breadcrumbs'][] = $this->title;
 
     </div>
 
-<?php else: ?>
-
+<?php //else: ?>
+    <?php //Url::remember(Url::current(), 'rememberWentToCartView'); ?>
     <div class="branch-of-company-index">
         <?= GridView::widget([
             'dataProvider' => $dataProvider,
@@ -372,5 +366,6 @@ $this->params['breadcrumbs'][] = $this->title;
 
 
     </div>
-<?php endif; ?>
+<?php //endif; ?>
+<?php //Pjax::end(); ?>
 

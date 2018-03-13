@@ -15,8 +15,7 @@ class BranchOfCompanySearch extends BranchOfCompany
     public $parent_company_name;//papildomas laukas ne uš DB: paieškai iš susijusios parent_company lentelės pagal vardą
     public $from_date;//papildomas laukas ne uš DB: datos periodui
     public $to_date;//papildomas laukas ne uš DB: datos periodui
-    public $name1;//papildomas laukas ne uš DB: datos periodui
-    public $flagShowUpdateForm;//papildomas laukas ne uš DB: datos periodui
+    public $flagShowUpdateForm;//papildomas laukas ne uš DB: datos periodui - is knopkes formos
     /**
      * @inheritdoc
      */
@@ -25,7 +24,7 @@ class BranchOfCompanySearch extends BranchOfCompany
         return [
             [['id', 'parent_company_id', 'sort'], 'integer'],
             [['from_date', 'to_date'], 'datetime'],
-            [['name', 'name1', 'email', 'isbn', 'date_foundation', 'alias', 'parent_company_name', 'flagShowUpdateForm'], 'safe'],
+            [['name', 'email', 'isbn', 'date_foundation', 'alias', 'parent_company_name', 'flagShowUpdateForm'], 'safe'],
         ];
     }
 
@@ -92,14 +91,35 @@ class BranchOfCompanySearch extends BranchOfCompany
         ]);
 
         $this->load($params);
-//        print_r($this->parent_company_name);die;
+//        print_r($this->flagShowUpdateForm);die;
         if (!$this->validate()) {
+            // jei nevaliduojamas bent vienas paieškos laukas - iš karto grąžink šaltinį be paieškos
             // uncomment the following line if you do not want to return any records when validation fails
             // $query->where('0=1');
 
             return $dataProvider;
         }
 
+//     print_r('this id: ' . $this->id . '<br>');//die;
+
+/*kai uzdedame filtra (lenteles galvoje), tai atskrenda dviejų tipų parametrai - tie, kurie yra extendinėje lentelėje
+|pvz, kaip $this->name ir tie, kurie mus sugalvoti ir parašyti, pvz $this->parent_company_name;, kurie turi būti validuojami
+|esmė - kai vykdoma paieška - tai atskrenda kažkokie parametrai, jei tik paleidžiamas lentelinis vaizdas- tie visi
+|/parametrai būna nuliniai ir šaltiniui sudaryti pateikiamas queris be parametrų - užrašas $query-> ignoruojamas
+|ir grąžinama tik return $dataProvider;
+|----------------------------------------------------
+|
+|kad galėtume šiuos paieškos parametrus (gautus iš GridView )panaudoti ir Kartik Widgets'ui  TabularForm::widget([
+|turime juos kažkaip užfiksuoti sesijoje.
+|Užfiksavimo esmė: patikriname ar atėjo bent koks paieškoje dalyvaujantis parametras
+|jei atėjo nunuliname visas sesijas ir iš naujo įsimename naujas sesijas
+|jei neatėjo parametrų ir updeitinimo lentelės flago nera - vadinasi norima tik šaltinio,
+|tai ištriname visas sesijas jį ir pateikiame return $dataProvider; -> rodyk abi lenteles su pilnu šaltiniu
+|jei neatėjo parametrų ir updeitinimo lentelės flagas yra - vadinasi norima updeitinimo lentelės su paskutiniais paieškos
+|parametrais, tai praleidžiame tas sesijas (gautas iš parametrų) per filtrą -> rodyk abi lenteles su atrinktu šaltiniu
+|
+*/
+print_r($this->flagShowUpdateForm); die;
         // grid filtering conditions
         $query->andFilterWhere([
             'branch_of_company.id' => $this->id,
@@ -112,7 +132,6 @@ class BranchOfCompanySearch extends BranchOfCompany
             ->andFilterWhere(['like', 'branch_of_company.alias', $this->alias])
             ->andFilterWhere(['like', 'branch_of_company.isbn', $this->isbn])
             ->andFilterWhere(['like', 'branch_of_company.name', $this->name])
-//            ->andFilterWhere(['like', 'branch_of_company.name', $this->name1])
 //            ->andFilterWhere(['like', 'branch_of_company.name', 'factor'])
 //            ->andFilterWhere(['like', 'branch_of_company.email', $this->email])
             ->andFilterWhere(['like', 'branch_of_company.date_foundation', $this->date_foundation]);
@@ -124,14 +143,16 @@ class BranchOfCompanySearch extends BranchOfCompany
 //            ->andFilterWhere(['like', 'branch_of_company.isbn', $this->isbn])
 //            ->andFilterWhere(['like', 'branch_of_company.alias', $this->alias])
 //            ->andFilterWhere(['like', 'parent_company.name', $this->parent_company_name]);
-            //paskutinė eilutė paieška iš susijusios lentelės lauko, šiuo atveju iš pavadinimo
-            //kad galima būt uždėt datos laukui filtrą vienos dienos
+        //paskutinė eilutė paieška iš susijusios lentelės lauko, šiuo atveju iš pavadinimo
+        //kad galima būt uždėt datos laukui filtrą vienos dienos
         /*----------kai lentelės laukas date_foundation formato date---------*/
 //            if(!empty($this->date_foundation))
 //                $query->andFilterWhere(['like','date_foundation',$this->date_foundation]);
         /*----------kai lentelės laukas date_foundation formato integer - tai TIMESTAMP---------*/
-            if(!empty($this->from_date) and !empty($this->to_date))
-                $query->andFilterWhere(['and', ['>', 'branch_of_company.date_foundation', $this->from_date], ['<', 'branch_of_company.date_foundation', $this->to_date]]);
+        if(!empty($this->from_date) and !empty($this->to_date))
+            $query->andFilterWhere(['and', ['>', 'branch_of_company.date_foundation', $this->from_date], ['<', 'branch_of_company.date_foundation', $this->to_date]]);
+//            print_r($this->name);die;
+
 
         return $dataProvider;
     }
