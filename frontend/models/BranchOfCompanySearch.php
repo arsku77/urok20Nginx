@@ -37,18 +37,18 @@ class BranchOfCompanySearch extends BranchOfCompany
         $this->session = $session;
         //jei ateina iš formos flagas, tai pakeisk sesiją, kitaip - pasinaudok jau esama sesija
         if ($flagShowUpdateForm) {
-//            $this->session->remove('flag_exist');// nebūtina trinti - su set pakeičia
+//            $this->session->remove('flag_branch_update');// nebūtina trinti - su set pakeičia
 
-            $this->session->set('flag_exist', $flagShowUpdateForm);//add new session
-            $this->flagShowUpdateForm = $this->session->get('flag_exist');//to flag set new session
+            $this->session->set('flag_branch_update', $flagShowUpdateForm);//add new session
+            $this->flagShowUpdateForm = $this->session->get('flag_branch_update');//to flag set new session
 
         } else {
             //flag is null - > if session exist -> to flag set old session, else flag set as usual (normall)
-            $this->session->has('flag_exist')? $this->flagShowUpdateForm = $this->session->get('flag_exist') :
+            $this->session->has('flag_branch_update')? $this->flagShowUpdateForm = $this->session->get('flag_branch_update') :
                 $this->flagShowUpdateForm = $flagShowUpdateForm;
         }
 
-//        print_r($this->session->get('flag_exist'));die;
+//        print_r($this->session->get('flag_branch_update'));die;
 
     }
 
@@ -138,10 +138,10 @@ class BranchOfCompanySearch extends BranchOfCompany
         |parametrais, tai praleidžiame tas sesijas (gautas iš parametrų) per filtrą -> rodyk abi lenteles su atrinktu šaltiniu
         |
         */
-//print_r($this->flagShowUpdateForm); die;
+
 
         if ($this->name) {
-//            $this->session->remove('flag_exist');// nebūtina trinti - su set pakeičia
+//            $this->session->remove('flag_branch_update');// nebūtina trinti - su set pakeičia
 
 //            $this->session->set('branch_name', $this->name);//add new session
             $this->session['update_branch.branch_name'] = $this->name;
@@ -151,8 +151,12 @@ class BranchOfCompanySearch extends BranchOfCompany
         } else {
             //parameter name is empty - > if session exist -> to name parameter set old session, else flag set as usual (normall)$this->session->remove('branch_name');
 //            $this->session->remove('branch_name');
-            $this->session['update_branch.branch_name'] ? $this->name = $this->session['update_branch.branch_name'] : null;
-
+            if($this->session->has('flag_branch_update')&&$this->session->get('flag_branch_update')==2){
+                $this->session['update_branch.branch_name'] ? $this->name = $this->session['update_branch.branch_name'] : null;
+            }else {
+//                print_r($this->name); die;
+//                $this->name = null;
+            }
 
         }
 
