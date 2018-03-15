@@ -196,7 +196,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         ]),
 
 
-                /*-------validacija suveikia bandant irasyti - is karto nukreipia i create puslapi-----*/
+                    /*-------validacija suveikia bandant irasyti - is karto nukreipia i create puslapi-----*/
                 'after' =>
                     Html::beginForm(['branch/create'], 'post', [
                         'class' => 'form-inline',

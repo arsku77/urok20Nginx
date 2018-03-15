@@ -154,9 +154,17 @@ class BranchOfCompanySearch extends BranchOfCompany
         /*=================session parameter======================*/
         if ($this->session->has('flag_branch_update') && $this->session->get('flag_branch_update') ==2){
             //in the index table pressed view to update table
+                //set parent_company_id parameter
+            if ($this->session->has('update_branch.parent_company_id')) {
+                $this->parent_company_id = $this->session['update_branch.parent_company_id'];//to set new session
+            }
                 //set name parameter
             if ($this->session->has('update_branch.name')) {
                 $this->name = $this->session['update_branch.name'];//to set new session
+            }
+                //set isbn parameter
+            if ($this->session->has('update_branch.isbn')) {
+                $this->isbn = $this->session['update_branch.isbn'];//to set new session
             }
                 //set alias parameter
             if ($this->session->has('update_branch.alias')) {
@@ -170,6 +178,40 @@ class BranchOfCompanySearch extends BranchOfCompany
         }else{
             //other variants:
 
+            /*--------- for parent_company_name parameter----------------*/
+            if ($this->parent_company_name) {//parameter not null - set new session and pass it to parameter
+                $this->session['update_branch.parent_company_name'] = $this->parent_company_name;//to set new session
+                $this->parent_company_name = $this->session['update_branch.parent_company_name'];
+            }else{//parameter is null - look
+                if ($this->session->has('flag_branch_update') && $this->session->get('flag_branch_update') ==1){
+                    //in the update table pressed view result to index table - set old session to parameter
+                    if ($this->session->has('update_branch.parent_company_name')) {
+                        $this->parent_company_name = $this->session['update_branch.parent_company_name'];//to set new session
+                    }
+                }else{//in index table pressed another parameter - delete session this parameter because parameter $this->name is empty
+                    $this->session->has('update_branch.parent_company_name') ? $this->session->remove('update_branch.parent_company_name') : null;
+                }
+
+            }
+            /*---------end for parent_company_name parameter----------------*/
+
+            /*--------- for parent_company_id parameter----------------*/
+            if ($this->parent_company_id) {//parameter not null - set new session and pass it to parameter
+                $this->session['update_branch.parent_company_id'] = $this->parent_company_id;//to set new session
+                $this->parent_company_id = $this->session['update_branch.parent_company_id'];
+            }else{//parameter is null - look
+                if ($this->session->has('flag_branch_update') && $this->session->get('flag_branch_update') ==1){
+                    //in the update table pressed view result to index table - set old session to parameter
+                    if ($this->session->has('update_branch.parent_company_id')) {
+                        $this->parent_company_id = $this->session['update_branch.parent_company_id'];//to set new session
+                    }
+                }else{//in index table pressed another parameter - delete session this parameter because parameter $this->name is empty
+                    $this->session->has('update_branch.parent_company_id') ? $this->session->remove('update_branch.parent_company_id') : null;
+                }
+
+            }
+            /*---------end for parent_company_id parameter----------------*/
+
             /*--------- for name parameter----------------*/
             if ($this->name) {//parameter not null - set new session and pass it to parameter
                 $this->session['update_branch.name'] = $this->name;//to set new session
@@ -180,14 +222,51 @@ class BranchOfCompanySearch extends BranchOfCompany
                     if ($this->session->has('update_branch.name')) {
                         $this->name = $this->session['update_branch.name'];//to set new session
                     }
-                }else{//in index table pressed another parameter - delete session this parameter
+                }else{//in index table pressed another parameter - delete session this parameter because parameter $this->name is empty
                     $this->session->has('update_branch.name') ? $this->session->remove('update_branch.name') : null;
                 }
 
             }
             /*---------end for name parameter----------------*/
 
-            //after all parameter check - delete flag session ()
+            /*--------- for alias parameter----------------*/
+            if ($this->alias) {//parameter not null - set new session and pass it to parameter
+                $this->session['update_branch.alias'] = $this->alias;//to set new session
+                $this->alias = $this->session['update_branch.alias'];
+            }else{//parameter is null - look
+                if ($this->session->has('flag_branch_update') && $this->session->get('flag_branch_update') ==1){
+                    //in the update table pressed view result to index table - set old session to parameter
+                    if ($this->session->has('update_branch.alias')) {
+                        $this->alias = $this->session['update_branch.alias'];//to set new session
+                    }
+                }else{//in index table pressed another parameter - delete session this parameter because parameter $this->name is empty
+                    $this->session->has('update_branch.alias') ? $this->session->remove('update_branch.alias') : null;
+                }
+
+            }
+            /*---------end for alias parameter----------------*/
+
+            /*--------- for isbn parameter----------------*/
+            if ($this->isbn) {//parameter not null - set new session and pass it to parameter
+                $this->session['update_branch.isbn'] = $this->isbn;//to set new session
+                $this->isbn = $this->session['update_branch.isbn'];
+            }else{//parameter is null - look
+                if ($this->session->has('flag_branch_update') && $this->session->get('flag_branch_update') ==1){
+                    //in the update table pressed view result to index table - set old session to parameter
+                    if ($this->session->has('update_branch.isbn')) {
+                        $this->isbn = $this->session['update_branch.isbn'];//to set new session
+                    }
+                }else{//in index table pressed another parameter - delete session this parameter because parameter $this->name is empty
+                    $this->session->has('update_branch.isbn') ? $this->session->remove('update_branch.isbn') : null;
+                }
+
+            }
+            /*---------end for name parameter----------------*/
+
+
+
+
+            //after all parameter checking - delete flag session ()
             $this->session->has('flag_branch_update') ? $this->session->remove('flag_branch_update'):  null;
         }
 
