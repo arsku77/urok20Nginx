@@ -27,7 +27,7 @@ $this->params['breadcrumbs'][] = $this->title;
 //Url::remember(Url::current(), 'rememberBranchIndexView');
 ?>
 <?php //Pjax::begin(); ?>
-<?php if ($searchModel->flagShowUpdateForm==2): ?>
+<?php if ($searchModel->flagShowUpdateForm == 2): ?>
     <div class="branch-of-company-index">
 
 
@@ -45,12 +45,6 @@ $this->params['breadcrumbs'][] = $this->title;
                     'before' =>
                         Html::beginForm(['branch/index'], 'get', ['class' => 'form-inline',
                         ]) .
-                        Html::a('<i class="glyphicon glyphicon-repeat"></i>',
-                            ['index',
-//                                'flagShowUpdateForm' => true,
-
-                            ], ['class' => 'btn btn-info']) .
-                        ' ' .
                         Html::a('<i class="glyphicon glyphicon-plus"></i>', ['create'],
                             ['class' => 'btn btn-success']) .
                         Html::endForm() .
@@ -68,13 +62,11 @@ $this->params['breadcrumbs'][] = $this->title;
                             ]),
 
                     'after'=>
-                        Html::a(
-                            '<i class="glyphicon glyphicon-plus"></i> Add New',
+                        Html::a('<i class="glyphicon glyphicon-plus"></i> Add New',
                             ['create'],
                             ['class'=>'btn btn-success']
                         ) . '&nbsp;' .
-                        Html::a(
-                            '<i class="glyphicon glyphicon-remove"></i> Delete',
+                        Html::a('<i class="glyphicon glyphicon-remove"></i> Delete',
                             ['delete'],
                             [
                                 'class'=>'btn btn-danger',
@@ -83,8 +75,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                 ]
                             ]
                         ) . '&nbsp;' .
-                        Html::a(
-                            '<i class="glyphicon glyphicon-repeat"></i>',
+                        Html::a('<i class="glyphicon glyphicon-repeat"></i>',
                             ['index'],
                             ['class'=>'btn btn-info']
                         ) . '&nbsp;' .
@@ -92,8 +83,6 @@ $this->params['breadcrumbs'][] = $this->title;
                             '<i class="glyphicon glyphicon-floppy-disk"></i> Save',
                             ['class'=>'btn btn-primary']
                         ),
-
-
 
                 ]
             ],
@@ -362,8 +351,6 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
 
         ]);?>
-
-
 
     </div>
 <?php endif; ?>
