@@ -26,7 +26,7 @@ class BranchOfCompanySearch extends BranchOfCompany
         return [
             [['id', 'parent_company_id', 'sort'], 'integer'],
             [['from_date', 'to_date'], 'datetime'],
-            [['flagShowUpdateForm'], 'integer'],
+//            [['flagShowUpdateForm'], 'integer'],
             [['name', 'email', 'isbn', 'date_foundation', 'alias', 'parent_company_name', 'flagShowUpdateForm'], 'safe'],
         ];
     }
@@ -140,25 +140,62 @@ class BranchOfCompanySearch extends BranchOfCompany
         */
 
 
-        if ($this->name) {
-//            $this->session->remove('flag_branch_update');// nebūtina trinti - su set pakeičia
+//        if ($this->name) {
+//            $this->session['update_branch.branch_name'] = $this->name;
+//            $this->name = $this->session['update_branch.branch_name'];//to flag set new session
+//        } else {
+//            //parameter name is empty - > if session exist -> to name parameter set old session, else flag set as usual (normall)$this->session->remove('branch_name');
+//            if ($this->session->has('flag_branch_update')) {
+////            if ($this->session->has('flag_branch_update') && $this->session->get('flag_branch_update') == 2) {
+//                $this->session['update_branch.branch_name'] ? $this->name = $this->session['update_branch.branch_name'] : null;
+//            }
+//        }
 
-//            $this->session->set('branch_name', $this->name);//add new session
-            $this->session['update_branch.branch_name'] = $this->name;
-//            $this->session['update_branch.branch_alias'] = $this->alias;
-            $this->name = $this->session['update_branch.branch_name'];//to flag set new session
-
-        } else {
-            //parameter name is empty - > if session exist -> to name parameter set old session, else flag set as usual (normall)$this->session->remove('branch_name');
-//            $this->session->remove('branch_name');
-            if($this->session->has('flag_branch_update')&&$this->session->get('flag_branch_update')==2){
-                $this->session['update_branch.branch_name'] ? $this->name = $this->session['update_branch.branch_name'] : null;
-            }else {
-//                print_r($this->name); die;
-//                $this->name = null;
+        /*=================session parameter======================*/
+        if ($this->session->has('flag_branch_update') && $this->session->get('flag_branch_update') ==2){
+            //in the index table pressed view to update table
+                //set name parameter
+            if ($this->session->has('update_branch.name')) {
+                $this->name = $this->session['update_branch.name'];//to set new session
+            }
+                //set alias parameter
+            if ($this->session->has('update_branch.alias')) {
+                $this->alias = $this->session['update_branch.alias'];//to set new session
+            }
+                //set multiple parameter: parent name name alias
+            if ($this->session->has('update_branch.parent_company_name')) {
+                $this->parent_company_name = $this->session['update_branch.parent_company_name'];//to set new session
             }
 
+        }else{
+            //other variants:
+
+            /*--------- for name parameter----------------*/
+            if ($this->name) {//parameter not null - set new session and pass it to parameter
+                $this->session['update_branch.name'] = $this->name;//to set new session
+                $this->name = $this->session['update_branch.name'];
+            }else{//parameter is null - look
+                if ($this->session->has('flag_branch_update') && $this->session->get('flag_branch_update') ==1){
+                    //in the update table pressed view result to index table - set old session to parameter
+                    if ($this->session->has('update_branch.name')) {
+                        $this->name = $this->session['update_branch.name'];//to set new session
+                    }
+                }else{//in index table pressed another parameter - delete session this parameter
+                    $this->session->has('update_branch.name') ? $this->session->remove('update_branch.name') : null;
+                }
+
+            }
+            /*---------end for name parameter----------------*/
+
+            //after all parameter check - delete flag session ()
+            $this->session->has('flag_branch_update') ? $this->session->remove('flag_branch_update'):  null;
         }
+
+        /*================session parameter end ======================*/
+
+
+
+
 
 
         // grid filtering conditions
