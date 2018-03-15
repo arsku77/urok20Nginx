@@ -26,6 +26,7 @@ class BranchOfCompanySearch extends BranchOfCompany
         return [
             [['id', 'parent_company_id', 'sort'], 'integer'],
             [['from_date', 'to_date'], 'datetime'],
+            [['flagShowUpdateForm'], 'integer'],
             [['name', 'email', 'isbn', 'date_foundation', 'alias', 'parent_company_name', 'flagShowUpdateForm'], 'safe'],
         ];
     }
@@ -34,26 +35,24 @@ class BranchOfCompanySearch extends BranchOfCompany
     {
         $session = Yii::$app->session;
         $this->session = $session;
-        //jei ateina iš formos flagas, tai pakeisk sesiją, kitaip - pasinaudoka jau esama sesija
+        //jei ateina iš formos flagas, tai pakeisk sesiją, kitaip - pasinaudok jau esama sesija
         if ($flagShowUpdateForm) {
-            $this->session->remove('flag_exist');
+//            $this->session->remove('flag_exist');// nebūtina trinti - su set pakeičia
 
-            $this->session->set('flag_exist', $flagShowUpdateForm);
-
-
-            $this->flagShowUpdateForm = $this->session->get('flag_exist');
-//            print_r($flagShowUpdateForm);die;
+            $this->session->set('flag_exist', $flagShowUpdateForm);//add new session
+            $this->flagShowUpdateForm = $this->session->get('flag_exist');//to flag set new session
 
         } else {
+            //flag is null - > if session exist -> to flag set old session, else flag set as usual (normall)
             $this->session->has('flag_exist')? $this->flagShowUpdateForm = $this->session->get('flag_exist') :
-            $this->flagShowUpdateForm = $flagShowUpdateForm;
+                $this->flagShowUpdateForm = $flagShowUpdateForm;
         }
 
 //        print_r($this->session->get('flag_exist'));die;
 
     }
 
-        /**
+    /**
      * @inheritdoc
      */
     public function scenarios()
@@ -140,6 +139,22 @@ class BranchOfCompanySearch extends BranchOfCompany
         |
         */
 //print_r($this->flagShowUpdateForm); die;
+
+        if ($this->name) {
+//            $this->session->remove('flag_exist');// nebūtina trinti - su set pakeičia
+
+//            $this->session->set('branch_name', $this->name);//add new session
+            $this->session['update_branch.branch_name'] = $this->name;
+//            $this->session['update_branch.branch_alias'] = $this->alias;
+            $this->name = $this->session['update_branch.branch_name'];//to flag set new session
+
+        } else {
+            //parameter name is empty - > if session exist -> to name parameter set old session, else flag set as usual (normall)$this->session->remove('branch_name');
+//            $this->session->remove('branch_name');
+            $this->session['update_branch.branch_name'] ? $this->name = $this->session['update_branch.branch_name'] : null;
+
+
+        }
 
 
         // grid filtering conditions
