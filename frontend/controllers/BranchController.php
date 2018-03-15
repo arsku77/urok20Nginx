@@ -10,6 +10,8 @@ use frontend\models\BranchOfCompanySearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\Session;
+
 /**
  * BranchController implements the CRUD actions for BranchOfCompany model.
  */
@@ -33,6 +35,7 @@ class BranchController extends Controller
     /**
      * Lists all BranchOfCompany models.
      * @param bool $flagShowUpdateForm
+     * @param Session $session
      * @return mixed
      */
     public function actionIndex($flagShowUpdateForm = false)

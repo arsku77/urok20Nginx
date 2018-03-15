@@ -27,7 +27,7 @@ $this->params['breadcrumbs'][] = $this->title;
 //Url::remember(Url::current(), 'rememberBranchIndexView');
 ?>
 <?php //Pjax::begin(); ?>
-<?php //if ($searchModel->flagShowUpdateForm): ?>
+<?php if ($searchModel->flagShowUpdateForm==2): ?>
     <div class="branch-of-company-index">
 
 
@@ -57,7 +57,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         ' ' .
                         Html::a('<i class="glyphicon glyphicon-th"></i>&nbsp;View result',
                             ['index',
-                                'flagShowUpdateForm' => false,
+                                'flagShowUpdateForm' => 1,
                             ],
                             [
                                 'class' => 'btn btn-default',
@@ -161,7 +161,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
     </div>
 
-<?php //else: ?>
+<?php else: ?>
     <?php //Url::remember(Url::current(), 'rememberWentToCartView'); ?>
     <div class="branch-of-company-index">
         <?= GridView::widget([
@@ -197,7 +197,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     ' ' .
                     Html::a('<i class="glyphicon glyphicon-edit"></i>&nbsp;View editable',
                         ['index',
-                            'flagShowUpdateForm' => true,
+                            'flagShowUpdateForm' => 2,
                         ],
                         ['class' => 'btn btn-default',
                             'id' => 'btnShowUpdate',
@@ -366,6 +366,6 @@ $this->params['breadcrumbs'][] = $this->title;
 
 
     </div>
-<?php //endif; ?>
+<?php endif; ?>
 <?php //Pjax::end(); ?>
 
