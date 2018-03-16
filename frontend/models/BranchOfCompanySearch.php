@@ -173,18 +173,18 @@ class BranchOfCompanySearch extends BranchOfCompany
         |       2) parametras nulinis (esame index lenteleje) - tikriname ar atejome is koreguojamos lenteles
         |            (t.y. ar $this->session->get('flag_branch_update') == 1)
         |           a) Taip (atejome is koreguojamos lenteles arba index lenteleje spaudinejami kiti parametrai, bet nelieciama
-        |               refrech knopke - ji panaikina visus filtrus ir flagus)
-        |               parametrui suteikiame sesija, jei ji yra
-        |           b) Ne (index lenteleje paspausta refrech knopke, arba ateojome pirma karta i index lentele)
+        |               refrech knopke - ji panaikina visus filtrus ir flagus) -> parametrui suteikiame sesija, jei ji yra
+        |
+        |           b) Ne (index lenteleje paspausta refrech knopke, arba atejome pirma karta i index lentele)
         |               panaikiname sio parametro sesija.
         |           Pastaba: ir taip kiekvienam, paieskoje dalyvaujanciam parametrui
         |
-        | patikriname ar atėjo bent koks paieškoje dalyvaujantis parametras
-        |jei atėjo nunuliname visas sesijas ir iš naujo įsimename naujas sesijas
-        |jei neatėjo parametrų ir updeitinimo lentelės flago nera - vadinasi norima tik šaltinio,
-        |tai ištriname visas parametru sesijas jį ir pateikiame return $dataProvider; -> rodyk abi lenteles su pilnu šaltiniu
-        |jei neatėjo parametrų ir updeitinimo lentelės flagas yra - vadinasi norima updeitinimo lentelės su paskutiniais paieškos
-        |parametrais, tai praleidžiame tas sesijas (gautas iš parametrų) per filtrą -> rodyk abi lenteles su atrinktu šaltiniu
+        |   b) punkto pabaigoje panaikiname flago sesija, jei tokia yra, nes priesingu atveju, konstruktoriuje si flaga
+        |      sesiju pagalba
+        |        $this->session->has('flag_branch_update')? $this->flagShowUpdateForm = $this->session->get('flag_branch_update')
+        |       atgamina ir tada refrechinimas flago nepanaikina ir mes atsiduriame tokioje padetyje, kai flagas yra 1, o parametras
+        |       null ir tada ta parametra atgamina is sesijos: variantas  1.->b)->2)->a)
+        |
         |
         */
 
