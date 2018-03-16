@@ -153,19 +153,31 @@ class BranchOfCompanySearch extends BranchOfCompany
         | kita yra su TabularForm widgetsu - neturi paieskos lauku, bet gali bazuotis ant tos pacios bazes, kaip ir GridView
         | todel patogu palikti GridView filtrus-parametrus, issaugotus sesijose. Sioje Kartik koreguojamoje lenteleje
         | labai patogu koreguoti irasus tiek po viena, tiek visus is karto ir, svarbu, veikia ActivForm'os validacija
-        | Taigi, kad galetume koreguojamoje lenteleje pasinaudori index lenteleje gautais filtrais - juos reikia uzfiksuoti.
+        | Taigi, kad galetume koreguojamoje lenteleje pasinaudoti index lenteleje gautais filtrais - juos reikia uzfiksuoti.
         |Užfiksavimo esmė:
-        |1. tikriname ar index lenteleje paspausta eiti i koreguojama lentele. $this->session->get('flag_branch_update') ==2
+        |
+        |1. tikriname ar index lenteleje paspausta eiti i koreguojama lentele. $this->session->get('flag_branch_update') == 2
         |   a) Taip -> patikriname ar yra parametru sesijos (kiekvieno, paieskoje dalyvaujancio parametro) - jei yra -
-        |     parametrui suteikiame ta parametro sesija sesija (pagal siuos parametrus bus atrinktas saltinis)
+        |     parametrui suteikiame ta parametro sesija (pagal siuos parametrus bus atrinktas saltinis)
+        |       (ir taip kiekvienam parametrui)
         |   b) Ne -> vadinasi esame ne koreguojamoje lenteleje, o index lenteleje. Cia galimi keli variantai - ar atejo
         |       naujas parametras - jei naujas - tvarkoje - perrasom sesija ir ji isimename, jei ne - tikriname atveji
         |       kad tik ka atejome is koreguojamos lenteles ir mums reikia, kad index lentele atvaizduotu senais parametrais
         |       t.y. pakoregave griztame i ta pacia atrinkta index lentele. Jei atejome ne is koreguojamos - sesija naikiname.
         |       Ir taip tikriname visus, paieskoje dalyvaujancius parametrus.
-        |       1) esame index lenteleje ir atejo parametras -> isimink sesija naujo parametro ir parametrui suteik ta sesija
         |
-        |           Svarbu: perrasinejame parametrus sesijomis, kad
+        |       1) esame index lenteleje ir atejo parametras -> isimink sesija naujo parametro.
+        |
+        |           Svarbu: parametrus isimename sesijomis, kad paskui veliau galetume atgaminti - grazindami parametrams
+        |                   sesijas, ir tuo paciu views'e, ji atnaujinus, formos paieskos lauke butu tas parametras
+        |       2) parametras nulinis (esame index lenteleje) - tikriname ar atejome is koreguojamos lenteles
+        |            (t.y. ar $this->session->get('flag_branch_update') == 1)
+        |           a) Taip (atejome is koreguojamos lenteles arba index lenteleje spaudinejami kiti parametrai, bet nelieciama
+        |               refrech knopke - ji panaikina visus filtrus ir flagus)
+        |               parametrui suteikiame sesija, jei ji yra
+        |           b) Ne (index lenteleje paspausta refrech knopke, arba ateojome pirma karta i index lentele)
+        |               panaikiname sio parametro sesija.
+        |           Pastaba: ir taip kiekvienam, paieskoje dalyvaujanciam parametrui
         |
         | patikriname ar atėjo bent koks paieškoje dalyvaujantis parametras
         |jei atėjo nunuliname visas sesijas ir iš naujo įsimename naujas sesijas
@@ -180,6 +192,7 @@ class BranchOfCompanySearch extends BranchOfCompany
 
         /*=================session parameter======================*/
         if ($this->session->has('flag_branch_update') && $this->session->get('flag_branch_update') == 2){
+
             //in the index table pressed view to update table
                 //set parent_company_id parameter
             if ($this->session->has('update_branch.parent_company_id')) {
@@ -225,7 +238,7 @@ class BranchOfCompanySearch extends BranchOfCompany
             if ($this->parent_company_id) {//parameter not null - set new session and pass it to parameter
                 $this->session['update_branch.parent_company_id'] = $this->parent_company_id;//to set new session
             }else{//parameter is null - look
-                if ($this->session->has('flag_branch_update') && $this->session->get('flag_branch_update') ==1){
+                if ($this->session->has('flag_branch_update') && $this->session->get('flag_branch_update') == 1){
                     //in the update table pressed view result to index table - set old session to parameter
                     if ($this->session->has('update_branch.parent_company_id')) {
                         $this->parent_company_id = $this->session['update_branch.parent_company_id'];//to set new session
@@ -241,7 +254,7 @@ class BranchOfCompanySearch extends BranchOfCompany
             if ($this->name) {//parameter not null - set new session and pass it to parameter
                 $this->session['update_branch.name'] = $this->name;//to set new session
             }else{//parameter is null - look
-                if ($this->session->has('flag_branch_update') && $this->session->get('flag_branch_update') ==1){
+                if ($this->session->has('flag_branch_update') && $this->session->get('flag_branch_update') == 1){
                     //in the update table pressed view result to index table - set old session to parameter
                     if ($this->session->has('update_branch.name')) {
                         $this->name = $this->session['update_branch.name'];//to set new session
@@ -257,7 +270,7 @@ class BranchOfCompanySearch extends BranchOfCompany
             if ($this->alias) {//parameter not null - set new session and pass it to parameter
                 $this->session['update_branch.alias'] = $this->alias;//to set new session
             }else{//parameter is null - look
-                if ($this->session->has('flag_branch_update') && $this->session->get('flag_branch_update') ==1){
+                if ($this->session->has('flag_branch_update') && $this->session->get('flag_branch_update') == 1){
                     //in the update table pressed view result to index table - set old session to parameter
                     if ($this->session->has('update_branch.alias')) {
                         $this->alias = $this->session['update_branch.alias'];//to set new session
@@ -273,7 +286,7 @@ class BranchOfCompanySearch extends BranchOfCompany
             if ($this->isbn) {//parameter not null - set new session and pass it to parameter
                 $this->session['update_branch.isbn'] = $this->isbn;//to set new session
             }else{//parameter is null - look
-                if ($this->session->has('flag_branch_update') && $this->session->get('flag_branch_update') ==1){
+                if ($this->session->has('flag_branch_update') && $this->session->get('flag_branch_update') == 1){
                     //in the update table pressed view result to index table - set old session to parameter
                     if ($this->session->has('update_branch.isbn')) {
                         $this->isbn = $this->session['update_branch.isbn'];//to set new session
