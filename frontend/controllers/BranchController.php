@@ -1,8 +1,9 @@
 <?php
 
 namespace frontend\controllers;
-
+use yii\base\Model;
 use frontend\models\ParentCompany;
+use yii\helpers\ArrayHelper;
 use yii\helpers\Url;
 use Yii;
 use frontend\models\BranchOfCompany;
@@ -11,6 +12,9 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\web\Session;
+use yii\web\Response;
+use yii\widgets\ActiveForm;
+
 
 /**
  * BranchController implements the CRUD actions for BranchOfCompany model.
@@ -44,13 +48,13 @@ class BranchController extends Controller
 //        if((Yii::$app->session->has('rememberWentToCartView')) && ($flagShowUpdateForm = true)) {
 //            $urlTesting = Yii::$app->session->get('rememberWentToCartView');
 //            $urlTesting = Url::previous('rememberWentToCartView');
-            //print_r($urlTesting);die;
+        //print_r($urlTesting);die;
 //            Yii::$app->session->remove('rememberWentToCartView');
 //            print_r(Yii::$app->session->get('rememberWentToCartView'));
 //            Yii::$app->session->remove('rememberWentToCartView');
 //            print_r($flagShowUpdateForm . $urlTesting );die;
 //            return $this->redirect($urlTesting);
-          //  return $this->redirect('http://arvidija.com/branch/index?flagShowUpdateForm=1&BranchOfCompanySearch%5Bid%5D=&BranchOfCompanySearch%5Bparent_company_id%5D=2&BranchOfCompanySearch%5Bname%5D=&BranchOfCompanySearch%5Bemail%5D=&BranchOfCompanySearch%5Bisbn%5D=&BranchOfCompanySearch%5Bdate_foundation%5D=&BranchOfCompanySearch%5Balias%5D=&BranchOfCompanySearch%5Bsort%5D=&flagShowUpdateForm=0
+        //  return $this->redirect('http://arvidija.com/branch/index?flagShowUpdateForm=1&BranchOfCompanySearch%5Bid%5D=&BranchOfCompanySearch%5Bparent_company_id%5D=2&BranchOfCompanySearch%5Bname%5D=&BranchOfCompanySearch%5Bemail%5D=&BranchOfCompanySearch%5Bisbn%5D=&BranchOfCompanySearch%5Bdate_foundation%5D=&BranchOfCompanySearch%5Balias%5D=&BranchOfCompanySearch%5Bsort%5D=&flagShowUpdateForm=0
 //');
 
 //        }
@@ -101,6 +105,55 @@ class BranchController extends Controller
             ]);
         }
     }
+
+
+
+    public function actionBatchUpdate($flagShowUpdateForm)
+    {
+
+        $searchModel = new BranchOfCompanySearch($flagShowUpdateForm);
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+//        print_r(Yii::$app->request->queryParams);die;
+        $company = ParentCompany::getList();
+    $models = $dataProvider->getModels();
+//    $models = Model::createMultiple(BranchOfCompanySearch::class, $dataProvider->getModels());
+//        echo '<pre>';
+////        print_r(Yii::$app->request->post());
+//        print_r($searchModel);
+//        echo '<br>';
+//        echo '<br>.is naujos eilutes';
+//        echo '<br>';
+////        print_r(ArrayHelper::map($models, 'id', 'id'));
+//        print_r($models);
+//        echo '<pre>';
+//        die;
+//    if (Model::loadMultiple($models, Yii::$app->request->post()) && Model::validateMultiple($models)) {
+    if (Model::loadMultiple($models, Yii::$app->request->post())) {
+//    if ( Model::validateMultiple($models)) {
+        $count = 0;
+
+        echo '<pre>';
+        print_r($searchModel);
+        echo '<pre>';
+//        foreach ($models as $index => $model) {
+//            // populate and save records for each model
+//            if ($model->save()) {
+//                $count++;
+//            }
+//        }
+        Yii::$app->session->setFlash('success', "Processed {$count} records successfully.");
+        return $this->redirect(['index']); // redirect to your next desired page
+    } else {
+        $model = new BranchOfCompany();
+        return $this->render('index', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+            'company' => $company,
+            'model' => $model,
+        ]);
+    }
+}
+
 
     /**
      * Updates an existing BranchOfCompany model.

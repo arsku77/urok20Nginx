@@ -16,7 +16,8 @@ use kartik\field\FieldRange;
 use kartik\date\DatePicker;
 use kartik\datecontrol\DateControl;
 //use yii\widgets\ActiveForm;
-use kartik\widgets\ActiveForm;
+//use kartik\widgets\ActiveForm;
+use kartik\form\ActiveForm;
 /* @var $this yii\web\View */
 /* @var $searchModel frontend\models\BranchOfCompanySearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -31,11 +32,19 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class="branch-of-company-index">
 
 
-        <?php $form = ActiveForm::begin(); ?>
+        <?php $form = ActiveForm::begin([
+            'id' => 'branch-update-form',
+//            'name' => 'branch-update-form',
+            'method' => 'post',
+            'action' => [
+                'batch-update',
+//                'id' => $model->id,
+                'flagShowUpdateForm' => 2,
+            ]
+        ]); ?>
         <?= TabularForm::widget([
             'form' => $form,
             'dataProvider' => $dataProvider,
-//    'searchModel' => $searchModel,
             'gridSettings' => [
                 'pjax'=>true,
                 'floatHeader' => true,
@@ -88,11 +97,18 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
 
 
-
-
-
             'attributes' => [
-                'name' => ['type' => TabularForm::INPUT_TEXT],
+                'id' => [ // primary key attribute
+                    'type'=>TabularForm::INPUT_HIDDEN,
+                    'columnOptions'=>['hidden'=>true]
+                ],
+
+                'name' => [
+                    'type' => TabularForm::INPUT_TEXT,
+                    'options'=>['class'=>'form-control text-right'],
+                    'columnOptions'=>['hAlign'=>GridView::ALIGN_RIGHT]
+                ],
+
 //        'color' => [
 //            'type' => TabularForm::INPUT_WIDGET,
 //            'widgetClass' => \kartik\widgets\ColorInput::classname()
@@ -114,6 +130,11 @@ $this->params['breadcrumbs'][] = $this->title;
                     'columnOptions'=>['hAlign'=>GridView::ALIGN_RIGHT]
                 ],
 
+//                'date_foundation' => [
+//                    'type' => TabularForm::INPUT_TEXT,
+//                    'options'=>['class'=>'form-control text-right'],
+//                    'columnOptions'=>['hAlign'=>GridView::ALIGN_RIGHT, 'width'=>'10%']
+//                ],
 
                 'date_foundation' => [
                     'type' => TabularForm::INPUT_WIDGET,
@@ -196,7 +217,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         ]),
 
 
-                    /*-------validacija suveikia bandant irasyti - is karto nukreipia i create puslapi-----*/
+                /*-------validacija suveikia bandant irasyti - is karto nukreipia i create puslapi-----*/
                 'after' =>
                     Html::beginForm(['branch/create'], 'post', [
                         'class' => 'form-inline',

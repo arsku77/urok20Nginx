@@ -27,6 +27,7 @@ class BranchOfCompanySearch extends BranchOfCompany
             [['id', 'parent_company_id', 'sort'], 'integer'],
             [['from_date', 'to_date'], 'datetime'],
 //            [['flagShowUpdateForm'], 'integer'],
+            [['date_foundation'],'date', 'format'=>'php:Y-m-d'],
             [['name', 'email', 'isbn', 'date_foundation', 'alias', 'parent_company_name', 'flagShowUpdateForm'], 'safe'],
         ];
     }
