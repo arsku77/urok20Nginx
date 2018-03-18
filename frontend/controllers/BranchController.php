@@ -127,20 +127,20 @@ class BranchController extends Controller
 //        print_r($models);
 //        echo '<pre>';
 //        die;
-//    if (Model::loadMultiple($models, Yii::$app->request->post()) && Model::validateMultiple($models)) {
-    if (Model::loadMultiple($models, Yii::$app->request->post())) {
+    if (Model::loadMultiple($models, Yii::$app->request->post()) && Model::validateMultiple($models)) {
+//    if (Model::loadMultiple($models, Yii::$app->request->post())) {
 //    if ( Model::validateMultiple($models)) {
         $count = 0;
 
-        echo '<pre>';
-        print_r($searchModel);
-        echo '<pre>';
-//        foreach ($models as $index => $model) {
-//            // populate and save records for each model
-//            if ($model->save()) {
-//                $count++;
-//            }
-//        }
+//        echo '<pre>';
+//        print_r($searchModel);
+//        echo '<pre>';
+        foreach ($models as $index => $model) {
+            // populate and save records for each model
+            if ($model->save()) {
+                $count++;
+            }
+        }
         Yii::$app->session->setFlash('success', "Processed {$count} records successfully.");
         return $this->redirect(['index']); // redirect to your next desired page
     } else {

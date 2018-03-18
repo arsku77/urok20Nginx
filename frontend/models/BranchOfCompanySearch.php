@@ -75,7 +75,7 @@ class BranchOfCompanySearch extends BranchOfCompany
         // modelio BranchOfCompany.php imam ryšį getParentCompany(), tai bus parentCompany
 
         //buvo queris tik su filialais $query = BranchOfCompany::find();
-        $query = BranchOfCompany::find()->joinWith('parentCompany');
+        $query = BranchOfCompany::find()->indexBy('id')->joinWith('parentCompany');
 
         // add conditions that should always apply here
 
