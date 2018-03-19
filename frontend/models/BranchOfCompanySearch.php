@@ -75,23 +75,62 @@ class BranchOfCompanySearch extends BranchOfCompany
         // modelio BranchOfCompany.php imam ryšį getParentCompany(), tai bus parentCompany
 
         //buvo queris tik su filialais $query = BranchOfCompany::find();
-        $query = BranchOfCompany::find()->indexBy('id')->joinWith('parentCompany');
 
         // add conditions that should always apply here
+        /*-------paiaškinimas
+| kad išvengti daugybinių užklausų, naudojamės modelių susiejimu (remiantis susietomis lentelėmis)
+|   \frontend\models\BranchOfCompany.php modelis (lentelė branch_of_company ) susietas su modeliu
+|    \frontend\models\ParentCompany.php (lentelė parent_company) ryšiu  parentCompany, kuris
+| Yii2 pagalba išsišifruoja iš šio metodo, esančio modelyje BranchOfCompany:
+|                public function getParentCompany()
+|        {
+|            return $this->hasOne(ParentCompany::className(), ['id' => 'parent_company_id']);
+|        }
+|
+|   svarbu: parašymas ..find()->indexBy('id').. svarbus
+|
+|   eilutei (Model::loadMultiple($models, Yii::$app->request->post())
+|   iš \frontend\controllers\BranchController.php metodo
+| kuris atsakingas už visos eilutės įrašymą public function actionBatchUpdate($flagShowUpdateForm)
+|
+|   kadangi Kartik updeitinimas ir validacija galioja tik pirmam lentelės puslapiui, tai šaltinyje panaikiname paginaciją ir
+|   tada automatiškai veikia limitas, kurį galime įrašyti į saito nustatymus
+|
+-------------*/
+    //checking session -> if 2, then view is updatable table
+        if(($this->session->has('flag_branch_update')) && ($this->session->get('flag_branch_update') == 2 )){
+        //updeitinimo lentelė
+//            $query = BranchOfCompany::find()->indexBy('id')->joinWith('parentCompany');
+            $query = BranchOfCompany::find()->indexBy('id')->joinWith('parentCompany')->limit(6);
 
-        $dataProvider = new ActiveDataProvider([
-            'query' => $query,
-            'pagination' => [
-                'pageSize' => 6,
-            ],
-            'sort' => [
-                'defaultOrder' => [
-                    'sort' => SORT_ASC,
+            $dataProvider = new ActiveDataProvider([
+                'query' => $query,
+
+                'pagination' => false,
+                'sort' => [
+                    'defaultOrder' => [
+                        'sort' => SORT_ASC,
+                    ],
                 ],
-            ],
 
-        ]);
+            ]);
+        }else{
+            //index lentelei
+            $query = BranchOfCompany::find()->indexBy('id')->joinWith('parentCompany');
 
+            $dataProvider = new ActiveDataProvider([
+                'query' => $query,
+                'pagination' => [
+                    'pageSize' => 6,
+                ],
+                'sort' => [
+                    'defaultOrder' => [
+                        'sort' => SORT_ASC,
+                    ],
+                ],
+
+            ]);
+        }
         //papildomas rūšiavimas pagal naują lauką ne iš DB, o rūšiuoja pvd susijusios lentelės jau iš DB
         $dataProvider->setSort([
             'attributes' => array_merge($dataProvider->getSort()->attributes, [
@@ -195,23 +234,23 @@ class BranchOfCompanySearch extends BranchOfCompany
         if ($this->session->has('flag_branch_update') && $this->session->get('flag_branch_update') == 2){
 
             //in the index table pressed view to update table
-                //set parent_company_id parameter
+            //set parent_company_id parameter
             if ($this->session->has('update_branch.parent_company_id')) {
                 $this->parent_company_id = $this->session['update_branch.parent_company_id'];//to set new session
             }
-                //set name parameter
+            //set name parameter
             if ($this->session->has('update_branch.name')) {
                 $this->name = $this->session['update_branch.name'];//to set new session
             }
-                //set isbn parameter
+            //set isbn parameter
             if ($this->session->has('update_branch.isbn')) {
                 $this->isbn = $this->session['update_branch.isbn'];//to set new session
             }
-                //set alias parameter
+            //set alias parameter
             if ($this->session->has('update_branch.alias')) {
                 $this->alias = $this->session['update_branch.alias'];//to set new session
             }
-                //set multiple parameter: parent name name alias
+            //set multiple parameter: parent name name alias
             if ($this->session->has('update_branch.parent_company_name')) {
                 $this->parent_company_name = $this->session['update_branch.parent_company_name'];//to set new session
             }
@@ -299,9 +338,6 @@ class BranchOfCompanySearch extends BranchOfCompany
             }
             /*---------end for name parameter----------------*/
 
-
-
-
             //after all parameter checking - delete flag session ()
             $this->session->has('flag_branch_update') ? $this->session->remove('flag_branch_update'):  null;
         }
@@ -345,7 +381,6 @@ class BranchOfCompanySearch extends BranchOfCompany
         if(!empty($this->from_date) and !empty($this->to_date))
             $query->andFilterWhere(['and', ['>', 'branch_of_company.date_foundation', $this->from_date], ['<', 'branch_of_company.date_foundation', $this->to_date]]);
 //            print_r($this->name);die;
-
 
         return $dataProvider;
     }
