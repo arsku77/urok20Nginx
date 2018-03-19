@@ -101,7 +101,7 @@ class BranchOfCompanySearch extends BranchOfCompany
         if(($this->session->has('flag_branch_update')) && ($this->session->get('flag_branch_update') == 2 )){
         //updeitinimo lentelė
 //            $query = BranchOfCompany::find()->indexBy('id')->joinWith('parentCompany');
-            $query = BranchOfCompany::find()->indexBy('id')->joinWith('parentCompany')->limit(6);
+            $query = BranchOfCompany::find()->indexBy('id')->joinWith('parentCompany')->limit(10);
 
             $dataProvider = new ActiveDataProvider([
                 'query' => $query,
@@ -234,6 +234,10 @@ class BranchOfCompanySearch extends BranchOfCompany
         if ($this->session->has('flag_branch_update') && $this->session->get('flag_branch_update') == 2){
 
             //in the index table pressed view to update table
+            //set id parameter
+            if ($this->session->has('update_branch.id')) {
+                $this->id = $this->session['update_branch.id'];//to set new session
+            }
             //set parent_company_id parameter
             if ($this->session->has('update_branch.parent_company_id')) {
                 $this->parent_company_id = $this->session['update_branch.parent_company_id'];//to set new session
@@ -257,6 +261,22 @@ class BranchOfCompanySearch extends BranchOfCompany
 
         }else{
             //other variants:
+
+            /*--------- for id parameter----------------*/
+            if ($this->id) {//parameter not null - set new session and pass it to parameter
+                $this->session['update_branch.id'] = $this->id;//to set new session
+            }else{//parameter is null - look
+                if ($this->session->has('flag_branch_update') && $this->session->get('flag_branch_update') ==1){
+                    //in the update table pressed view result to index table - set old session to parameter
+                    if ($this->session->has('update_branch.id')) {
+                        $this->id = $this->session['update_branch.id'];//to set new session
+                    }
+                }else{//in index table pressed another parameter - delete session this parameter because parameter $this->name is empty
+                    $this->session->has('update_branch.id') ? $this->session->remove('update_branch.id') : null;
+                }
+
+            }
+            /*---------end for id parameter----------------*/
 
             /*--------- for parent_company_name parameter----------------*/
             if ($this->parent_company_name) {//parameter not null - set new session and pass it to parameter
