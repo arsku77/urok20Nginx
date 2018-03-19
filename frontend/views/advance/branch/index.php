@@ -98,10 +98,15 @@ $this->params['breadcrumbs'][] = $this->title;
 
 
             'attributes' => [
-                'id' => [ // primary key attribute
-                    'type'=>TabularForm::INPUT_HIDDEN,
-                    'columnOptions'=>['hidden'=>true]
+                'id' => [
+                    'type' => TabularForm::INPUT_STATIC,
+                    'columnOptions'=>['hAlign'=>GridView::ALIGN_RIGHT]
                 ],
+
+//                'id' => [ // primary key attribute
+//                    'type'=>TabularForm::INPUT_HIDDEN,
+//                    'columnOptions'=>['hidden'=>true]
+//                ],
 
                 'name' => [
                     'type' => TabularForm::INPUT_TEXT,
@@ -343,13 +348,21 @@ $this->params['breadcrumbs'][] = $this->title;
 
                 [
                     'class' => ActionColumn::class,
-                    'template' => '{save}&nbsp;&nbsp;&nbsp;{view}&nbsp;&nbsp;&nbsp;{update}&nbsp;&nbsp;&nbsp;{delete}',
+                    'template' => '{filter}&nbsp;&nbsp;&nbsp;{view}&nbsp;&nbsp;&nbsp;{update}&nbsp;&nbsp;&nbsp;{delete}',
                     'buttons' => [
                         'update' => function ($url, BranchOfCompany $model) {
                             return Html::a('<span class="glyphicon glyphicon-pencil"></span>', ['update', 'id' => $model->id]);
                         },
-                        'save' => function ($url, BranchOfCompany $model) {
-                            return Html::a('<span class="glyphicon glyphicon-floppy-save"></span>', ['branch/update', 'id' => $model->id]);
+                        'filter' => function ($url, BranchOfCompany $model) {
+                            return Html::a('<span class="glyphicon glyphicon-filter"></span>',
+                                ['batch-update', 'flagShowUpdateForm' => 2, 'idFilterOfIndexView' => $model->id],
+                                [
+//                                        'class' => 'btn btn-danger',
+                                    'data' => [
+                                        'method' => 'post',
+                                    ],
+                                ]
+                                );
                         },
                         'view' => function ($url, BranchOfCompany $model) {
                             return Html::a('<span class="glyphicon glyphicon-eye-open"></span>', ['view', 'id' => $model->id]);

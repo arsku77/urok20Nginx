@@ -17,6 +17,7 @@ class BranchOfCompanySearch extends BranchOfCompany
     public $from_date;//papildomas laukas ne uš DB: datos periodui
     public $to_date;//papildomas laukas ne uš DB: datos periodui
     public $flagShowUpdateForm;//papildomas laukas ne uš DB: datos periodui - is knopkes formos
+    public $idFilterOfIndexView;//papildomas parametras ne uš DB: filtrui uzdeti, kai spaudziam index views lenteleje filtriuko zenkl
     private $session;
     /**
      * @inheritdoc
@@ -28,14 +29,15 @@ class BranchOfCompanySearch extends BranchOfCompany
             [['from_date', 'to_date'], 'datetime'],
 //            [['flagShowUpdateForm'], 'integer'],
             [['date_foundation'],'date', 'format'=>'php:Y-m-d'],
-            [['name', 'email', 'isbn', 'date_foundation', 'alias', 'parent_company_name', 'flagShowUpdateForm'], 'safe'],
+            [['idFilterOfIndexView', 'name', 'email', 'isbn', 'date_foundation', 'alias', 'parent_company_name', 'flagShowUpdateForm'], 'safe'],
         ];
     }
 
-    public function __construct($flagShowUpdateForm = false)
+    public function __construct($flagShowUpdateForm = false, $idFilterOfIndexView = null)
     {
         $session = Yii::$app->session;
         $this->session = $session;
+        ($idFilterOfIndexView) ? $this->idFilterOfIndexView = $idFilterOfIndexView : null;
         //jei ateina iš formos flagas, tai pakeisk sesiją, kitaip - pasinaudok jau esama sesija
         if ($flagShowUpdateForm) {
 //            $this->session->remove('flag_branch_update');// nebūtina trinti - su set pakeičia
@@ -97,12 +99,15 @@ class BranchOfCompanySearch extends BranchOfCompany
 |   tada automatiškai veikia limitas, kurį galime įrašyti į saito nustatymus
 |
 -------------*/
-    //checking session -> if 2, then view is updatable table
+        //checking session -> if 2, then view is updatable table
         if(($this->session->has('flag_branch_update')) && ($this->session->get('flag_branch_update') == 2 )){
-        //updeitinimo lentelė
+            //updeitinimo lentelė
 //            $query = BranchOfCompany::find()->indexBy('id')->joinWith('parentCompany');
             $query = BranchOfCompany::find()->indexBy('id')->joinWith('parentCompany')->limit(10);
-
+            if($this->idFilterOfIndexView){
+                $this->id =$this->idFilterOfIndexView;
+                $this->session['update_branch.id'] = $this->id;
+            }
             $dataProvider = new ActiveDataProvider([
                 'query' => $query,
 

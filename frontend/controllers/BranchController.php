@@ -108,10 +108,10 @@ class BranchController extends Controller
 
 
 
-    public function actionBatchUpdate($flagShowUpdateForm)
+    public function actionBatchUpdate($flagShowUpdateForm, $idFilterOfIndexView = null)
     {
 
-        $searchModel = new BranchOfCompanySearch($flagShowUpdateForm);
+        $searchModel = new BranchOfCompanySearch($flagShowUpdateForm, $idFilterOfIndexView);
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 //        print_r(Yii::$app->request->queryParams);die;
         $company = ParentCompany::getList();
