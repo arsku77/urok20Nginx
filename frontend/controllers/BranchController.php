@@ -142,7 +142,9 @@ class BranchController extends Controller
             }
         }
         Yii::$app->session->setFlash('success', "Processed {$count} records successfully.");
-        return $this->redirect(['index']); // redirect to your next desired page
+        $this->redirect(Yii::$app->request->referrer);
+
+        //        return $this->redirect(['index']); // redirect to your next desired page
     } else {
         $model = new BranchOfCompany();
         return $this->render('index', [
@@ -167,8 +169,30 @@ class BranchController extends Controller
 
         $company = ParentCompany::getList();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+//        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        //iš gauto masyvų masyvo su visais formoje buvusiais duomenimis, imame tik to id masyvą
+        if ($model->load(ArrayHelper::getColumn(Yii::$app->request->post(), $id))
+            && $model->save() && $model->validate()) {
 //            return $this->redirect(['view', 'id' => $model->id]);
+//            $atejoPostas = Yii::$app->request->post();
+////            $atejoPostas = Yii::$app->request->post('BranchOfCompany');
+//            echo'<pre>';
+//            print_r($model);
+//            echo'<pre> <br> atėjo postas: <br>';
+//            print_r($atejoPostas);
+//            echo'<br>perdirbtas get column:<br>';
+//            print_r(ArrayHelper::getColumn($atejoPostas, $id));
+//            echo'<br>dar:<br>';
+//            print_r(Yii::$app->request->post('BranchOfCompany'));
+//
+//            echo'<br>dar karta:<br>';
+//            print_r(Yii::$app->request->post('BranchOfCompany'));
+//
+//            echo'<br>atimtas:<br>';
+////            print_r($atejoPostas - Yii::$app->request->post('BranchOfCompany'));
+//
+////            print_r(ArrayHelper::getValue($atejoPostas, $id));//nieko nerodo
+//            echo'<pre>';die;
             $this->redirect(Yii::$app->request->referrer);
 
         } else {

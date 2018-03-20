@@ -100,11 +100,12 @@ $this->params['breadcrumbs'][] = $this->title;
                     'class' => '\kartik\grid\ActionColumn',
                     'updateOptions' => ['style' => 'display:none;'],
                     'width' => '60px',
-                    'template' => '{filter}&nbsp;&nbsp;&nbsp;{view}&nbsp;&nbsp;&nbsp;{update}&nbsp;&nbsp;&nbsp;{delete}',
+                    'template' => '{save}&nbsp;&nbsp;&nbsp;{view}&nbsp;&nbsp;&nbsp;{update}&nbsp;&nbsp;&nbsp;{delete}',
                     'buttons' => [
-                        'filter' => function ($url, BranchOfCompany $model) {
-                            return Html::a('<span class="glyphicon glyphicon-filter"></span>',
-                                ['batch-update', 'flagShowUpdateForm' => 2, 'idFilterOfIndexView' => $model->id],
+                        'save' => function ($url, BranchOfCompany $model) {
+                            return Html::a('<span class="glyphicon glyphicon-floppy-save"></span>',
+//                                ['batch-update', 'flagShowUpdateForm' => 2, 'idFilterOfIndexView' => $model->id],
+                                ['update', 'flagShowUpdateForm' => 2, 'id' => $model->id],
                                 [
 //                                        'class' => 'btn btn-danger',
                                     'data' => [
@@ -135,15 +136,21 @@ $this->params['breadcrumbs'][] = $this->title;
                 ],
 
             'attributes' => [
-                'id' => [
-                    'type' => TabularForm::INPUT_STATIC,
-                    'columnOptions'=>['hAlign'=>GridView::ALIGN_RIGHT]
-                ],
+//                'id' => [
+//                    'type' => TabularForm::INPUT_STATIC,
+//                    'columnOptions'=>['hAlign'=>GridView::ALIGN_RIGHT]
+//                ],
 
 //                'id' => [ // primary key attribute
 //                    'type'=>TabularForm::INPUT_HIDDEN,
 //                    'columnOptions'=>['hidden'=>true]
 //                ],
+
+                'id' => [
+                    'type' => TabularForm::INPUT_TEXT,
+                    'options'=>['class'=>'form-control text-right'],
+                    'columnOptions'=>['hAlign'=>GridView::ALIGN_RIGHT]
+                ],
 
                 'name' => [
                     'type' => TabularForm::INPUT_TEXT,
@@ -194,8 +201,9 @@ $this->params['breadcrumbs'][] = $this->title;
 
 
                 'isbn' => [
-                    'type' => TabularForm::INPUT_STATIC,
-                    'columnOptions'=>['hAlign'=>GridView::ALIGN_RIGHT]
+                    'type' => TabularForm::INPUT_TEXT,
+                    'options'=>['class'=>'form-control text-right'],
+                    'columnOptions'=>['hAlign'=>GridView::ALIGN_RIGHT, 'width'=>'10%']
                 ],
 
 
