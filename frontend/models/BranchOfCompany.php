@@ -3,6 +3,8 @@
 namespace frontend\models;
 
 use Yii;
+use yii\db\ActiveRecord;
+use yii\helpers\ArrayHelper;
 
 /**
  * This is the model class for table "branch_of_company".
@@ -16,7 +18,7 @@ use Yii;
  * @property string $alias
  * @property integer $sort
  */
-class BranchOfCompany extends \yii\db\ActiveRecord
+class BranchOfCompany extends ActiveRecord
 {
     /**
      * @inheritdoc
@@ -43,6 +45,24 @@ class BranchOfCompany extends \yii\db\ActiveRecord
     }
 
     /**
+     * @param $id
+     * @return null|static
+     */
+    public static function findIdentity($id)
+    {
+        return static::findOne(['id' => $id]);
+    }
+
+
+    /**
+     * @param $id
+     * @return string
+     */
+    public static function getBranchNameById($id)
+    {
+        return self::findIdentity($id)->name;
+    }
+    /**
      * @return string
      * get formated data
      */
@@ -54,12 +74,12 @@ class BranchOfCompany extends \yii\db\ActiveRecord
 /*---------join branches companies to parent company: start-------*/
 
     /**
-     * @return ParentCompany|null
+     * @return \yii\db\ActiveQuery
      * join to parent company
      */
     public function getParentCompany()
     {
-        return $this->hasOne(ParentCompany::className(), ['id' => 'parent_company_id']);
+        return $this->hasOne(ParentCompany::class, ['id' => 'parent_company_id']);
     }
 /*---------join branches companies to parent company: end -------*/
 
@@ -77,21 +97,20 @@ class BranchOfCompany extends \yii\db\ActiveRecord
 /*----get array addresses of branch company with one ids branches start------------*/
 
     /**
-     * @return ActiveQuery
+     * @return \yii\db\ActiveQuery
      * relate branch company to address via company_to_address
      */
     public function getCompanyToAddressRelations()
     {
-        return $this->hasMany(CompanyToAddress::className(), ['branch_of_company_id' => 'id']);
+        return $this->hasMany(CompanyToAddress::class, ['branch_of_company_id' => 'id']);
     }
 
     /**
-     * @return Address_Branches[]
-     * one branches
+     * @return array|ActiveRecord[]
      */
     public function getAddressOfBranches()
     {
-        return $this->hasMany(AddressOfCompany::className(), ['id' => 'address_of_company_id'])->via('companyToAddressRelations')->all();
+        return $this->hasMany(AddressOfCompany::class, ['id' => 'address_of_company_id'])->via('companyToAddressRelations')->all();
     }
 /*----get array addresses of branch company with one ids branches end---------*/
 

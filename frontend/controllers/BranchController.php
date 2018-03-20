@@ -20,7 +20,9 @@ use yii\widgets\ActiveForm;
  * BranchController implements the CRUD actions for BranchOfCompany model.
  */
 class BranchController extends Controller
+
 {
+    private $session;
     /**
      * @inheritdoc
      */
@@ -113,48 +115,30 @@ class BranchController extends Controller
 
         $searchModel = new BranchOfCompanySearch($flagShowUpdateForm, $idFilterOfIndexView);
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-//        print_r(Yii::$app->request->queryParams);die;
         $company = ParentCompany::getList();
-    $models = $dataProvider->getModels();
-//    $models = Model::createMultiple(BranchOfCompanySearch::class, $dataProvider->getModels());
-//        echo '<pre>';
-////        print_r(Yii::$app->request->post());
-//        print_r($searchModel);
-//        echo '<br>';
-//        echo '<br>.is naujos eilutes';
-//        echo '<br>';
-////        print_r(ArrayHelper::map($models, 'id', 'id'));
-//        print_r($models);
-//        echo '<pre>';
-//        die;
-    if (Model::loadMultiple($models, Yii::$app->request->post()) && Model::validateMultiple($models)) {
-//    if (Model::loadMultiple($models, Yii::$app->request->post())) {
-//    if ( Model::validateMultiple($models)) {
-        $count = 0;
+        $models = $dataProvider->getModels();
+        if (Model::loadMultiple($models, Yii::$app->request->post()) && Model::validateMultiple($models)) {
 
-//        echo '<pre>';
-//        print_r($searchModel);
-//        echo '<pre>';
-        foreach ($models as $index => $model) {
-            // populate and save records for each model
-            if ($model->save()) {
-                $count++;
+            $count = 0;
+
+            foreach ($models as $index => $model) {
+                // populate and save records for each model
+                if ($model->save()) {
+                    $count++;
+                }
             }
+            Yii::$app->session->setFlash('success', "Processed {$count} records successfully.");
+            $this->redirect(Yii::$app->request->referrer);
+        } else {
+            $model = new BranchOfCompany();
+            return $this->render('index', [
+                'searchModel' => $searchModel,
+                'dataProvider' => $dataProvider,
+                'company' => $company,
+                'model' => $model,
+            ]);
         }
-        Yii::$app->session->setFlash('success', "Processed {$count} records successfully.");
-        $this->redirect(Yii::$app->request->referrer);
-
-        //        return $this->redirect(['index']); // redirect to your next desired page
-    } else {
-        $model = new BranchOfCompany();
-        return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
-            'company' => $company,
-            'model' => $model,
-        ]);
     }
-}
 
 
     /**
@@ -167,36 +151,26 @@ class BranchController extends Controller
     {
         $model = $this->findModel($id);
 
-        $company = ParentCompany::getList();
-
-//        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        $company = ParentCompany::getList();//sito reiks renderinimui, kai norime matyti tik udeitinimo vaizdą
+        //tikriname ar užklausa atėjo iš update lentelės, kai paspausta ant vieno įrašo įrašymo
+        //jei yra masyvas iš post užklausos pagal id - vadinasi atėjo post masyvas iš updeitinimo lenteles
         //iš gauto masyvų masyvo su visais formoje buvusiais duomenimis, imame tik to id masyvą
-        if ($model->load(ArrayHelper::getColumn(Yii::$app->request->post(), $id))
-            && $model->save() && $model->validate()) {
-//            return $this->redirect(['view', 'id' => $model->id]);
-//            $atejoPostas = Yii::$app->request->post();
-////            $atejoPostas = Yii::$app->request->post('BranchOfCompany');
-//            echo'<pre>';
-//            print_r($model);
-//            echo'<pre> <br> atėjo postas: <br>';
-//            print_r($atejoPostas);
-//            echo'<br>perdirbtas get column:<br>';
-//            print_r(ArrayHelper::getColumn($atejoPostas, $id));
-//            echo'<br>dar:<br>';
-//            print_r(Yii::$app->request->post('BranchOfCompany'));
-//
-//            echo'<br>dar karta:<br>';
-//            print_r(Yii::$app->request->post('BranchOfCompany'));
-//
-//            echo'<br>atimtas:<br>';
-////            print_r($atejoPostas - Yii::$app->request->post('BranchOfCompany'));
-//
-////            print_r(ArrayHelper::getValue($atejoPostas, $id));//nieko nerodo
-//            echo'<pre>';die;
+
+        if (!empty(array_filter(ArrayHelper::getColumn(Yii::$app->request->post(), $id)))){
+            $conditionRequest = ($model->load(ArrayHelper::getColumn(Yii::$app->request->post(), $id))
+                && $model->save() && $model->validate());
+        }else{
+            $conditionRequest = ($model->load(Yii::$app->request->post())
+                && $model->save() && $model->validate());
+        }
+
+        if ($conditionRequest) {
+
+            Yii::$app->session->setFlash('success', "Processed {$model->getBranchNameById($id)} records successfully.");
+
             $this->redirect(Yii::$app->request->referrer);
 
         } else {
-//            print_r($company);die;
             return $this->render('update', [
                 'model' => $model,
                 'company' => $company,
