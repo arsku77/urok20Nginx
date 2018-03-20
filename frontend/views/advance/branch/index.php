@@ -95,7 +95,44 @@ $this->params['breadcrumbs'][] = $this->title;
 
                 ]
             ],
+            'actionColumn' =>
+                [
+                    'class' => '\kartik\grid\ActionColumn',
+                    'updateOptions' => ['style' => 'display:none;'],
+                    'width' => '60px',
+                    'template' => '{filter}&nbsp;&nbsp;&nbsp;{view}&nbsp;&nbsp;&nbsp;{update}&nbsp;&nbsp;&nbsp;{delete}',
+                    'buttons' => [
+                        'filter' => function ($url, BranchOfCompany $model) {
+                            return Html::a('<span class="glyphicon glyphicon-filter"></span>',
+                                ['batch-update', 'flagShowUpdateForm' => 2, 'idFilterOfIndexView' => $model->id],
+                                [
+//                                        'class' => 'btn btn-danger',
+                                    'data' => [
+                                        'method' => 'post',
+                                    ],
+                                ]
+                            );
+                        },
+                        'view' => function ($url, BranchOfCompany $model) {
+                            return Html::a('<span class="glyphicon glyphicon-eye-open"></span>', ['view', 'id' => $model->id]);
+                        },
+                        'update' => function ($url, BranchOfCompany $model) {
+                            return Html::a('<span class="glyphicon glyphicon-pencil"></span>', ['update', 'id' => $model->id]);
+                        },
+                        'delete' => function ($url, BranchOfCompany $model) {
+                            return Html::a('<span class="glyphicon glyphicon-trash"></span>', ['delete', 'id' => $model->id],
+                                [
+//                                        'class' => 'btn btn-danger',
+                                    'data' => [
+                                        'confirm' => 'Are you sure you want to delete this item?',
+                                        'method' => 'post',
+                                    ],
+                                ]
+                            );
+                        },
+                    ],
 
+                ],
 
             'attributes' => [
                 'id' => [
@@ -211,7 +248,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     Html::endForm() .
                     ' ' .
                     Html::a('<i class="glyphicon glyphicon-edit"></i>&nbsp;View editable',
-                        ['index',
+                        ['batch-update',
                             'flagShowUpdateForm' => 2,
                         ],
                         ['class' => 'btn btn-default',
@@ -350,9 +387,6 @@ $this->params['breadcrumbs'][] = $this->title;
                     'class' => ActionColumn::class,
                     'template' => '{filter}&nbsp;&nbsp;&nbsp;{view}&nbsp;&nbsp;&nbsp;{update}&nbsp;&nbsp;&nbsp;{delete}',
                     'buttons' => [
-                        'update' => function ($url, BranchOfCompany $model) {
-                            return Html::a('<span class="glyphicon glyphicon-pencil"></span>', ['update', 'id' => $model->id]);
-                        },
                         'filter' => function ($url, BranchOfCompany $model) {
                             return Html::a('<span class="glyphicon glyphicon-filter"></span>',
                                 ['batch-update', 'flagShowUpdateForm' => 2, 'idFilterOfIndexView' => $model->id],
@@ -366,6 +400,9 @@ $this->params['breadcrumbs'][] = $this->title;
                         },
                         'view' => function ($url, BranchOfCompany $model) {
                             return Html::a('<span class="glyphicon glyphicon-eye-open"></span>', ['view', 'id' => $model->id]);
+                        },
+                        'update' => function ($url, BranchOfCompany $model) {
+                            return Html::a('<span class="glyphicon glyphicon-pencil"></span>', ['update', 'id' => $model->id]);
                         },
                         'delete' => function ($url, BranchOfCompany $model) {
                             return Html::a('<span class="glyphicon glyphicon-trash"></span>', ['delete', 'id' => $model->id],
